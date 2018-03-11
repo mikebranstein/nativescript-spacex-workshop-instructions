@@ -94,7 +94,7 @@
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="getting-started">Getting Started</h2>
+				<h2 id="the-home-view">The Home View</h2>
 <p>Now that you understand the basics of NativeScript and how the Playground you&#39;re ready to start creating your first (or maybe not your first) NativeScript app. Over the course of this chapter and the next few chapters you will be creating an app the reads and displays <a href="http://www.spacex.com">SpaceX</a> flight data.</p>
 <p>In this chapter will focus on designing the home page and learn to use the following NativeScript elements:</p>
 <ul>
@@ -114,7 +114,7 @@
     &lt;/StackLayout&gt;
 &lt;/ScrollView&gt;
 </code></pre>
-<p>The <code>ScrollView</code> and <code>StackLayout</code> elements are two basic layout elements (we&#39;ll talk about the <code>ActionBar</code> in a later chapter). To display multiple elements on a page, you need to use a layout like the <code>ScrollView</code> or <code>StackLayout</code> and in most cases you will want to use both. The <code>ScrollView</code> functions exactly as you would expect; it makes the content inside of it scrollable. The <code>StackLayout</code> element organizes child elements vertically or horizonatally.</p>
+<p>The <code>ScrollView</code> and <code>StackLayout</code> elements are two basic layout elements (we&#39;ll talk about the <code>ActionBar</code> in a later chapter). To display multiple elements on a page, you need to use a layout like the <code>ScrollView</code> or <code>StackLayout</code> and in most cases you will want to use both. The <code>ScrollView</code> functions exactly as you would expect, it makes the content inside of it scrollable. The <code>StackLayout</code> element organizes child elements vertically or horizonatally.</p>
 <blockquote>
 <p>The <code>StackLayout</code> organizes child elements stacked on top of each other vertically by default.</p>
 </blockquote>
@@ -126,6 +126,47 @@
 
 <p>First thing is first, go ahead and remove the <code>ActionBar</code> element from <code>home-component.html</code> because you will not need this on the home view. After deleting the <code>ActionBar</code> your app should have a blank home view inside the NativeScript preview app.</p>
 <p><img src="images/chapter2/chapter2-1.jpeg" class="img-small" /></p>
+<p>Next, let&#39;s create a class to style the home view called <code>base</code> to create a nice background image for our view. Add the <code>base</code> class to the <code>home-component.css</code> file (you can remove the existing <code>home-panel</code> class because you will not be using that).</p>
+<pre><code class="lang-css">.base {
+    background-image: url(&quot;https://raw.githubusercontent.com/mikebranstein/nativescript-spacex-workshop/master/app/views/home/spacex_home.png&quot;);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: black;
+    background-position: center;
+}
+</code></pre>
+<p>Update the <code>home-component.html</code> to utilize your new <code>base</code> class.</p>
+<pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
+    &lt;StackLayout&gt;
+
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p>You app should now have a SpaceX background image in the preview app.</p>
+<p><img src="images/chapter2/chapter2-2.jpeg" class="img-small" /></p>
+<p>The last step in creating your home view is to add a button. Add a <code>&lt;Button&gt;</code> element inside of the <code>&lt;StackLayout&gt;</code> in the <code>home-component.html</code> file.</p>
+<pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
+    &lt;StackLayout&gt;
+        &lt;Button text=&quot;View Launches&quot; class=&quot;btn btn-primary&quot;&gt;&lt;/Button&gt;
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p><img src="images/chapter2/chapter2-3.jpeg" class="img-small" /></p>
+<p>You may have noticed that you added the <code>btn</code> and <code>btn-primary</code> classes to the <code>&lt;Button&gt;</code> that you created and that the button styled blue. The <code>btn</code> and <code>btn-primary</code> classes are part of the <a href="https://docs.nativescript.org/ui/theme#buttons">NativeScript Themes</a> that NativeScript provides to you out of the box to help style your app.</p>
+<p>You&#39;re almost done with the home view. To make the home view look more complete we should move the button we added to the bottom of view so that it looks more polished. To complete the view, update the <code>home-component.html</code> to set the vertical alignment property of the <code>&lt;StackLayout&gt;</code>.</p>
+<pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
+    &lt;StackLayout verticalAlignment=&quot;bottom&quot;&gt;
+        &lt;Button text=&quot;View Launches&quot; class=&quot;btn btn-primary&quot;&gt;&lt;/Button&gt;
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p>Next add a margin to the <code>&lt;Button&gt;</code> element by updating the <code>home-component.css</code> file.</p>
+<pre><code class="lang-css">button {
+    margin-bottom: 100;
+}
+</code></pre>
+<p>You should now be able to view the completed home view in the NativeScript preview app. In the next chapter you will work on implementing an event handler when the view launches button is tapped.</p>
+<p><img src="images/chapter2/chapter2-4.jpeg" class="img-small" /></p>
 <div class="exercise-end"></div>
 			</div>
 			<hr>
