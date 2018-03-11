@@ -24,6 +24,8 @@ In this workshop, we'll be using the NativeScript Playground to quickly prototyp
 
 In this workshop you'll learn how to build iOS and Android mobile apps using NativeScript. Throughout the workshop, you'll be building a [SpaceX](https://spacex.com) Launch Information app that uses the SpaceX launch [API](https://api.spacexdata.com/v2/launches). The app will list past and future SpaceX launches, and allow you to learn more about each launch. 
 
+<img src="images/chapter0/SpaceX_home.jpg" class="img-small" />
+
 Key concepts and take aways:
 
 * NativeScript app architecture
