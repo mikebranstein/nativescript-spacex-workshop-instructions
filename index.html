@@ -261,13 +261,80 @@ export class AppRoutingModule { }
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="another-chapter">Another chapter</h2>
-<p>Donec nisi magna, vehicula et purus eget, blandit suscipit tellus. Quisque lobortis augue at fringilla ullamcorper. Integer mattis diam eget augue suscipit, a malesuada mauris bibendum. Phasellus venenatis elit in semper hendrerit. Nunc tincidunt lectus in mauris facilisis, et laoreet metus aliquet. Mauris at hendrerit turpis, at semper mi. Suspendisse vel arcu nulla. Nullam scelerisque consequat molestie. Curabitur sit amet porta odio. Morbi lacinia vel tortor eu fringilla.</p>
-<h3 id="another-section">Another section</h3>
-<p>Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
-<h3 id="yet-another-section">Yet another section</h3>
-<p>Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.</p>
+				<h2 id="the-home-view">The Home View</h2>
+<p>Now that you understand the basics of NativeScript and how the Playground you&#39;re ready to start creating your first (or maybe not your first) NativeScript app. Over the course of this chapter and the next few chapters you will be creating an app the reads and displays <a href="http://www.spacex.com">SpaceX</a> flight data.</p>
+<p>In this chapter will focus on designing the home page and learn to use the following NativeScript elements:</p>
+<ul>
+<li><code>&lt;Button&gt;</code></li>
+<li><code>&lt;StackLayout&gt;</code></li>
+<li><code>&lt;ScrollView&gt;</code></li>
+</ul>
+<h3 id="layouts">Layouts</h3>
+<p>Before we go too much further, I need to introduce you to something called a layout. Layouts are UI elements (similar to the <code>&lt;Label /&gt;</code> element) that allow you to organize the UI of each page.</p>
+<p>If you look at the <code>home-component</code> that you scaffolded in the previous chapter, you will see there is already code added to the <code>home-component.html</code> for you.</p>
+<pre><code class="lang-xml">&lt;ActionBar title=&quot;Home&quot; class=&quot;action-bar&quot;&gt;
+&lt;/ActionBar&gt;
 
+&lt;ScrollView class=&quot;page&quot;&gt;
+    &lt;StackLayout class=&quot;home-panel&quot;&gt;
+        &lt;!--Add your page content here--&gt;
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p>The <code>ScrollView</code> and <code>StackLayout</code> elements are two basic layout elements (we&#39;ll talk about the <code>ActionBar</code> in a later chapter). To display multiple elements on a page, you need to use a layout like the <code>ScrollView</code> or <code>StackLayout</code> and in most cases you will want to use both. The <code>ScrollView</code> functions exactly as you would expect, it makes the content inside of it scrollable. The <code>StackLayout</code> element organizes child elements vertically or horizonatally.</p>
+<blockquote>
+<p>The <code>StackLayout</code> organizes child elements stacked on top of each other vertically by default.</p>
+</blockquote>
+<p>Now that we&#39;ve talked about basic layouts, let&#39;s start designing the home view.</p>
+<h3 id="designing-the-home-view">Designing the home view</h3>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Using the StackLayout to organize UI elements in a &quot;stack&quot;
+</h4>
+
+<p>First thing is first, go ahead and remove the <code>ActionBar</code> element from <code>home-component.html</code> because you will not need this on the home view. After deleting the <code>ActionBar</code> your app should have a blank home view inside the NativeScript preview app.</p>
+<p><img src="images/chapter2/chapter2-1.jpeg" class="img-small" /></p>
+<p>Next, let&#39;s create a class to style the home view called <code>base</code> to create a nice background image for our view. Add the <code>base</code> class to the <code>home-component.css</code> file (you can remove the existing <code>home-panel</code> class because you will not be using that).</p>
+<pre><code class="lang-css">.base {
+    background-image: url(&quot;https://raw.githubusercontent.com/mikebranstein/nativescript-spacex-workshop/master/app/views/home/spacex_home.png&quot;);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: black;
+    background-position: center;
+}
+</code></pre>
+<p>Update the <code>home-component.html</code> to utilize your new <code>base</code> class.</p>
+<pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
+    &lt;StackLayout&gt;
+
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p>You app should now have a SpaceX background image in the preview app.</p>
+<p><img src="images/chapter2/chapter2-2.jpeg" class="img-small" /></p>
+<p>The last step in creating your home view is to add a button. Add a <code>&lt;Button&gt;</code> element inside of the <code>&lt;StackLayout&gt;</code> in the <code>home-component.html</code> file.</p>
+<pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
+    &lt;StackLayout&gt;
+        &lt;Button text=&quot;View Launches&quot; class=&quot;btn btn-primary&quot;&gt;&lt;/Button&gt;
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p><img src="images/chapter2/chapter2-3.jpeg" class="img-small" /></p>
+<p>You may have noticed that you added the <code>btn</code> and <code>btn-primary</code> classes to the <code>&lt;Button&gt;</code> that you created and that the button styled blue. The <code>btn</code> and <code>btn-primary</code> classes are part of the <a href="https://docs.nativescript.org/ui/theme#buttons">NativeScript Themes</a> that NativeScript provides to you out of the box to help style your app.</p>
+<p>You&#39;re almost done with the home view. To make the home view look more complete we should move the button we added to the bottom of view so that it looks more polished. To complete the view, update the <code>home-component.html</code> to set the vertical alignment property of the <code>&lt;StackLayout&gt;</code>.</p>
+<pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
+    &lt;StackLayout verticalAlignment=&quot;bottom&quot;&gt;
+        &lt;Button text=&quot;View Launches&quot; class=&quot;btn btn-primary&quot;&gt;&lt;/Button&gt;
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p>Next add a margin to the <code>&lt;Button&gt;</code> element by updating the <code>home-component.css</code> file.</p>
+<pre><code class="lang-css">button {
+    margin-bottom: 100;
+}
+</code></pre>
+<p>You should now be able to view the completed home view in the NativeScript preview app. In the next chapter you will work on implementing an event handler when the view launches button is tapped.</p>
+<p><img src="images/chapter2/chapter2-4.jpeg" class="img-small" /></p>
+<div class="exercise-end"></div>
 			</div>
 			<hr>
 			<div class="chapter">
@@ -281,21 +348,25 @@ export class AppRoutingModule { }
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="another-chapter">Another chapter</h2>
-<p>Donec nisi magna, vehicula et purus eget, blandit suscipit tellus. Quisque lobortis augue at fringilla ullamcorper. Integer mattis diam eget augue suscipit, a malesuada mauris bibendum. Phasellus venenatis elit in semper hendrerit. Nunc tincidunt lectus in mauris facilisis, et laoreet metus aliquet. Mauris at hendrerit turpis, at semper mi. Suspendisse vel arcu nulla. Nullam scelerisque consequat molestie. Curabitur sit amet porta odio. Morbi lacinia vel tortor eu fringilla.</p>
-<h3 id="another-section">Another section</h3>
+				<h2 id="displaying-data">Displaying Data</h2>
+<p>Now that you know how to navigate between different views, you can work on making the list component more complex by displaying data. In this chapter you will learn about two new NativeScript elements:</p>
+<p><em><code>ListView</code>
+</em><code>TabView</code></p>
+<h3 id="creating-a-list">Creating a list</h3>
 <p>Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
-<h3 id="yet-another-section">Yet another section</h3>
+<h3 id="binding-to-data-from-a-service">Binding to data from a service</h3>
+<p>Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
+<h3 id="adding-tabs">Adding tabs</h3>
 <p>Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.</p>
 
 			</div>
 			<hr>
 			<div class="chapter">
-				<h2 id="another-chapter">Another chapter</h2>
+				<h2 id="dynamic-data">Dynamic Data</h2>
 <p>Donec nisi magna, vehicula et purus eget, blandit suscipit tellus. Quisque lobortis augue at fringilla ullamcorper. Integer mattis diam eget augue suscipit, a malesuada mauris bibendum. Phasellus venenatis elit in semper hendrerit. Nunc tincidunt lectus in mauris facilisis, et laoreet metus aliquet. Mauris at hendrerit turpis, at semper mi. Suspendisse vel arcu nulla. Nullam scelerisque consequat molestie. Curabitur sit amet porta odio. Morbi lacinia vel tortor eu fringilla.</p>
-<h3 id="another-section">Another section</h3>
+<h3 id="rxjs">RxJS</h3>
 <p>Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
-<h3 id="yet-another-section">Yet another section</h3>
+<h3 id="calling-an-api">Calling an api</h3>
 <p>Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.</p>
 
 			</div>
