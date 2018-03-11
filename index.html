@@ -139,6 +139,49 @@
 <p><em>Connected Devices</em> Hold on...the Playground shows you connected devices. Yes, that&#39;s right. When your mobile device connects to the Playground, it registers itself with the website. You can see a variety of information about a connected device. </p>
 </blockquote>
 <p>Pretty cool, right? Well, there&#39;s somethign even cooler about the Playground: LiveSync. LiveSync is a technology that syncs changes made in the Playground down to your mobile device in real time. This means that you can quickly make changes to your app in the Playground and the changes will be instantly pushed to connected devices. If you&#39;ve ever done mobile development before, you&#39;ll understand how useful this is - getting feedback from your code running on real mobile devices usually takes time, but with LiveSync, it&#39;s instantaneous.</p>
+<h3 id="livesync-in-action">LiveSync in Action</h3>
+<p>Now that you&#39;ve learned about LiveSync, let&#39;s see it in action. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Using LiveSync
+</h4>
+
+<h4 id="getting-started">Getting Started</h4>
+<p>Before we get started with this exercise, be sure to have your Playground app loaded in the NativeScript Preview app.</p>
+<p>If your app isn&#39;t running, press the &quot;QR code&quot; button in the Playground website, and re-scan the code on your mobile device:</p>
+<p><img src="images/chapter1/qr-code.png" class="img-small" /></p>
+<h4 id="understanding-markup">Understanding Markup</h4>
+<p>Now that your app is running on your mobile device, let&#39;s make a change.</p>
+<p>Start by finding the home.component.html file on the left, then open it for editing by clicking on it:</p>
+<p><img src="images/chapter1/home-component.png" class="img-large" /></p>
+<p>You&#39;ll notice some markup in the home.component.html file. It&#39;s not important for you to understand the markup right now, but you should know that any markup you place in this file will affect the native UI generated on the home page of your app.</p>
+<p>Even though you may not understand all of the markup, you can probably guess at the meaning on most tags. NativeScript UI markup is can be easy to understand, because it&#39;s similar to HTML. </p>
+<p>For example, look at the markup that displays a label on the screen that contains the text &quot;Play with NativeScript!&quot;:</p>
+<pre><code class="lang-xml">&lt;Label 
+    textWrap=&quot;true&quot; 
+    text=&quot;Play with NativeScript!&quot; 
+    class=&quot;h2 description-label&quot;&gt;
+&lt;/Label&gt;
+</code></pre>
+<h4 id="changing-markup-with-livesync">Changing markup with LiveSync</h4>
+<p>Let&#39;s change the text in the home.component.html file. </p>
+<p>Change the text that reads &quot;Play with NativeScript!&quot; to somethings else. feel free to use the code snippet below, or your own text.</p>
+<pre><code class="lang-xml">&lt;Label 
+    textWrap=&quot;true&quot; 
+    text=&quot;Using LiveSync is easy and convenient!&quot; 
+    class=&quot;h2 description-label&quot;&gt;
+&lt;/Label&gt;
+</code></pre>
+<p>After making this change, press the &quot;Save&quot; button:</p>
+<p><img src="images/chapter1/save-button.png" class="img-small" /></p>
+<p>Then, look back at your mobile device, and watch the UI of the app change:</p>
+<p><img src="images/chapter1/app-2.jpg" class="img-small" /></p>
+<p>Easy and cool! </p>
+<p>We&#39;ll continue to rely on LiveSync throughout this workshop to get instant feedback in our apps. </p>
+<div class="exercise-end"></div>
+
+<p>Let&#39;s continue on and get our Playground app started.</p>
+<h3 id="cleaning-up-the-template">Cleaning up the template</h3>
+<p>In the final portion of chapter 1, you&#39;ll be </p>
 
 			</div>
 			<hr>
