@@ -181,7 +181,82 @@
 
 <p>Let&#39;s continue on and get our Playground app started.</p>
 <h3 id="cleaning-up-the-template">Cleaning up the template</h3>
-<p>In the final portion of chapter 1, you&#39;ll be </p>
+<p>In the final portion of chapter 1, you&#39;ll be cleaning up the default Angular template in the Playground to get it ready for the SpaceX app. Let&#39;s jump in!</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Clean up the default Playground template
+</h4>
+
+<h4 id="why-">Why?</h4>
+<p>You may be wondering why we&#39;re cleaning up the default Playground template. The default Playground template works well, but doesn&#39;t structure app pages into a &quot;views&quot; folder (which is a preference of ours).</p>
+<h4 id="remove-the-home-folder">Remove the home folder</h4>
+<p>Let&#39;s get started by removing the home folder. Find it in the Explorer, select it, click the &quot;...&quot;, and select the &quot;Delete&quot; option:</p>
+<p><img src="images/chapter1/delete.png" /></p>
+<p>Confirm the delete:</p>
+<p><img src="images/chapter1/confirm-delete.png" /></p>
+<p>Add a folder named &quot;views&quot; to the &quot;app&quot; folder:</p>
+<p><img src="images/chapter1/views-folder.png" /></p>
+<h4 id="add-a-new-home-folder-and-component">Add a new home folder and component</h4>
+<p>Now, create a &quot;home&quot; folder inside of the &quot;views&quot; folder:</p>
+<p><img src="images/chapter1/home-folder.png" /></p>
+<p>Then add the &quot;home&quot; component by selecting the &quot;...&quot; next to the &quot;home&quot; folder and select &quot;add component&quot;. Name the component &quot;home&quot;:</p>
+<p><img src="images/chapter1/add-home.png" /></p>
+<p><img src="images/chapter1/add-home-2.png" /></p>
+<p>By using the &quot;add component&quot; option, the Playground will scaffold a CSS, TypeScript, and HTML file for you automatically:</p>
+<p><img src="images/chapter1/home-scaffold.png" class="img-small" /></p>
+<h4 id="add-the-home-component-to-the-app-module">Add the home component to the app module</h4>
+<p>Next, let&#39;s add the home component to the app module. Open the app.module.ts file, and add a reference to the home component. </p>
+<p>You can add the home component manually or copy/paste the code below.</p>
+<pre><code class="lang-javascript">import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from &quot;@angular/core&quot;;
+import { NativeScriptModule } from &quot;nativescript-angular/nativescript.module&quot;;
+
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
+
+import { HomeComponent } from &quot;./views/home/home.component&quot;;
+
+@NgModule({
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        NativeScriptModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
+})
+export class AppModule { }
+</code></pre>
+<h4 id="route-to-the-new-home-component">Route to the new home component</h4>
+<p>Lastly, update the app-routing.module.ts file to reflect the changes in the home component:</p>
+<pre><code class="lang-javascript">import { NgModule } from &quot;@angular/core&quot;;
+import { Routes } from &quot;@angular/router&quot;;
+import { NativeScriptRouterModule } from &quot;nativescript-angular/router&quot;;
+import { HomeComponent } from &quot;./views/home/home.component&quot;;
+
+const routes: Routes = [
+    { path: &quot;&quot;, component: HomeComponent },
+    { path: &quot;home&quot;, component: HomeComponent }
+];
+
+@NgModule({
+    imports: [NativeScriptRouterModule.forRoot(routes)],
+    exports: [NativeScriptRouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+<div class="exercise-end"></div>
+
+<p>You&#39;re finished. You replaced the default home component with a new home component located in the views folder. </p>
+<p>Save your Playground project online and let LiveSync do it&#39;s work. If your app got disconnected from LiveSync, just re-scan your QR code to load it up.</p>
+<p>When you launch your app, you should see a blank page with Home at the top:</p>
+<p><img src="images/chapter1/home-finished.jpg" class="img-small" /></p>
+<p>That concludes chapter 1. In the next chapter, you&#39;ll pick up from here, build out the home page, and learn about the various NativeScript UI components.</p>
 
 			</div>
 			<hr>
