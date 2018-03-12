@@ -14,6 +14,10 @@ To get started you'll need the following pre-requisites:
 
 NativeScript provides a best-of-both-worlds development experience. Our cross-platform JavaScript modules give you the convenience of writing iOS and Android apps from a single JavaScript code base, while our runtimes give you the power of accessing native APIs, SDKs, and frameworks when you need them—all without needing to open Xcode or Android Studio. NativeScript was created and is supported by Telerik.
 
+To learn more about how NativeScript works, check out this quick 3-minute video.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/I3_ZnWTj-NA?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 ### About the NativeScript Playground
 
 The [NativeScript Playground](https://play.nativescript.org) is a browser-based environment for developing simple NativeScript apps. It’s a great place to get started learning NativeScript, as you can develop apps without needing to install the various SDKs and tools needed for native iOS and Android development. All you need is your browser, and an Android or iOS mobile device connected to the internet to get started. 
@@ -55,6 +59,7 @@ There is also a huge community around NativeScript, we've compiled a brief list 
 
 * Official NativeScript website: [https://nativescript.org](https://nativescript.org)
 * NativeScript Playground: [https://play.nativescript.org](https://play.nativescript.org)
+* NativeScript Snacks (short videos and tutorials to help you get started fast): [http://www.nativescriptsnacks.com](http://www.nativescriptsnacks.com)
 * NativeScript Sidekick (get started fast on your computer): [https://www.nativescript.org/nativescript-sidekick](https://www.nativescript.org/nativescript-sidekick)
 * NativeScript Discourse Forum: [https://discourse.nativescript.org/](https://discourse.nativescript.org/)
 * Official Resources List: [https://www.nativescript.org/resources](https://www.nativescript.org/resources)
