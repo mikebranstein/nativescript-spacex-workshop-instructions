@@ -43,7 +43,7 @@ Open the NativeScript Playground app on your mobile device, and select the "Scan
 
 Using the QR code scanner in the NativeScript Playground app, scan the QR code displayed on the NativeScript Playground website. 
 
-> *NOTE*: Do not scan the QR code in the workshop.
+> *NOTE*: Do not scan the QR code on *this* page. Scan the QR code in the Playground.
 
 After scanning the QR code, the NativeScript Playground app will open the NativeScript Preview app and dynamically load the code from the Playground Website and launch a native mobile app on your mobile device!
 
