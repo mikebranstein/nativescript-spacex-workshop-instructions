@@ -14,6 +14,8 @@ Now that you know about the NativeScript Playground, let's get started.
     <b>Exercise</b>: Explore the Playground and Run an App
 </h4>
 
+In this exercise, you'll explore the NativeScript Playground and learn how to run an app built in the Playground on your mobile device.
+
 #### Prerequisites
 
 Before we get started, you'll need to install 2 apps on your mobile device: 
@@ -89,7 +91,9 @@ The bottom central area shows you which mobile devices are connected to the Play
 
 > *Connected Devices* Hold on...the Playground shows you connected devices. Yes, that's right. When your mobile device connects to the Playground, it registers itself with the website. You can see a variety of information about a connected device. 
 
-Pretty cool, right? Well, there's somethign even cooler about the Playground: LiveSync. LiveSync is a technology that syncs changes made in the Playground down to your mobile device in real time. This means that you can quickly make changes to your app in the Playground and the changes will be instantly pushed to connected devices. If you've ever done mobile development before, you'll understand how useful this is - getting feedback from your code running on real mobile devices usually takes time, but with LiveSync, it's instantaneous.
+Pretty cool, right? Well, there's somethign even cooler about the Playground: *LiveSync*. 
+
+> LiveSync is a technology that syncs changes made in the Playground down to your mobile device in real time. This means that you can quickly make changes to your app in the Playground and the changes will be instantly pushed to connected devices. If you've ever done mobile development before, you'll understand how useful this is - getting feedback from your code running on real mobile devices usually takes time, but with LiveSync, it's instantaneous.
 
 ### LiveSync in Action
 
@@ -98,6 +102,8 @@ Now that you've learned about LiveSync, let's see it in action.
 <h4 class="exercise-start">
     <b>Exercise</b>: Using LiveSync
 </h4>
+
+In this exercise, you'll learn how to use LiveSync by interacting wth the Playground website and seeing the app on your mobile device update automatically.
 
 #### Getting Started
 
@@ -166,6 +172,8 @@ In the final portion of chapter 1, you'll be cleaning up the default Angular tem
 <h4 class="exercise-start">
     <b>Exercise</b>: Clean up the default Playground template
 </h4>
+
+In this exercise, you'll reorganize files and folders in the Playground website to get ready for the SpaceX app.
 
 #### Why?
 
