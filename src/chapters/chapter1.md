@@ -51,11 +51,13 @@ When all of this happens, you should see this on your mobile device:
 
 <img src="images/chapter1/play-2.jpg" class="img-small" />
 
-You should also see the following on the Playground website:
+...and you should also see the following on the Playground website:
 
 <img src="images/chapter1/play-3.png" class="img-large" />
 
-Congratulations! You just used the Playground to write your first mobile app with Angular. Then, you ran the app on your phone. That was fast - and you didn't need to install anythign on your computer!
+Congratulations! You just used the Playground to write your first mobile app with Angular. Then, you ran the app on your phone. That was fast - and you didn't need to install anything on your computer!
+
+OK, we know you didn't have to do much of anything to write this app, but we promose you'll learn more and build something more advanced during the workshop.
 
 <div class="exercise-end"></div>
 
