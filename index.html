@@ -555,6 +555,41 @@ export class AppRoutingModule { }
 <p>Action Bars are a versatile UI element in NativeScript, and you can use them to customize your app in various ways, including: navigation to the previous page, header icons, and page title/headings. We&#39;re not going to dive into the intimate details of Action Bars, so if you&#39;re interested in learning more, check out the <a href="https://docs.nativescript.org/angular/code-samples/ui/action-bar">official documentation</a>.</p>
 <p>Now that you know a little bit about the action 
 Now that you can navigate to the List page, let&#39;s dive in and customize its Action Bar.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Customizing an Action Bar
+</h4>
+
+<p>In this exercise, you&#39;ll be modifying the List component&#39;s Action Bar (ever so slightly) to change the header text of the List page.</p>
+<h4 id="reviewing-the-action-bar-markup">Reviewing the Action Bar markup</h4>
+<p>Earlier in this chapter, you created the List component, and left the UI markup alone. Open the <code>list.component.html</code> file again and review it&#39;s contents. It should look similar to:</p>
+<pre><code class="lang-javascript">&lt;ActionBar title=&quot;List&quot; class=&quot;action-bar&quot;&gt;
+&lt;/ActionBar&gt;
+
+&lt;ScrollView class=&quot;page&quot;&gt;
+    &lt;StackLayout class=&quot;home-panel&quot;&gt;
+        &lt;!--Add your page content here--&gt;
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<p>As shown in the markup above, an Action Bar can be customized by adding a title attribute. The title attribute is straight-forward and sets the title of the page. The <code>action-bar</code> class name helps to style it to match your overall app theme&#39;s and applies default styles using the NativeScript Theme plugin.</p>
+<blockquote>
+<p><strong>Theme Details</strong> For more information about styling the Action Bar with the Theme plugin, check out the <a href="https://docs.nativescript.org/ui/theme#actionbar">official documentation</a>.</p>
+</blockquote>
+<p>As for the markup following the Action Bar, ignore it. You&#39;ll be replacing it later.</p>
+<h4 id="update-the-action-bar">Update the Action Bar</h4>
+<p>Let&#39;s make a simple modificaiton to the Action Bar and update the title.</p>
+<p>Change the title to &quot;SpaceX Launches&quot; or something equally appropriate:</p>
+<pre><code class="lang-xml">&lt;ActionBar title=&quot;SpaceX Launches&quot; class=&quot;action-bar&quot;&gt;
+&lt;/ActionBar&gt;
+</code></pre>
+<p>Refresh the app on your mobile device and you shoudl see something similar on the List page:</p>
+<p><img src="images/chapter3/list-8.png" class="img-small" /></p>
+<blockquote>
+<p><strong>NOTE</strong> This was a simple example on using an Action Bar. If you&#39;re in for a challenge, try adding an icon to the Action Bar, customizing the background color, or changing the back button icon. There are a ton of online resources for customizing the Action Bar in NativeScript. <a href="http://lmgtfy.com/?q=NativeScript+Action+Bar+Customization">Let me Google that for you</a>.</p>
+</blockquote>
+<p>This concludes the exercise. </p>
+<div class="exercise-end"></div>
+
 <p>This concludes the chapter.</p>
 
 			</div>

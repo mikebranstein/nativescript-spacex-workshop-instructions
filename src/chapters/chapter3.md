@@ -266,6 +266,52 @@ Action Bars are a versatile UI element in NativeScript, and you can use them to 
 Now that you know a little bit about the action 
 Now that you can navigate to the List page, let's dive in and customize its Action Bar.
 
+<h4 class="exercise-start">
+    <b>Exercise</b>: Customizing an Action Bar
+</h4>
 
+In this exercise, you'll be modifying the List component's Action Bar (ever so slightly) to change the header text of the List page.
+
+#### Reviewing the Action Bar markup
+
+Earlier in this chapter, you created the List component, and left the UI markup alone. Open the `list.component.html` file again and review it's contents. It should look similar to:
+
+```javascript
+<ActionBar title="List" class="action-bar">
+</ActionBar>
+
+<ScrollView class="page">
+	<StackLayout class="home-panel">
+		<!--Add your page content here-->
+	</StackLayout>
+</ScrollView>
+``` 
+
+As shown in the markup above, an Action Bar can be customized by adding a title attribute. The title attribute is straight-forward and sets the title of the page. The `action-bar` class name helps to style it to match your overall app theme's and applies default styles using the NativeScript Theme plugin.
+
+> **Theme Details** For more information about styling the Action Bar with the Theme plugin, check out the [official documentation](https://docs.nativescript.org/ui/theme#actionbar).
+
+As for the markup following the Action Bar, ignore it. You'll be replacing it later.
+
+#### Update the Action Bar
+
+Let's make a simple modificaiton to the Action Bar and update the title.
+
+Change the title to "SpaceX Launches" or something equally appropriate:
+
+```xml
+<ActionBar title="SpaceX Launches" class="action-bar">
+</ActionBar>
+```
+
+Refresh the app on your mobile device and you shoudl see something similar on the List page:
+
+<img src="images/chapter3/list-8.png" class="img-small" />
+
+> **NOTE** This was a simple example on using an Action Bar. If you're in for a challenge, try adding an icon to the Action Bar, customizing the background color, or changing the back button icon. There are a ton of online resources for customizing the Action Bar in NativeScript. [Let me Google that for you](http://lmgtfy.com/?q=NativeScript+Action+Bar+Customization).
+
+This concludes the exercise. 
+
+<div class="exercise-end"></div>
 
 This concludes the chapter.
