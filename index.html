@@ -410,7 +410,36 @@ First, you need to know that every UI element in NativeScript has a variety of e
 <p><strong>NativeScript: Where to learn more</strong> If you&#39;d like to learn more about the events available to various UI elements, check out the <a href="https://docs.nativescript.org/angular/core-concepts/angular-data-binding">NativeScript documentation</a>.</p>
 </blockquote>
 <p>Let&#39;s get back to navigation...</p>
-<p>#### </p>
+<h4 id="adding-the-tap-event-handler-code">Adding the tap event handler code</h4>
+<p>Now that you&#39;ve added the markup to bind the &quot;View Launches&quot; button to the <code>onViewLaunchesTap()</code>, let&#39;s add that function.</p>
+<p>Open the <code>home.component.ts</code> file and replace the Home component code with the code below. </p>
+<blockquote>
+<p>We know there&#39;s a lot of new code here, and we&#39;ll walk you through it in just a moment.</p>
+</blockquote>
+<pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { RouterExtensions } from &quot;nativescript-angular/router&quot;;
+
+@Component({
+    selector: &quot;home&quot;,
+    moduleId: module.id,
+    templateUrl: &quot;./home.component.html&quot;,
+    styleUrls: [&#39;./home.component.css&#39;]
+})
+export class HomeComponent implements OnInit {
+    constructor(
+        private routerExtensions: RouterExtensions) {
+
+    }
+
+    ngOnInit(): void {
+        this.page.actionBarHidden = true;
+    }
+
+    onViewLaunchesTap(): void {
+        this.routerExtensions.navigate([&quot;list&quot;]);
+    }
+}
+</code></pre>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 

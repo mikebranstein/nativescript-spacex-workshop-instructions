@@ -90,7 +90,41 @@ Add a tap event handler attribute to the button's markup. Don't worry if you don
 
 Let's get back to navigation...
 
-#### 
+#### Adding the tap event handler code
+
+Now that you've added the markup to bind the "View Launches" button to the `onViewLaunchesTap()`, let's add that function.
+
+Open the `home.component.ts` file and replace the Home component code with the code below. 
+
+> We know there's a lot of new code here, and we'll walk you through it in just a moment.
+
+```javascript
+import { Component, OnInit } from "@angular/core";
+import { RouterExtensions } from "nativescript-angular/router";
+
+@Component({
+	selector: "home",
+	moduleId: module.id,
+	templateUrl: "./home.component.html",
+	styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+	constructor(
+		private routerExtensions: RouterExtensions) {
+
+	}
+
+	ngOnInit(): void {
+		this.page.actionBarHidden = true;
+	}
+
+	onViewLaunchesTap(): void {
+		this.routerExtensions.navigate(["list"]);
+	}
+}
+```
+
+
 
 This concludes the exercise.
 
