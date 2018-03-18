@@ -363,7 +363,10 @@ export class AppRoutingModule { }
 <p>In a previous chapter you learned how to add a page (or component) via the Playground. You&#39;ll recall it&#39;s straight-forward and can be done by clicking the 3 dots next to a folder and selecting the &quot;Add component&quot; option. </p>
 <p>If you&#39;re comfortable doing this on your own, feel free to proceed by creating a folder underneath views named &quot;list&quot;, then adding the List component. Your Playground should like this when you&#39;ve finished:</p>
 <p><img src="images/chapter3/list-1.png" class="img-small" /></p>
-<p>If you can ge thtis far on your own, skip to the end of this exercise. If not, it&#39;s ok. Let&#39;s review how to add a component.</p>
+<blockquote>
+<p><strong>Don&#39;t forget!</strong> After adding the List component folder and files, you need to register it in the <code>app.module.ts</code> file.</p>
+</blockquote>
+<p>If you can get this far on your own, skip to the end of this exercise. If not, it&#39;s ok. Let&#39;s review how to add a component.</p>
 <h4 id="adding-a-page-in-the-playground">Adding a page in the Playground</h4>
 <p>The first step to creating a new page (or component) is to create a folder for the page. As you&#39;ve learned earlier, Angular components should be placed inside a folder. </p>
 <p>Start by adding a folder named &quot;list&quot; to the &quot;views&quot; folder. Click the 3 dots next to the &quot;views&quot; folder:</p>
@@ -374,6 +377,35 @@ export class AppRoutingModule { }
 <p><img src="images/chapter3/list-4.png" class="img-medium" /></p>
 <p>After adding the list component, you should see:</p>
 <p><img src="images/chapter3/list-5.png" class="img-small" /></p>
+<p>Finally, open the <code>app.module.ts</code> file and add the List component to the app module.</p>
+<pre><code class="lang-javascript">import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from &quot;@angular/core&quot;;
+import { NativeScriptModule } from &quot;nativescript-angular/nativescript.module&quot;;
+
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
+
+import { HomeComponent } from &quot;./views/home/home.component&quot;;
+import { ListComponent } from &quot;./views/list/list.component&quot;;
+
+@NgModule({
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        NativeScriptModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        ListComponent
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
+})
+export class AppModule { }
+</code></pre>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
@@ -419,6 +451,8 @@ First, you need to know that every UI element in NativeScript has a variety of e
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import { RouterExtensions } from &quot;nativescript-angular/router&quot;;
 
+import { Page } from &quot;ui/page&quot;;
+
 @Component({
     selector: &quot;home&quot;,
     moduleId: module.id,
@@ -427,8 +461,8 @@ import { RouterExtensions } from &quot;nativescript-angular/router&quot;;
 })
 export class HomeComponent implements OnInit {
     constructor(
-        private routerExtensions: RouterExtensions) {
-
+        private routerExtensions: RouterExtensions,
+        private page: Page) {
     }
 
     ngOnInit(): void {
@@ -440,6 +474,63 @@ export class HomeComponent implements OnInit {
     }
 }
 </code></pre>
+<p>In this updated code, you&#39;ll notice 3 major changes:</p>
+<ul>
+<li>At the top: <code>import { RouterExtensions } from &quot;nativescript-angular/router&quot;;</code></li>
+<li>In the constructor: <code>private routerExtensions: RouterExtensions</code></li>
+<li>The <code>onViewLaunchesTap()</code> function</li>
+</ul>
+<p>Let&#39;s walk through each of these one by one.</p>
+<h4 id="importing-routerextensions">Importing RouterExtensions</h4>
+<p>At the top of the Home component code, you imported an additional class named RouterExtensions from <code>nativescript-angular/router</code>. This class is a NativeScript-specific class for interacting with Angular&#39;s rounting/navigation system. There&#39;s not much more to learn about it, so just remember that you need to import it on every page that you&#39;ll need to use navigation. </p>
+<p>And here&#39;s an extra secret...we&#39;ve found that you&#39;ll need this in about every component you create.</p>
+<h4 id="including-routerextensions-in-the-constructor">Including RouterExtensions in the constructor</h4>
+<p>The second addition to the Home component is passing an instance of the RouterExtensions class into the constructor:</p>
+<pre><code class="lang-javascript">constructor(
+    private routerExtensions: RouterExtensions) {
+}
+</code></pre>
+<p>By adding this to the Home component&#39;s constructor, you have access to an instance of the RouterExtensions class from within the Home component class. </p>
+<blockquote>
+<p><strong>But, how does this work?</strong> You may be interested into how the Home component <em>actually</em> gets an instance of the RouterExtensions class. Angular&#39;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> does this heavy lifting. If you&#39;re not familiar with dependency injection, we recommend you read up on Angular&#39;s site.</p>
+</blockquote>
+<h4 id="the-onviewlaunchestap-function">The onViewLaunchesTap() function</h4>
+<p>The final change to the Home component is the addition of the <code>onViewLaunchesTap()</code> function:</p>
+<pre><code class="lang-javascript">onViewLaunchesTap(): void {
+    this.routerExtensions.navigate([&quot;list&quot;]);
+}
+</code></pre>
+<p>As you&#39;ll recall, we imported the RouterExtensions class at the top of the file and injected an instance of RouterExtensions into the Home component. This allows us to access it via <code>this.routerExtensions</code>.</p>
+<p>The RouterExtensions class has a function named <code>navigate()</code>, which takes an array of strings as a parameter. The first value in that array is the name of a <em>registered route</em> in our application. </p>
+<blockquote>
+<p><strong>Registered routes?</strong> A registered route is a key-value pair, where the key is a string (like &quot;list&quot;) and the value is a component (like the List component we just created). You may have noticed we haven&#39;t &quot;registered&quot; the &quot;list&quot; route yet, but we&#39;ll do that next.</p>
+</blockquote>
+<p>Now that you know how the <code>navigate()</code> function works, you can see that when the &quot;View Launches&quot; button is tapped, the <code>onViewLaunchesTap()</code> function navigates to the registered route named &quot;list&quot;.</p>
+<h4 id="registering-the-list-route">Registering the &quot;list&quot; route</h4>
+<p>To close out our journey to navigate between pages / components, we need to register the &quot;list&quot; route and point it to our List component.</p>
+<p>Open the <code>app-routing.module.ts</code> file, import the List component, and add an entry to the Routes array:</p>
+<pre><code class="lang-javascript">import { NgModule } from &quot;@angular/core&quot;;
+import { NativeScriptRouterModule } from &quot;nativescript-angular/router&quot;;
+import { Routes } from &quot;@angular/router&quot;;
+
+import { HomeComponent } from &quot;./views/home/home.component&quot;;
+import { ListComponent } from &quot;./views/list/list.component&quot;;
+
+const routes: Routes = [
+    { path: &quot;&quot;, component: HomeComponent },
+    { path: &quot;home&quot;, component: HomeComponent },
+    { path: &quot;list&quot;, component: ListComponent },
+];
+
+@NgModule({
+    imports: [NativeScriptRouterModule.forRoot(routes)],
+    exports: [NativeScriptRouterModule]
+})
+export class AppRoutingModule { }
+</code></pre>
+<h4 id="testing-it-out">Testing it out</h4>
+<p>Now that we&#39;ve finished adding navigation, reload the app on your mobile device. When you tap the &quot;View Launches&quot; button, you should navigate to the List page/component:</p>
+<p><img src="images/chapter3/list-6.png" class="img-small" /></p>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
