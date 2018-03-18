@@ -2,8 +2,8 @@
 
 Now that you know how to navigate between different views, you can work on making the list component more complex by displaying data. In this chapter you will learn about two new NativeScript elements:
 
-*`ListView`
-*`TabView`
+* `ListView`
+* `TabView`
 
 ### Creating a list
 
