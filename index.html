@@ -354,8 +354,66 @@ export class AppRoutingModule { }
 <p>*<code>ActionBar</code></p>
 <h3 id="creating-the-list-page">Creating the List page</h3>
 <p>In the last chapter, you refined the Home page of your app, and finished by adding a button labeled View Launches. In this section, you&#39;ll put that button to use. </p>
-<p>But, before we can start using it, we&#39;ll need to create a page to navigate to. Let&#39;s start by adding the list page. </p>
+<p>But, before we can start using it, we&#39;ll need to create a page to navigate to. Let&#39;s start by adding the List page. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Adding the List page
+</h4>
+
+<p>In this exercise, you&#39;ll be adding the List page.</p>
+<p>In a previous chapter you learned how to add a page (or component) via the Playground. You&#39;ll recall it&#39;s straight-forward and can be done by clicking the 3 dots next to a folder and selecting the &quot;Add component&quot; option. </p>
+<p>If you&#39;re comfortable doing this on your own, feel free to proceed by creating a folder underneath views named &quot;list&quot;, then adding the List component. Your Playground should like this when you&#39;ve finished:</p>
+<p><img src="images/chapter3/list-1.png" class="img-small" /></p>
+<p>If you can ge thtis far on your own, skip to the end of this exercise. If not, it&#39;s ok. Let&#39;s review how to add a component.</p>
+<h4 id="adding-a-page-in-the-playground">Adding a page in the Playground</h4>
+<p>The first step to creating a new page (or component) is to create a folder for the page. As you&#39;ve learned earlier, Angular components should be placed inside a folder. </p>
+<p>Start by adding a folder named &quot;list&quot; to the &quot;views&quot; folder. Click the 3 dots next to the &quot;views&quot; folder:</p>
+<p><img src="images/chapter3/list-2.png" class="img-small" /></p>
+<p>Select &quot;Add folder&quot; and name the folder &quot;list&quot;:</p>
+<p><img src="images/chapter3/list-3.png" class="img-small" /></p>
+<p>Then, create the &quot;list&quot; component by clicking the 3 dots next to the &quot;list&quot; folder, selecting &quot;Add component&quot;:</p>
+<p><img src="images/chapter3/list-4.png" class="img-medium" /></p>
+<p>After adding the list component, you should see:</p>
+<p><img src="images/chapter3/list-5.png" class="img-small" /></p>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
+
 <h3 id="navigating-to-the-list-page">Navigating to the List page</h3>
+<p>Now that you&#39;ve created the List page, let&#39;s go back the button on the Home page and add navigation. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Navigating to the List page
+</h4>
+
+<p>In this exercise, you&#39;ll be modifying the Home component&#39;s <code>home.component.html</code> and <code>home.component.ts</code> files to add navigation to the List page.</p>
+<h4 id="adding-a-tap-event-handler-to-a-button">Adding a tap event handler to a button</h4>
+<p>Let&#39;s start by opening the Home component&#39;s markup file (home.component.html).</p>
+<p>In the last chapter, you added a button labeled &quot;View Launches&quot;:</p>
+<pre><code class="lang-xml">&lt;Button 
+    text=&quot;View Launches&quot; 
+    class=&quot;btn btn-primary&quot;&gt;
+&lt;/Button&gt;
+</code></pre>
+<p>Add a tap event handler attribute to the button&#39;s markup. Don&#39;t worry if you don&#39;t understand what&#39;s going on right now, we&#39;ll explain it in a moment:</p>
+<pre><code class="lang-xml">&lt;Button 
+    text=&quot;View Launches&quot; 
+    class=&quot;btn btn-primary&quot;
+    (tap)=&quot;onViewLaunchesTap()&quot;&gt;
+&lt;/Button&gt;
+</code></pre>
+<blockquote>
+<p><strong>What did I just do?</strong> 
+First, you need to know that every UI element in NativeScript has a variety of events. We don&#39;t have enough time to detail each event, and many of the events are intuitive. For example, buttons have &quot;tap&quot; events. In Angular, you can bind (or attach) a function to an event. By adding <code>(tap)=&quot;onViewLaunchesTap()&quot;</code> to the button element, you told your app to run the <code>onViewLaunchesTap()</code> function when the button is tapped. </p>
+</blockquote>
+<blockquote>
+<p><strong>Angular: Where to learn more</strong> Ok, we&#39;ll admit it - if you&#39;ve used Angualr before, you&#39;ll know there&#39;s a lot more to the binding syntax we just covered. Unfortunately, in a short workshop, we don&#39;t have time to cover it in greater detail. If you&#39;d liek to learn more, check out <a href="https://angular.io/guide/user-input">the Angular documentation</a>.  </p>
+</blockquote>
+<blockquote>
+<p><strong>NativeScript: Where to learn more</strong> If you&#39;d like to learn more about the events available to various UI elements, check out the <a href="https://docs.nativescript.org/angular/core-concepts/angular-data-binding">NativeScript documentation</a>.</p>
+</blockquote>
+<p>Let&#39;s get back to navigation...</p>
+<p>#### </p>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
+
 <h3 id="adding-an-action-bar">Adding an Action Bar</h3>
 
 			</div>
