@@ -136,8 +136,6 @@ Open the `home.component.ts` file and replace the Home component code with the c
 import { Component, OnInit } from "@angular/core";
 import { RouterExtensions } from "nativescript-angular/router";
 
-import { Page } from "ui/page";
-
 @Component({
 	selector: "home",
 	moduleId: module.id,
@@ -151,7 +149,6 @@ export class HomeComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.page.actionBarHidden = true;
 	}
 
 	onViewLaunchesTap(): void {
@@ -266,6 +263,7 @@ Here's the area of the page we're going to modify:
 
 Action Bars are a versatile UI element in NativeScript, and you can use them to customize your app in various ways, including: navigation to the previous page, header icons, and page title/headings. We're not going to dive into the intimate details of Action Bars, so if you're interested in learning more, check out the [official documentation](https://docs.nativescript.org/angular/code-samples/ui/action-bar).
 
+Now that you know a little bit about the action 
 Now that you can navigate to the List page, let's dive in and customize its Action Bar.
 
 
