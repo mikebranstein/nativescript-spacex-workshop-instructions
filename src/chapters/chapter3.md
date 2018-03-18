@@ -264,6 +264,10 @@ Here's the area of the page we're going to modify:
 
 <img src="images/chapter3/list-7.jpg" class="img-small" />
 
+Action Bars are a versatile UI element in NativeScript, and you can use them to customize your app in various ways, including: navigation to the previous page, header icons, and page title/headings. We're not going to dive into the intimate details of Action Bars, so if you're interested in learning more, check out the [official documentation](https://docs.nativescript.org/angular/code-samples/ui/action-bar).
+
+Now that you can navigate to the List page, let's dive in and customize its Action Bar.
+
 
 
 This concludes the chapter.
