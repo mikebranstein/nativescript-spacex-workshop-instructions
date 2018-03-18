@@ -242,5 +242,28 @@ This concludes the exercise.
 
 <div class="exercise-end"></div>
 
+Nice work! You've just learned how to add navigation to your app. As a quick reminder, there are a few steps to take:
+* Add a folder for the new page/component
+* Add the new component
+* Register the new component in the app module (`app.module.ts` file)
+* Bind a button's tap event to a function with `(tap)="onTapFunction()"`
+* Import `RouterExtensions` into the originating component's class code
+* Using Angular's dependency injection, inject a `RouterExtensions` instance into the originating component's constructor
+* Add the tap event handler function to the originating component's class code
+* Register the new component as a route in `app-routing.module.ts` file 
+
+> Yeah, we know, it's a lot of code jsut to navigate, but that's the Angular way ;-)
+
 ### Adding an Action Bar
 
+In the final part of this chapter, you'll learn how to use NativeScript's Action Bar. 
+
+> **Action Bar** The Action Bar is a UI element that controls the upper area of the screen, allowing you to create (or customize) a "header" of the page. 
+
+Here's the area of the page we're going to modify:
+
+<img src="images/chapter3/list-7.jpg" class="img-small" />
+
+
+
+This concludes the chapter.
