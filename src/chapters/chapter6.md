@@ -179,6 +179,14 @@ That's it! Now that you have the Details component created, we'll be learning ho
 
 ### Passing Data to the Details Page
 
+In chapter 3, you learned how to navigate between components by:
+* Binding a tap event handler to a button.
+* Passing the `/list` route to the `navigate()` function of the `RoutingExtensions` class.
+
+This is a great way to navigate between pages/components, but there's also a different way. In this section, you'll learn how to use an *Angular/NativeScript attribute directive* to navigate (and pass data) to the Details component. 
+
+> **What's an attribute directive?**: In Angular, an attribute directive is a piece of code added to the UI markup that modifies the appearance (or behavior) of the UI element. It sounds really fancy (like most Angular terms do), but it's really just like HTML attributes that Angular knows how to decipher. If you're interested in learning more about Angular attribute directives, check out their [documentation](https://angular.io/guide/attribute-directives).
+
 
 
 ### Displaying Launch Details
