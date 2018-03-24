@@ -660,8 +660,82 @@ Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat su
 			<hr>
 			<div class="chapter">
 				<h2 id="navigating-with-context">Navigating with Context</h2>
+<p>In the previous chapter, you learned how to integrate an API into your app. </p>
 <p>In this chapter, you&#39;ll be wrapping up the SpaceX app by creating a launch details page. You&#39;ll create the Details page, navigate from the List page, and learn how to pass context (or data) to the Details page during navigation. Finally, you&#39;ll learn how to use various Theme classes to align UI elements. </p>
 <h3 id="navigating-to-the-details-page">Navigating to the Details Page</h3>
+<p>Now that you&#39;ve created a page showing the list of launches, let&#39;s build a details page that shows the details of a launch. </p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Adding the Details page
+</h4>
+
+<p>In chapter 3 you added the list page to your app by creating a new component. Adding the details page is the same process. </p>
+<p>We&#39;re not going to walk you through this process step by step, so try it out for yourself. If you&#39;re new to Angular, that&#39;s ok. Don&#39;t feel like you need to have mastered what it takes to create a new page without help. We&#39;ll give you a few pointers: first, review what you did in chatper 3; second, use this checklist to make sure you didn&#39;t forget any steps.</p>
+<blockquote>
+<p><strong>IMPORTANT</strong>: Before you get started, we&#39;ll be navigating to the details page in a different way than we did previously. So, you won&#39;t need to create a tap event handler in the UI markup or Detail component class. You will still need to register the <em>detail</em> route, so don&#39;t forget to create that.</p>
+</blockquote>
+<h4 id="checklist-for-creating-the-detail-component">Checklist for creating the Detail component</h4>
+<p>If you need an assist when creating the Detail component, use this checklist:</p>
+<ul>
+<li>Add a folder for the new page/component.</li>
+<li>Add the new component (remember the Playground has a feature to quickly add a component).</li>
+<li>Register the new component in the app module (<code>app.module.ts</code> file).</li>
+<li>Register the new component as a route in <code>app-routing.module.ts</code> file. </li>
+</ul>
+<p>When you&#39;re finished creating the Detail component, you should have:</p>
+<ul>
+<li>A folder named <em>details</em> in the <em>views</em> folder.</li>
+<li>A <em>details.component.ts</em>, <em>details.component.html</em>, and <em>details.component.css</em> file in the <em>details</em> folder (see contents of these folders below).</li>
+<li>An updated <em>app.module.ts</em> file that registers the Detail component (see updated file below).</li>
+<li>The Details component registered as a route in the <em>app-routing.module.ts</em> file (see updated file below).</li>
+</ul>
+<p>If you&#39;re comfortable doing this on your own, feel free to proceed by creating a folder underneath views named &quot;list&quot;, then adding the List component. Your Playground should like this when you&#39;ve finished:</p>
+<p><img src="images/chapter3/list-1.png" class="img-small" /></p>
+<blockquote>
+<p><strong>Don&#39;t forget!</strong> After adding the List component folder and files, you need to register it in the <code>app.module.ts</code> file.</p>
+</blockquote>
+<p>If you can get this far on your own, skip to the end of this exercise. If not, it&#39;s ok. Let&#39;s review how to add a component.</p>
+<h4 id="adding-a-page-in-the-playground">Adding a page in the Playground</h4>
+<p>The first step to creating a new page (or component) is to create a folder for the page. As you&#39;ve learned earlier, Angular components should be placed inside a folder. </p>
+<p>Start by adding a folder named &quot;list&quot; to the &quot;views&quot; folder. Click the 3 dots next to the &quot;views&quot; folder:</p>
+<p><img src="images/chapter3/list-2.png" class="img-small" /></p>
+<p>Select &quot;Add folder&quot; and name the folder &quot;list&quot;:</p>
+<p><img src="images/chapter3/list-3.png" class="img-small" /></p>
+<p>Then, create the &quot;list&quot; component by clicking the 3 dots next to the &quot;list&quot; folder, selecting &quot;Add component&quot;:</p>
+<p><img src="images/chapter3/list-4.png" class="img-medium" /></p>
+<p>After adding the list component, you should see:</p>
+<p><img src="images/chapter3/list-5.png" class="img-small" /></p>
+<p>Finally, open the <code>app.module.ts</code> file and add the List component to the app module.</p>
+<pre><code class="lang-javascript">import { NgModule, NgModuleFactoryLoader, NO_ERRORS_SCHEMA } from &quot;@angular/core&quot;;
+import { NativeScriptModule } from &quot;nativescript-angular/nativescript.module&quot;;
+
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
+
+import { HomeComponent } from &quot;./views/home/home.component&quot;;
+import { ListComponent } from &quot;./views/list/list.component&quot;;
+
+@NgModule({
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        NativeScriptModule,
+        AppRoutingModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        ListComponent
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
+})
+export class AppModule { }
+</code></pre>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
+
 <h3 id="passing-data-to-the-details-page">Passing Data to the Details Page</h3>
 <h3 id="displaying-launch-details">Displaying Launch Details</h3>
 
