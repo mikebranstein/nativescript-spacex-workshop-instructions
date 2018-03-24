@@ -269,6 +269,8 @@ In the last section, you learned how to use the `nsRouterLink` attribute directi
 
 In this exercise, you'll learn how to access navigate ruote data in the Detail component. 
 
+#### Retrieving data from a route variable
+
 Let's start by opening the `details.component.ts` file. We haven't changed the file since we created it, so you should have:
 
 ```javascript
@@ -324,6 +326,8 @@ Let's start with `this.route.snapshot.params["id"]` - this retrieves the value p
 
 Next, what's with that `+` in front of `this.route.snapshot.params["id"]`? You may not have seen this before, and it's something we often forget. The `+` is a JavaScript feature that converts the value of `this.route.snapshot.params["id"]` to a number. It's needed because data passed via Angular routes are strings.
 
+> **OnInit vs Component Constructor**: You may be wondering why you didn't retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initiatize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the `OnInit()` function. There are other details about why `OnInit()` shoudl be used, but we're not going to cover them. For more details, see a good write-up by [Todd Motto](https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook).
+
 This concludes the exercise. In the next exercise, you'll reuse the Launch service previosuly created to retrieve the details about a specific launch.
 
 <div class="exercise-end"></div>
@@ -331,6 +335,107 @@ This concludes the exercise. In the next exercise, you'll reuse the Launch servi
 Cool. You just passed data between pages/componets and retrieved the data. Let's keep going by getting the details of a launch.
 
 
+<h4 class="exercise-start">
+    <b>Exercise</b>: Retrieving launch details
+</h4>
+
+In this exercise, you'll retrieve launch details from the launch service.
+
+#### Updating the launch service
+
+Let's start by adding a function to the Launch service to retrieve data about a specific launch. 
+
+Open the `launchService.ts` file.
+
+Add a function named `getLaunch()` to the `LaunchService` class:
+
+```javascript
+public getLaunch(flight_number: number): Launch {
+    let results = this.launches
+        .filter((l: Launch) => l.flight_number == flight_number);
+    if (results.length > 0) return results[0];
+    return null;
+}
+```
+
+We're not going to explain the details of this class, but it retrieves a specific launch by passing in the launch number. How convenient ;-).
+
+#### Injecting the Launch service into the Detail component
+
+Now, head back to the Details component, and inject the Launch service:
+
+```javascript
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+import { LaunchService } from "../../services/launchService";
+
+@Component({
+	selector: "detail",
+	moduleId: module.id,
+	templateUrl: "./detail.component.html",
+	styleUrls: ['./detail.component.css'],
+	providers: [LaunchService]
+})
+export class DetailComponent implements OnInit {
+
+	constructor(
+		private route: ActivatedRoute,
+		private launchService: LaunchService) { }
+
+	ngOnInit(): void {
+		const flightNumber = +this.route.snapshot.params["id"];
+	}
+
+}
+```
+
+As you can see, you added a few things:
+* Imported the `LaunchService` class.
+* Added the `LaunchService` class as a provider.
+* Injected an instance of the `LaunchService` class by adding it to the constructor.
+
+You've done this before, so it should look familiar. 
+
+#### Retrieving a launch
+
+Next, update the Details component to get a launch from the Launch service:
+
+```javascript
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+import { Launch } from "../../models/launch";
+import { LaunchService } from "../../services/launchService";
+
+@Component({
+	selector: "detail",
+	moduleId: module.id,
+	templateUrl: "./detail.component.html",
+	styleUrls: ['./detail.component.css'],
+	providers: [LaunchService]
+})
+export class DetailComponent implements OnInit {
+	launch: Launch;
+
+	constructor(
+		private route: ActivatedRoute,
+		private launchService: LaunchService) { }
+
+	ngOnInit(): void {
+		const flightNumber = +this.route.snapshot.params["id"];
+		this.launch = this.launchService.getLaunch(flightNumber);
+	}
+}
+```
+
+You'll notice that you added a public `launch` variable to the Details component, then populated it in the `OnInit()` function by calling the `getLaunch()` you ceated previously. 
+
+That's all!
+
+This concludes the exercise. In the next exercise, you'l update the UI markup to display the launch details.
+
+<div class="exercise-end"></div>
 
 
 
