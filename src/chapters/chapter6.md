@@ -193,7 +193,7 @@ Now that you know a little about Angular attribute directives, let's use one to 
     <b>Exercise</b>: Using an attribute directive to navigate between components
 </h4>
 
-In this exercise, you'll learn aobut the `nsRouterLink` attribute directive, and see how it can make navigating between components easy.
+In this exercise, you'll learn about the `nsRouterLink` attribute directive, and see how it can make navigating between components easy.
 
 > **nsRouterLink Attribute Directive**: The `nsRouterLink` attribute directive is an attribute directive provided by NativeScript. It works like the Angular [routerLink](https://angular.io/guide/router#router-links) attribute directive, and allows you to add navigation capabilities to UI elements without needing to write code to bind to the tap event handler.
 
@@ -261,7 +261,74 @@ This concludes the exercise. In the next exercise, you'll learn how to access th
 
 ### Displaying Launch Details
 
+In the last section, you learned how to use the `nsRouterLink` attribute directive to navigate (and pass data) to the Detail component. Now, let's learn how to access the flight number that you passed into the `id` router variable.
 
+<h4 class="exercise-start">
+    <b>Exercise</b>: Accessing navigation route data in a component
+</h4>
+
+In this exercise, you'll learn how to access navigate ruote data in the Detail component. 
+
+Let's start by opening the `details.component.ts` file. We haven't changed the file since we created it, so you should have:
+
+```javascript
+import { Component, OnInit } from "@angular/core";
+
+@Component({
+	selector: "detail",
+	moduleId: module.id,
+	templateUrl: "./detail.component.html",
+	styleUrls: ['./detail.component.css']
+})
+export class DetailComponent implements OnInit {
+
+	constructor() {
+	}
+
+	ngOnInit(): void {
+	}
+}
+```
+
+Update the Details component with some new code. It's ok if you don't understand it right now, we'll exaplin.
+
+```javascript
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+
+@Component({
+	selector: "detail",
+	moduleId: module.id,
+	templateUrl: "./detail.component.html",
+	styleUrls: ['./detail.component.css']
+})
+export class DetailComponent implements OnInit {
+
+	constructor(
+		private route: ActivatedRoute) { }
+
+	ngOnInit(): void {
+		const flightNumber = +this.route.snapshot.params["id"];
+	}
+}
+```
+
+You just added 3 things to the Details component:
+* Imported the `ActivatedRoute` class, which is an Angular class used to access route information (like the `id` variable you passed in).
+* Injected an instance of the `ActivatedRoute` class via the constructor (you'll recall you did that previously in the workshop).
+* Retrieved the value of the `id` variable and stored it in the `flightNumber` variable.
+
+Most of the code you added should be familiar (the structure, but perhaps not the actual classes). We're not going to dive deep into the `ActivatedRoute` class, but we think it's a good opportunity to explain `const flightNumber = +this.route.snapshot.params["id"];`.
+
+Let's start with `this.route.snapshot.params["id"]` - this retrieves the value passed into the `id` route variable. As you'll recall, this is the flight number we passed in via the `nsRouterLink` attribute directive. 
+
+Next, what's with that `+` in front of `this.route.snapshot.params["id"]`? You may not have seen this before, and it's something we often forget. The `+` is a JavaScript feature that converts the value of `this.route.snapshot.params["id"]` to a number. It's needed because data passed via Angular routes are strings.
+
+This concludes the exercise. In the next exercise, you'll reuse the Launch service previosuly created to retrieve the details about a specific launch.
+
+<div class="exercise-end"></div>
+
+Cool. You just passed data between pages/componets and retrieved the data. Let's keep going by getting the details of a launch.
 
 
 
