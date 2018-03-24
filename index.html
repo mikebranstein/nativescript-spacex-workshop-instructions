@@ -815,6 +815,58 @@ export class AppRoutingModule { }
 <blockquote>
 <p><strong>What&#39;s an attribute directive?</strong>: In Angular, an attribute directive is a piece of code added to the UI markup that modifies the appearance (or behavior) of the UI element. It sounds really fancy (like most Angular terms do), but it&#39;s really just like HTML attributes that Angular knows how to decipher. If you&#39;re interested in learning more about Angular attribute directives, check out their <a href="https://angular.io/guide/attribute-directives">documentation</a>.</p>
 </blockquote>
+<p>Now that you know a little about Angular attribute directives, let&#39;s use one to navigate between the list and details components!</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Using an attribute directive to navigate between components
+</h4>
+
+<p>In this exercise, you&#39;ll learn aobut the <code>nsRouterLink</code> attribute directive, and see how it can make navigating between components easy.</p>
+<blockquote>
+<p><strong>nsRouterLink Attribute Directive</strong>: The <code>nsRouterLink</code> attribute directive is an attribute directive provided by NativeScript. It works like the Angular <a href="https://angular.io/guide/router#router-links">routerLink</a> attribute directive, and allows you to add navigation capabilities to UI elements without needing to write code to bind to the tap event handler.</p>
+</blockquote>
+<blockquote>
+<p><strong>How do I choose?</strong> You may be thinking that navigation in Angular apps is confusing, because we&#39;ve introduced 2 ways of navigating between pages/components. When shoudl you write code and bind to the tap event handler, and when should you use <code>nsRouterLink</code>? We recommend you use <code>nsRouterLink</code> for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.</p>
+</blockquote>
+<h4 id="adding-the-nsrouterlink-attribute-directive">Adding the <em>nsRouterLink</em> attribute directive</h4>
+<p>Start by opening the <code>list.component.html</code> file, and locate the <code>ng-template</code> you added to the Upcoming Launches <code>ListView</code>. Your code should look like:</p>
+<pre><code class="lang-xml">&lt;ng-template let-item=&quot;item&quot;&gt;
+    &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
+        &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
+        &lt;Label row=&quot;0&quot; col=&quot;1&quot; [text]=&quot;item.rocket.rocket_name&quot;&gt;&lt;/Label&gt;
+        &lt;Label row=&quot;1&quot; col=&quot;1&quot; [text]=&quot;item.launch_date_utc&quot;&gt;&lt;/Label&gt;
+        &lt;Label row=&quot;2&quot; col=&quot;1&quot; textWrap=&quot;true&quot; [text]=&quot;item.launch_site.site_name_long&quot;&gt;&lt;/Label&gt;
+    &lt;/GridLayout&gt;
+&lt;/ng-template&gt;
+</code></pre>
+<p>Next, add the <code>nsRouterLink</code> attribute to the <code>GridLayout</code>:</p>
+<pre><code class="lang-xml">&lt;ng-template let-item=&quot;item&quot;&gt;
+    &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; [nsRouterLink]=&quot;[&#39;/detail&#39;, item.flight_number]&quot; class=&quot;list-group-item&quot;&gt;
+        &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
+        &lt;Label row=&quot;0&quot; col=&quot;1&quot; [text]=&quot;item.rocket.rocket_name&quot;&gt;&lt;/Label&gt;
+        &lt;Label row=&quot;1&quot; col=&quot;1&quot; [text]=&quot;item.launch_date_utc&quot;&gt;&lt;/Label&gt;
+        &lt;Label row=&quot;2&quot; col=&quot;1&quot; textWrap=&quot;true&quot; [text]=&quot;item.launch_site.site_name_long&quot;&gt;&lt;/Label&gt;
+    &lt;/GridLayout&gt;
+&lt;/ng-template&gt;
+</code></pre>
+<p>That&#39;s it! But, let&#39;s decode what&#39;s happening. </p>
+<p>By adding <code>[nsRouterLink]=&quot;[&#39;/detail&#39;, item.flight_number]&quot;</code> to the <code>GridLayout</code> element, you tell Angular to navigate to the <code>/detail</code> route, passing in <code>item.flight_number</code> to the component linked to that route.</p>
+<h4 id="updating-the-detail-route">Updating the /detail route</h4>
+<p>Ok, wemay have been a bit misleading by saying &quot;that&#39;s it&quot; above. There is one more step to making the <code>nsRouterLink</code> attribute directive navigate (and pass data) to the Detail component correctly. </p>
+<p>As you&#39;ll recall, you passed <code>item.flight_number</code> to the Details component above. But, the route doesn&#39;t know anything about the flight number being passed in, so we need to &quot;educate it&quot; ;-).</p>
+<p>Open the <code>app-routing.moduel.ts</code> file, and locate the <code>/detail</code> route you created earlier in the chapter. You should see:</p>
+<pre><code class="lang-javascript">{ path: &quot;detail&quot;, component: DetailComponent }
+</code></pre>
+<p>Update the <em>detail</em> route so it expects data will be supplied to the route when it is navigated to:</p>
+<pre><code class="lang-javascript">{ path: &quot;detail/:id&quot;, component: DetailComponent }
+</code></pre>
+<p>You&#39;re finished! By adding <code>/:id</code> to the <code>/detail</code> route, you instruct Angular to expect (and parse) the data passed into it as a variable named <code>id</code>. </p>
+<p>Update the app on your mobile device and check that you can navigate between the List and Detail pages by tapping on a launch. </p>
+<blockquote>
+<p><strong>DON&#39;T FORGET</strong>: You just added the <code>nsRouterLink</code> attribute directive to the Upcoming Launches template, so don&#39;t forget to add it to the Past Launches list.</p>
+</blockquote>
+<p>This concludes the exercise. In the next exercise, you&#39;ll learn how to access the <code>id</code> variable of the <code>/detail</code> route.</p>
+<div class="exercise-end"></div>
+
 <h3 id="displaying-launch-details">Displaying Launch Details</h3>
 
 			</div>

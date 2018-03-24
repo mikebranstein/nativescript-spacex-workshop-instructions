@@ -187,6 +187,86 @@ This is a great way to navigate between pages/components, but there's also a dif
 
 > **What's an attribute directive?**: In Angular, an attribute directive is a piece of code added to the UI markup that modifies the appearance (or behavior) of the UI element. It sounds really fancy (like most Angular terms do), but it's really just like HTML attributes that Angular knows how to decipher. If you're interested in learning more about Angular attribute directives, check out their [documentation](https://angular.io/guide/attribute-directives).
 
+Now that you know a little about Angular attribute directives, let's use one to navigate between the list and details components!
 
+<h4 class="exercise-start">
+    <b>Exercise</b>: Using an attribute directive to navigate between components
+</h4>
+
+In this exercise, you'll learn aobut the `nsRouterLink` attribute directive, and see how it can make navigating between components easy.
+
+> **nsRouterLink Attribute Directive**: The `nsRouterLink` attribute directive is an attribute directive provided by NativeScript. It works like the Angular [routerLink](https://angular.io/guide/router#router-links) attribute directive, and allows you to add navigation capabilities to UI elements without needing to write code to bind to the tap event handler.
+
+> **How do I choose?** You may be thinking that navigation in Angular apps is confusing, because we've introduced 2 ways of navigating between pages/components. When shoudl you write code and bind to the tap event handler, and when should you use `nsRouterLink`? We recommend you use `nsRouterLink` for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.
+
+#### Adding the *nsRouterLink* attribute directive
+
+Start by opening the `list.component.html` file, and locate the `ng-template` you added to the Upcoming Launches `ListView`. Your code should look like:
+
+```xml
+<ng-template let-item="item">
+    <GridLayout rows="*, *, *" columns="auto, *" class="list-group-item">
+        <Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
+        <Label row="0" col="1" [text]="item.rocket.rocket_name"></Label>
+        <Label row="1" col="1" [text]="item.launch_date_utc"></Label>
+        <Label row="2" col="1" textWrap="true" [text]="item.launch_site.site_name_long"></Label>
+    </GridLayout>
+</ng-template>
+```
+
+Next, add the `nsRouterLink` attribute to the `GridLayout`:
+
+```xml
+<ng-template let-item="item">
+    <GridLayout rows="*, *, *" columns="auto, *" [nsRouterLink]="['/detail', item.flight_number]" class="list-group-item">
+        <Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
+        <Label row="0" col="1" [text]="item.rocket.rocket_name"></Label>
+        <Label row="1" col="1" [text]="item.launch_date_utc"></Label>
+        <Label row="2" col="1" textWrap="true" [text]="item.launch_site.site_name_long"></Label>
+    </GridLayout>
+</ng-template>
+```
+
+That's it! But, let's decode what's happening. 
+
+By adding `[nsRouterLink]="['/detail', item.flight_number]"` to the `GridLayout` element, you tell Angular to navigate to the `/detail` route, passing in `item.flight_number` to the component linked to that route.
+
+#### Updating the /detail route
+
+Ok, wemay have been a bit misleading by saying "that's it" above. There is one more step to making the `nsRouterLink` attribute directive navigate (and pass data) to the Detail component correctly. 
+
+As you'll recall, you passed `item.flight_number` to the Details component above. But, the route doesn't know anything about the flight number being passed in, so we need to "educate it" ;-).
+
+Open the `app-routing.moduel.ts` file, and locate the `/detail` route you created earlier in the chapter. You should see:
+
+```javascript
+{ path: "detail", component: DetailComponent }
+```
+
+Update the *detail* route so it expects data will be supplied to the route when it is navigated to:
+
+```javascript
+{ path: "detail/:id", component: DetailComponent }
+```
+
+You're finished! By adding `/:id` to the `/detail` route, you instruct Angular to expect (and parse) the data passed into it as a variable named `id`. 
+
+Update the app on your mobile device and check that you can navigate between the List and Detail pages by tapping on a launch. 
+
+> **DON'T FORGET**: You just added the `nsRouterLink` attribute directive to the Upcoming Launches template, so don't forget to add it to the Past Launches list.
+
+This concludes the exercise. In the next exercise, you'll learn how to access the `id` variable of the `/detail` route.
+
+<div class="exercise-end"></div>
 
 ### Displaying Launch Details
+
+
+
+
+
+
+
+
+
+
