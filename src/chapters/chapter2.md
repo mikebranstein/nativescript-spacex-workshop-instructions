@@ -78,7 +78,9 @@ The last step in creating your home view is to add a button. Add a `<Button>` el
 
 <img src="images/chapter2/chapter2-3.jpeg" class="img-small" />
 
-You may have noticed that you added the `btn` and `btn-primary` classes to the `<Button>` that you created and that the button styled blue. The `btn` and `btn-primary` classes are part of the [NativeScript Themes](https://docs.nativescript.org/ui/theme#buttons) that NativeScript provides to you out of the box to help style your app.
+> **What are those CSS class names?**
+>
+> You may have noticed that you added the `btn` and `btn-primary` classes to the `<Button>` that you created and that the button styled blue. The `btn` and `btn-primary` classes are part of the [NativeScript Themes](https://docs.nativescript.org/ui/theme#buttons) that NativeScript provides to you out of the box to help style your app.
 
 You're almost done with the home view. To make the home view look more complete we should move the button we added to the bottom of view so that it looks more polished. To complete the view, update the `home-component.html` to set the vertical alignment property of the `<StackLayout>`.
 
