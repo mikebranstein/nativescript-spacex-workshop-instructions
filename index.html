@@ -872,12 +872,196 @@ export class ListComponent implements OnInit {
 			<hr>
 			<div class="chapter">
 				<h2 id="dynamic-data">Dynamic Data</h2>
-<p>Donec nisi magna, vehicula et purus eget, blandit suscipit tellus. Quisque lobortis augue at fringilla ullamcorper. Integer mattis diam eget augue suscipit, a malesuada mauris bibendum. Phasellus venenatis elit in semper hendrerit. Nunc tincidunt lectus in mauris facilisis, et laoreet metus aliquet. Mauris at hendrerit turpis, at semper mi. Suspendisse vel arcu nulla. Nullam scelerisque consequat molestie. Curabitur sit amet porta odio. Morbi lacinia vel tortor eu fringilla.</p>
+<p>The SpaceX app is starting to look great but you still have some work to do. Static data isn&#39;t much fun so let&#39;s work on getting data from the <a href="https://github.com/r-spacex/SpaceX-API">SpaceX Api</a>.</p>
+<blockquote>
+<p>This chapter isn&#39;t going to cover anything specific to NativeScript but more how to access a restful API from Angular.</p>
+</blockquote>
 <h3 id="rxjs">RxJS</h3>
-<p>Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
+<p>Before you call the SpaceX api we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. <a href="http://reactivex.io/rxjs/">RxJS</a> is the ReactiveX library for JavaScript. (ok but what does that mean?)</p>
+<p>Basically RxJS is a library for using Observables. We aren&#39;t going to discuss obseravables in detail, however, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.</p>
 <h3 id="calling-an-api">Calling an api</h3>
-<p>Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Calling an api
+</h4>
 
+<p>To use the SpaceX api you need to update the <code>LaunchService</code> and add the following import statements.</p>
+<pre><code class="lang-javascript">import { HttpClient } from &#39;@angular/common/http&#39;;
+import &#39;rxjs/add/operator/map&#39;;
+import { Observable } from &quot;rxjs/Observable&quot;;
+</code></pre>
+<p>Next add methods to made the api calls.</p>
+<pre><code class="lang-javascript">public getUpcomingFromApi(): Observable&lt;Launch[]&gt; {
+        return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches/upcoming&#39;); // upcoming launches
+    }
+
+public getPastFromApi(): Observable&lt;Launch[]&gt; {
+    return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches?launch_year=2017&#39;); // past launches
+}
+</code></pre>
+<p>Where does <code>this.http</code> come from? This (no pun intended) is an instance of the Angular <code>HttpClient</code> which needs to be injected via the constructor. Go ahead and update the constructor of the <code>LaunchService</code> to inject the <code>HttpClient</code>: <code>constructor(private http: HttpClient) {</code>.</p>
+<p>The full code listing is below.</p>
+<pre><code class="lang-javascript">import { Injectable } from &quot;@angular/core&quot;;
+import { Launch } from &#39;../models/launch&#39;
+import { HttpClient } from &#39;@angular/common/http&#39;;
+import &#39;rxjs/add/operator/map&#39;;
+import { Observable } from &quot;rxjs/Observable&quot;;
+
+@Injectable()
+export class LaunchService {
+    private launches: Launch[];
+
+    constructor(private http: HttpClient) {
+        this.launches = [
+            {
+                &quot;flight_number&quot;: 42,
+                &quot;launch_year&quot;: &quot;2017&quot;,
+                &quot;launch_date_utc&quot;: &quot;2017-06-23T19:10:00Z&quot;,
+                &quot;rocket&quot;: {
+                    &quot;rocket_id&quot;: &quot;falcon9&quot;,
+                    &quot;rocket_name&quot;: &quot;Falcon 9&quot;,
+                },
+                &quot;launch_site&quot;: {
+                    &quot;site_id&quot;: &quot;ksc_lc_39a&quot;,
+                    &quot;site_name&quot;: &quot;KSC LC 39A&quot;,
+                    &quot;site_name_long&quot;: &quot;Kennedy Space Center Historic Launch Complex 39A&quot;
+                },
+                &quot;launch_success&quot;: true,
+                &quot;links&quot;: {
+                    &quot;mission_patch&quot;: &quot;https://i.imgur.com/VAvulaO.png&quot;,
+                    &quot;article_link&quot;: &quot;https://en.wikipedia.org/wiki/BulgariaSat-1&quot;,
+                    &quot;video_link&quot;: &quot;https://www.youtube.com/watch?v=Y8mLi-rRTh8&quot;
+                },
+                &quot;details&quot;: &quot;Second time a booster will be reused: Second flight of B1029 after the Iridium mission of January 2017. The satellite will be the first commercial Bulgarian-owned communications satellite and it will provide television broadcasts and other communications services over southeast Europe.&quot;
+            },
+            {
+                &quot;flight_number&quot;: 56,
+                &quot;launch_year&quot;: &quot;2018&quot;,
+                &quot;launch_date_utc&quot;: &quot;2018-02-22T14:17:00Z&quot;,
+                &quot;rocket&quot;: {
+                    &quot;rocket_id&quot;: &quot;falcon9&quot;,
+                    &quot;rocket_name&quot;: &quot;Falcon 9&quot;,
+                },
+                &quot;launch_site&quot;: {
+                    &quot;site_id&quot;: &quot;vafb_slc_4e&quot;,
+                    &quot;site_name&quot;: &quot;VAFB SLC 4E&quot;,
+                    &quot;site_name_long&quot;: &quot;Vandenberg Air Force Base Space Launch Complex 4E&quot;
+                },
+                &quot;launch_success&quot;: true,
+                &quot;links&quot;: {
+                    &quot;mission_patch&quot;: &quot;https://i.imgur.com/6iUJpn4.png&quot;,
+                    &quot;article_link&quot;: &quot;https://spaceflightnow.com/2018/02/22/recycled-spacex-rocket-boosts-paz-radar-satellite-first-starlink-testbeds-into-orbit/&quot;,
+                    &quot;video_link&quot;: &quot;https://www.youtube.com/watch?v=-p-PToD2URA&quot;
+                },
+                &quot;details&quot;: &quot;First flight with fairing 2.0. Will also carry two SpaceX test satellites for the upcoming Starlink constellation.&quot;
+            }
+        ];
+    }
+
+    public getUpcoming(): Launch[] {
+        return this.launches;
+    }
+
+    public getPast(): Launch[] {
+        return this.launches;
+    }
+
+    public getUpcomingFromApi(): Observable&lt;Launch[]&gt; {
+        return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches/upcoming&#39;); // upcoming launches
+    }
+
+    public getPastFromApi(): Observable&lt;Launch[]&gt; {
+        return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches?launch_year=2017&#39;); // past launches
+    }
+}
+</code></pre>
+<p>Notice that <code>Observables</code> are returning from the SpaceX api. Go ahead and wire up the <code>ListComponent</code> to call from the api now by updating the <code>list-component-ts</code> file to use the new methods you made.</p>
+<pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { Launch } from &quot;../../models/launch&quot;;
+import { LaunchService } from &quot;../../services/launchService&quot;;
+
+@Component({
+    selector: &quot;list&quot;,
+    moduleId: module.id,
+    templateUrl: &quot;./list.component.html&quot;,
+    styleUrls: [&#39;./list.component.css&#39;],
+    providers: [LaunchService]
+})
+export class ListComponent implements OnInit {
+    upcoming: Launch[] = [];
+    past: Launch[] = [];
+
+    constructor(private launchService: LaunchService) { }
+
+    ngOnInit(): void {
+        this.launchService.getUpcomingFromApi().subscribe(data =&gt; {
+            data.forEach((model) =&gt; {
+                this.upcoming.push(model);
+            });
+        });
+
+        this.launchService.getPastFromApi().subscribe(data =&gt; {
+            data.forEach((model) =&gt; {   
+
+                if (!model.links.mission_patch.includes(&#39;https&#39;))
+                    model.links.mission_patch = model.links.mission_patch.replace(&#39;http&#39;, &#39;https&#39;); // quick fix
+
+                this.past.push(model);
+            });
+        });
+    }
+}
+</code></pre>
+<p>The <code>subscribe</code> method is part of RxJX that we discussed earlier. When the call the SpaceX api completes, the subscribe method automatically gets called. Inside the subscribe method you are able to translate the data coming back into an array of launches which the UI already knows how to use and bind to properly.</p>
+<blockquote>
+<p>The if statement inside the <code>getPastFromApi</code> method may look a bit strange to you (because it is). This if statement exists because by default iOS blocks non-https calls; therefore when attempting to load the mission patch images on iOS it will just fail. This limitation of iOS can be turned off in NativeScript, however, in the playground you currently do not have access to modifying this setting. Keep in mind that the playground is letting us get up and running quickly and not meant for us to push to production from this this limitation is more of a minor nuisance (hence the &quot;quick fix&quot;).</p>
+</blockquote>
+<p>The last step to making everything work is to import the <code>HttpModule</code> into the app by updating the <code>app.module.ts</code>.</p>
+<pre><code class="lang-javascript">import { NgModule, NO_ERRORS_SCHEMA } from &quot;@angular/core&quot;;
+import { NativeScriptModule } from &quot;nativescript-angular/nativescript.module&quot;;
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
+import { HttpClientModule } from &quot;@angular/common/http&quot;;
+
+import { HomeComponent } from &quot;./views/home/home.component&quot;;
+import { ListComponent } from &quot;./views/list/list.component&quot;;
+import { LaunchService } from &quot;./services/launchService&quot;;
+
+// Uncomment and add to NgModule imports if you need to use two-way binding
+// import { NativeScriptFormsModule } from &quot;nativescript-angular/forms&quot;;
+
+// Uncomment and add to NgModule imports  if you need to use the HTTP wrapper
+// import { NativeScriptHttpModule } from &quot;nativescript-angular/http&quot;;
+
+@NgModule({
+    bootstrap: [
+        AppComponent
+    ],
+    imports: [
+        NativeScriptModule,
+        AppRoutingModule,
+        HttpClientModule
+    ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        ListComponent
+    ],
+    providers: [
+
+    ],
+    schemas: [
+        NO_ERRORS_SCHEMA
+    ]
+})
+/*
+Pass your application module to the bootstrapModule function located in main.ts to start your app
+*/
+export class AppModule { }
+
+</code></pre>
+<p>Save your project and take a look!
+<img src="images/chapter5/chapter5-1.jpeg" class="img-small" /></p>
+<div class="exercise-end"></div>
 			</div>
 			<hr>
 			<div class="chapter">
