@@ -878,13 +878,13 @@ export class ListComponent implements OnInit {
 </blockquote>
 <h3 id="rxjs">RxJS</h3>
 <p>Before you call the SpaceX api we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. <a href="http://reactivex.io/rxjs/">RxJS</a> is the ReactiveX library for JavaScript. (ok but what does that mean?)</p>
-<p>Basically RxJS is a library for using Observables. We aren&#39;t going to discuss obseravables in detail, however, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.</p>
-<h3 id="calling-an-api">Calling an api</h3>
+<p>Basically RxJS is a library for using Observables. We aren&#39;t going to discuss obseravables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.</p>
+<h3 id="calling-an-api">Calling an API</h3>
 <h4 class="exercise-start">
-    <b>Exercise</b>: Calling an api
+    <b>Exercise</b>: Calling an API
 </h4>
 
-<p>To use the SpaceX api you need to update the <code>LaunchService</code> and add the following import statements.</p>
+<p>To use the SpaceX API you need to update the <code>LaunchService</code> and add the following import statements.</p>
 <pre><code class="lang-javascript">import { HttpClient } from &#39;@angular/common/http&#39;;
 import &#39;rxjs/add/operator/map&#39;;
 import { Observable } from &quot;rxjs/Observable&quot;;

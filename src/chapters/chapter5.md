@@ -8,15 +8,15 @@ The SpaceX app is starting to look great but you still have some work to do. Sta
 
 Before you call the SpaceX api we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. [RxJS](http://reactivex.io/rxjs/) is the ReactiveX library for JavaScript. (ok but what does that mean?)
 
-Basically RxJS is a library for using Observables. We aren't going to discuss obseravables in detail, however, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.
+Basically RxJS is a library for using Observables. We aren't going to discuss obseravables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.
 
-### Calling an api
+### Calling an API
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Calling an api
+    <b>Exercise</b>: Calling an API
 </h4>
 
-To use the SpaceX api you need to update the `LaunchService` and add the following import statements.
+To use the SpaceX API you need to update the `LaunchService` and add the following import statements.
 
 ```javascript
 import { HttpClient } from '@angular/common/http';
