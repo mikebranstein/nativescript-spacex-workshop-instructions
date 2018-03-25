@@ -639,10 +639,66 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
     &lt;/GridLayout&gt;
 &lt;/ng-template&gt;
 </code></pre>
-<p><div class="exercise-end"></div>
-Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
+<p>Let&#39;s take a moment to review the <code>ListView</code> template that we just created. You added a new layout type called <code>GridLayout</code>. The <code>GridLayout</code> allows you to place each elemented nested underneath into a particular row or column. Each row and column is defined in a comma separated list the the <code>rows</code> and <code>columns</code> properties. Rows and columns can be sized in the following three ways:</p>
+<ul>
+<li>(fixed number) - A fixed width in pixels</li>
+<li>(*) - The row or columns will take up all the remaining space left over after the other rows/columns are sized</li>
+<li>(auto) - The row or column will grow or shrink to the size of the child elements</li>
+</ul>
+<p>In or grid example we use <code>*</code> for the rows to make each row the same size. Then our first column is auto-sized based on the image in with the second column taking up the remaining space.</p>
+<p>The rest of the components in our <code>GridLayout</code>, the <code>Image</code> and <code>Label</code>, should be familiar to you because we used them earlier. However, take not that we are binding these to properties of <code>item</code>. The <code>let-item</code> syntax of Angular defines the <code>item</code> variable that is used to bind to and render each template for the list of <code>launches</code> that we are binding to (similar to how a for loop works).</p>
+<div class="exercise-end"></div>
+
 <h3 id="binding-to-data-from-a-service">Binding to data from a service</h3>
-<p>Mauris tempor facilisis accumsan. Mauris vitae iaculis risus. Mauris volutpat suscipit neque non bibendum. Phasellus non fringilla enim. Aliquam tempor quam vel ligula porta convallis. In blandit dictum tempus. Nunc at pulvinar justo. Aliquam eu mi eros. Nunc sit amet tellus non lorem malesuada tempus. Vestibulum nunc magna, varius ut aliquam non, fermentum sodales metus. Aliquam sit amet pulvinar lacus. Sed fringilla placerat tempor. Pellentesque id elementum nibh. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec laoreet, ex eget vulputate tincidunt, enim nisi ullamcorper urna, at scelerisque tellus mi sit amet nisi. Duis ac risus ac odio efficitur dignissim vitae dapibus purus.</p>
+<p>Now that you have the view updated we need to produce the list of launches that our UI is binding to. In order to bind data to our UI we will first need to create some models and return them from a service. Let&#39;s get started.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Binding to data from a service
+</h4>
+
+<p>The first order of business is to generate some models so you can bind your data to strongly typed objects. First create a new folder underneath the <code>app</code> folder called <code>models</code>.</p>
+<p><img src="images/chapter4/chapter4-4.png" class="img-medium" /></p>
+<p>Next create 4 TypeScript interfaces inside of the <code>models</code> folder.</p>
+<h4 id="rocket-ts">rocket.ts</h4>
+<p>Specific data on the rocket that was launched.</p>
+<pre><code class="lang-javascript">export interface Rocket {
+    rocket_id: string;
+    rocket_name: string;
+}
+</code></pre>
+<h4 id="links-ts">links.ts</h4>
+<pre><code class="lang-javascript">export interface Links {
+    mission_patch: string;
+    article_link: string;
+    video_link: string;
+}
+</code></pre>
+<h4 id="launchsite-ts">launchSite.ts</h4>
+<pre><code class="lang-javascript">export interface LaunchSite {
+    site_id: string;
+    site_name: string;
+    site_name_long: string;
+}
+</code></pre>
+<h4 id="launch-ts">launch.ts</h4>
+<pre><code class="lang-javascript">import { Rocket } from &quot;./rocket&quot;;
+import { LaunchSite } from &quot;./launchSite&quot;;
+import { Links } from &quot;./links&quot;;
+
+export interface Launch {
+    flight_number: number;
+    launch_year: string;
+    launch_date_utc: string;
+    launch_success: boolean
+    details: string;
+
+    rocket: Rocket;
+    launch_site: LaunchSite;
+    links: Links;
+}
+</code></pre>
+<div class="exercise-end"></div>
+
+
 <h3 id="adding-tabs">Adding tabs</h3>
 <p>Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.</p>
 
