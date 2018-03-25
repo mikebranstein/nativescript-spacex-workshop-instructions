@@ -617,7 +617,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
     &lt;Label class=&quot;h2 text-center&quot; text=&quot;Upcoming Launches&quot;&gt;&lt;/Label&gt;
     &lt;ListView [items]=&quot;launches&quot; class=&quot;list-group&quot;&gt;
         &lt;ng-template let-item=&quot;item&quot;&gt;
-            &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; [nsRouterLink]=&quot;[&#39;/detail&#39;, item.flight_number]&quot; class=&quot;list-group-item&quot;&gt;
+            &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
                 &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
                 &lt;Label row=&quot;0&quot; col=&quot;1&quot; [text]=&quot;item.rocket.rocket_name&quot;&gt;&lt;/Label&gt;
                 &lt;Label row=&quot;1&quot; col=&quot;1&quot; [text]=&quot;item.launch_date_utc&quot;&gt;&lt;/Label&gt;
@@ -666,6 +666,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 }
 </code></pre>
 <h4 id="links-ts">links.ts</h4>
+<p>Metadata about the rocket launch.</p>
 <pre><code class="lang-javascript">export interface Links {
     mission_patch: string;
     article_link: string;
@@ -673,6 +674,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 }
 </code></pre>
 <h4 id="launchsite-ts">launchSite.ts</h4>
+<p>Location data about where the rocket was launched from.</p>
 <pre><code class="lang-javascript">export interface LaunchSite {
     site_id: string;
     site_name: string;
@@ -680,6 +682,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 }
 </code></pre>
 <h4 id="launch-ts">launch.ts</h4>
+<p>Full launch data.</p>
 <pre><code class="lang-javascript">import { Rocket } from &quot;./rocket&quot;;
 import { LaunchSite } from &quot;./launchSite&quot;;
 import { Links } from &quot;./links&quot;;
@@ -696,12 +699,175 @@ export interface Launch {
     links: Links;
 }
 </code></pre>
+<p>Now that you have created the models to hold the SpaceX launch data, you need to create a service to return it. In this chapter we will be creating a service that returns some hard-coded data. In the next chapter we will pull the data from the SpaceX public api.  Start by adding another folder to help keep your code organized called <code>services</code> underneath the <code>app</code> folder.</p>
+<p><img src="images/chapter4/chapter4-4.png" class="img-medium" /></p>
+<p>Next, add a <code>launchService.ts</code> file to the folder that you just created.</p>
+<pre><code class="lang-javascript">import { Injectable } from &quot;@angular/core&quot;;
+import { Launch } from &#39;../models/launch&#39;
+
+@Injectable()
+export class LaunchService {
+    private launches: Launch[];
+
+    constructor() {
+        this.launches = [
+            {
+                &quot;flight_number&quot;: 42,
+                &quot;launch_year&quot;: &quot;2017&quot;,
+                &quot;launch_date_utc&quot;: &quot;2017-06-23T19:10:00Z&quot;,
+                &quot;rocket&quot;: {
+                    &quot;rocket_id&quot;: &quot;falcon9&quot;,
+                    &quot;rocket_name&quot;: &quot;Falcon 9&quot;,
+                },
+                &quot;launch_site&quot;: {
+                    &quot;site_id&quot;: &quot;ksc_lc_39a&quot;,
+                    &quot;site_name&quot;: &quot;KSC LC 39A&quot;,
+                    &quot;site_name_long&quot;: &quot;Kennedy Space Center Historic Launch Complex 39A&quot;
+                },
+                &quot;launch_success&quot;: true,
+                &quot;links&quot;: {
+                    &quot;mission_patch&quot;: &quot;https://i.imgur.com/VAvulaO.png&quot;,
+                    &quot;article_link&quot;: &quot;https://en.wikipedia.org/wiki/BulgariaSat-1&quot;,
+                    &quot;video_link&quot;: &quot;https://www.youtube.com/watch?v=Y8mLi-rRTh8&quot;
+                },
+                &quot;details&quot;: &quot;Second time a booster will be reused: Second flight of B1029 after the Iridium mission of January 2017. The satellite will be the first commercial Bulgarian-owned communications satellite and it will provide television broadcasts and other communications services over southeast Europe.&quot;
+            },
+            {
+                &quot;flight_number&quot;: 56,
+                &quot;launch_year&quot;: &quot;2018&quot;,
+                &quot;launch_date_utc&quot;: &quot;2018-02-22T14:17:00Z&quot;,
+                &quot;rocket&quot;: {
+                    &quot;rocket_id&quot;: &quot;falcon9&quot;,
+                    &quot;rocket_name&quot;: &quot;Falcon 9&quot;,
+                },
+                &quot;launch_site&quot;: {
+                    &quot;site_id&quot;: &quot;vafb_slc_4e&quot;,
+                    &quot;site_name&quot;: &quot;VAFB SLC 4E&quot;,
+                    &quot;site_name_long&quot;: &quot;Vandenberg Air Force Base Space Launch Complex 4E&quot;
+                },
+                &quot;launch_success&quot;: true,
+                &quot;links&quot;: {
+                    &quot;mission_patch&quot;: &quot;https://i.imgur.com/6iUJpn4.png&quot;,
+                    &quot;article_link&quot;: &quot;https://spaceflightnow.com/2018/02/22/recycled-spacex-rocket-boosts-paz-radar-satellite-first-starlink-testbeds-into-orbit/&quot;,
+                    &quot;video_link&quot;: &quot;https://www.youtube.com/watch?v=-p-PToD2URA&quot;
+                },
+                &quot;details&quot;: &quot;First flight with fairing 2.0. Will also carry two SpaceX test satellites for the upcoming Starlink constellation.&quot;
+            }
+        ];
+    }
+
+    public getUpcoming(): Launch[] {
+        return this.launches;
+    }
+
+    public getPast(): Launch[] {
+        return this.launches;
+    }
+}
+</code></pre>
+<p>For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - <code>getUpcoming</code> and <code>getPast</code>. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.</p>
+<p>Next you need to call the service from the <code>list-component</code> when it loads. To do this, update the <code>list-component.ts</code> file.</p>
+<pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { Launch } from &quot;../../models/launch&quot;;
+import { LaunchService } from &quot;../../services/launchService&quot;;
+
+@Component({
+    selector: &quot;list&quot;,
+    moduleId: module.id,
+    templateUrl: &quot;./list.component.html&quot;,
+    styleUrls: [&#39;./list.component.css&#39;],
+    providers: [LaunchService]
+})
+export class ListComponent implements OnInit {
+    launches: Launch[];
+
+    constructor(private launchService: LaunchService) { }
+
+    ngOnInit(): void {
+        this.launches = this.launchService.getPast();
+    }
+}
+</code></pre>
+<p>Take note that in the update <code>list.component</code>, there is a new line defining <code>providers: [LaunchService]</code>. Providers are part of Angular dependency injection. In a nutshell, when Angular creates a component, it automatically creates instances of the the items in the providers array (the dependencies); the lifecycle of these dependencies is tied to the component that they are providing. For additional information you can read more about <a href="https://angular.io/guide/dependency-injection">Angular Dependency Injection</a>.</p>
+<blockquote>
+<p>Classes must be marked <code>@Injectable()</code> for Angular to be able to recognize them as providers. Notice that we you marked the <code>LaunchService</code> as injectable.</p>
+</blockquote>
+<p>Go ahead and take a look at your app in the NativeScript preview app.</p>
+<p><img src="images/chapter4/chapter4-5.jpeg" class="img-small" /></p>
+<p>The images aren&#39;t showing correctly! This is because you haven&#39;t given our images a proper size so you just need to update the <code>list-component.css</code>.</p>
+<p>After saving everything show look great!</p>
+<p><img src="images/chapter4/chapter4-6.jpeg" class="img-small" /></p>
 <div class="exercise-end"></div>
 
-
 <h3 id="adding-tabs">Adding tabs</h3>
-<p>Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Adding tabs to the list view
+</h4>
 
+<p>Right now you have only added the upcoming launches to the list view, well, it&#39;s time to learn about the <code>TabView</code> component and have previous launches and upcoming launches on the same <code>ListComponent</code>. Let&#39;s get started!</p>
+<p>Update the <code>list-component.html</code> to contain 2 lists, one for upcoming launches and one for past launches.</p>
+<pre><code class="lang-xml">&lt;ActionBar title=&quot;SpaceX Launches&quot; class=&quot;action-bar&quot;&gt;
+&lt;/ActionBar&gt;
+&lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;
+    &lt;StackLayout class=&quot;page&quot; *tabItem=&quot;{title: &#39;Upcoming Launches&#39;}&quot;&gt;
+        &lt;Label class=&quot;h2 text-center&quot; text=&quot;Upcoming Launches&quot;&gt;&lt;/Label&gt;
+        &lt;ListView [items]=&quot;upcoming&quot; class=&quot;list-group&quot;&gt;
+            &lt;ng-template let-item=&quot;item&quot;&gt;
+                &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
+                    &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
+                    &lt;Label row=&quot;0&quot; col=&quot;1&quot; [text]=&quot;item.rocket.rocket_name&quot;&gt;&lt;/Label&gt;
+                    &lt;Label row=&quot;1&quot; col=&quot;1&quot; [text]=&quot;item.launch_date_utc&quot;&gt;&lt;/Label&gt;
+                    &lt;Label row=&quot;2&quot; col=&quot;1&quot; textWrap=&quot;true&quot; [text]=&quot;item.launch_site.site_name_long&quot;&gt;&lt;/Label&gt;
+                &lt;/GridLayout&gt;
+            &lt;/ng-template&gt;
+        &lt;/ListView&gt;
+    &lt;/StackLayout&gt;
+    &lt;StackLayout class=&quot;page&quot; *tabItem=&quot;{title: &#39;Previous Launches&#39;}&quot;&gt;
+        &lt;Label class=&quot;h2 text-center&quot; text=&quot;Previous Launches&quot;&gt;&lt;/Label&gt;
+        &lt;ListView [items]=&quot;past&quot; class=&quot;list-group&quot;&gt;
+            &lt;ng-template let-item=&quot;item&quot;&gt;
+                &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
+                    &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
+                    &lt;Label row=&quot;0&quot; col=&quot;1&quot; [text]=&quot;item.rocket.rocket_name&quot;&gt;&lt;/Label&gt;
+                    &lt;Label row=&quot;1&quot; col=&quot;1&quot; [text]=&quot;item.launch_date_utc&quot;&gt;&lt;/Label&gt;
+                    &lt;Label row=&quot;2&quot; col=&quot;1&quot; textWrap=&quot;true&quot; [text]=&quot;item.launch_site.site_name_long&quot;&gt;&lt;/Label&gt;
+                &lt;/GridLayout&gt;
+            &lt;/ng-template&gt;
+        &lt;/ListView&gt;
+    &lt;/StackLayout&gt;
+&lt;/TabView&gt;
+</code></pre>
+<p>Tabs inside of the <code>TabView</code> component are denoted using the <code>*tabItem=</code> syntax. You have created 2 <code>Listview</code> components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate <code>ListViews</code> to different arrays named <code>upcoming</code> and <code>past</code> but the rest of the syntax is the same.</p>
+<blockquote>
+<p>The <code>TabView</code> component sets a default selected tab using the <code>selectedIndex</code> property: <code>&lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;</code>.</p>
+</blockquote>
+<p>Update the <code>list-component.ts</code> to add the <code>upcoming</code> and <code>past</code> arrays.</p>
+<pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
+import { Launch } from &quot;../../models/launch&quot;;
+import { LaunchService } from &quot;../../services/launchService&quot;;
+
+@Component({
+    selector: &quot;list&quot;,
+    moduleId: module.id,
+    templateUrl: &quot;./list.component.html&quot;,
+    styleUrls: [&#39;./list.component.css&#39;],
+    providers: [LaunchService]
+})
+export class ListComponent implements OnInit {
+    upcoming: Launch[];
+    past: Launch[];
+
+    constructor(private launchService: LaunchService) { }
+
+    ngOnInit(): void {
+        this.past = this.launchService.getPast();
+        this.upcoming = this.launchService.getUpcoming();
+    }
+}
+</code></pre>
+<p>Save your project and test out your tabs!</p>
+<p><img src="images/chapter4/chapter4-8.jpeg" class="img-small" /></p>
+<div class="exercise-end"></div>
 			</div>
 			<hr>
 			<div class="chapter">

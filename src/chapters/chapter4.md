@@ -249,9 +249,79 @@ After saving everything show look great!
 ### Adding tabs
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Binding to data from a service
+    <b>Exercise</b>: Adding tabs to the list view
 </h4>
 
-<div class="exercise-end"></div>
+Right now you have only added the upcoming launches to the list view, well, it's time to learn about the `TabView` component and have previous launches and upcoming launches on the same `ListComponent`. Let's get started!
 
-Cras massa nulla, feugiat eu pretium in, tempor nec nulla. Nullam vel lobortis felis. Cras varius iaculis ornare. Ut at nisl sit amet leo pulvinar iaculis non ut purus. Morbi luctus magna sed condimentum cursus. Ut accumsan enim ligula, vitae dapibus odio blandit quis. Sed auctor ex non scelerisque vulputate. Nunc feugiat lobortis nisl consequat consectetur. Vivamus consequat sem id consectetur varius. Nam nec erat id est interdum venenatis eu eu felis. Suspendisse potenti. Donec non sapien in est maximus cursus eget eget nunc. Maecenas congue sapien ut tempor facilisis.
+Update the `list-component.html` to contain 2 lists, one for upcoming launches and one for past launches.
+
+```xml
+<ActionBar title="SpaceX Launches" class="action-bar">
+</ActionBar>
+<TabView class="tab-view" selectedIndex="0">
+	<StackLayout class="page" *tabItem="{title: 'Upcoming Launches'}">
+		<Label class="h2 text-center" text="Upcoming Launches"></Label>
+		<ListView [items]="upcoming" class="list-group">
+			<ng-template let-item="item">
+				<GridLayout rows="*, *, *" columns="auto, *" class="list-group-item">
+					<Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
+					<Label row="0" col="1" [text]="item.rocket.rocket_name"></Label>
+					<Label row="1" col="1" [text]="item.launch_date_utc"></Label>
+					<Label row="2" col="1" textWrap="true" [text]="item.launch_site.site_name_long"></Label>
+				</GridLayout>
+			</ng-template>
+		</ListView>
+	</StackLayout>
+	<StackLayout class="page" *tabItem="{title: 'Previous Launches'}">
+		<Label class="h2 text-center" text="Previous Launches"></Label>
+		<ListView [items]="past" class="list-group">
+			<ng-template let-item="item">
+				<GridLayout rows="*, *, *" columns="auto, *" class="list-group-item">
+					<Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
+					<Label row="0" col="1" [text]="item.rocket.rocket_name"></Label>
+					<Label row="1" col="1" [text]="item.launch_date_utc"></Label>
+					<Label row="2" col="1" textWrap="true" [text]="item.launch_site.site_name_long"></Label>
+				</GridLayout>
+			</ng-template>
+		</ListView>
+	</StackLayout>
+</TabView>
+```
+
+Tabs inside of the `TabView` component are denoted using the `*tabItem=` syntax. You have created 2 `Listview` components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate `ListViews` to different arrays named `upcoming` and `past` but the rest of the syntax is the same.
+
+> The `TabView` component sets a default selected tab using the `selectedIndex` property: `<TabView class="tab-view" selectedIndex="0">`.
+
+Update the `list-component.ts` to add the `upcoming` and `past` arrays.
+
+```javascript
+import { Component, OnInit } from "@angular/core";
+import { Launch } from "../../models/launch";
+import { LaunchService } from "../../services/launchService";
+
+@Component({
+	selector: "list",
+	moduleId: module.id,
+	templateUrl: "./list.component.html",
+	styleUrls: ['./list.component.css'],
+	providers: [LaunchService]
+})
+export class ListComponent implements OnInit {
+	upcoming: Launch[];
+	past: Launch[];
+
+	constructor(private launchService: LaunchService) { }
+
+	ngOnInit(): void {
+		this.past = this.launchService.getPast();
+		this.upcoming = this.launchService.getUpcoming();
+	}
+}
+```
+
+Save your project and test out your tabs!
+
+<img src="images/chapter4/chapter4-8.jpeg" class="img-small" />
+
+<div class="exercise-end"></div>
