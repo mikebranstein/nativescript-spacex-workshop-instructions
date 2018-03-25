@@ -1421,11 +1421,122 @@ export class DetailComponent implements OnInit {
 <p>This concludes the exercise. In the next exercise, you&#39;l update the UI markup to display the launch details.</p>
 <div class="exercise-end"></div>
 
+<p>In this final exercise, you&#39;ll finish the SpaceX app by adding UI markup to the Details page.</p>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Retrieving launch details
+</h4>
 
+<p>In this exercise, you&#39;ll update the UI of the Details page to display launch details.</p>
+<h4 id="establishing-a-foundation-layout">Establishing a foundation layout</h4>
+<p>In previous chapters, you learned about the <code>ActionBar</code>, <code>ScrollView</code>, and <code>StackLayout</code> elements. </p>
+<ul>
+<li>A <code>ActionBar</code> is used to set the page title.</li>
+<li>A <code>ScrollView</code> allows the page to scroll if content extends past the original view.</li>
+<li>A <code>StackLayout</code> allows you to <em>stack</em> UI elements above/below in a vertical manner.</li>
+</ul>
+<p>Update the <code>details.component.html</code> file.</p>
+<pre><code class="lang-xml">&lt;ActionBar title=&quot;Launch Details&quot; icon=&quot;&quot; class=&quot;action-bar&quot;&gt;
+&lt;/ActionBar&gt;
+&lt;ScrollView class=&quot;page&quot;&gt;
+    &lt;StackLayout&gt;
 
+    &lt;/StackLayout&gt;
+&lt;/ScrollView&gt;
+</code></pre>
+<blockquote>
+<p><strong>What&#39;s the page class name?</strong></p>
+<p>That&#39;s another use of the NativeScript Theme plugin. The <code>page</code> class is a convenient class name that makes you app pages look uniform with very little effort. To learn more, check out the <a href="https://docs.nativescript.org/ui/theme#page">documentation</a>.</p>
+</blockquote>
+<h4 id="adding-a-mission-patch">Adding a Mission Patch</h4>
+<p>With the foundation set, let&#39;s start adding various UI components.</p>
+<p>Add an image inside the stack layout. You&#39;ve added an images throughout the workshop, and this image is like the images you added to the List component. Note the <code>src</code> attribute is databound to the <code>links.mission_patch</code> property of the <code>launch</code> variable.</p>
+<pre><code class="lang-xml">&lt;Image [src]=&quot;launch.links.mission_patch&quot;&gt;&lt;/Image&gt;
+</code></pre>
+<blockquote>
+<p><strong>How can the page bind to the launch variable?</strong></p>
+<p>You might be wondering why the UI page can bind to the <code>launch</code> variable. If you look back earlier in this chapter, you&#39;ll recall that we added a public variable named <code>launch</code> to the DetailComponent class. Public variables can be databound.</p>
+</blockquote>
+<p>Next, update the <code>details.component.css</code> file to restrict images to 50% width.</p>
+<pre><code class="lang-css">image {
+    width: 50%;
+}
+</code></pre>
+<h4 id="adding-the-flight-number">Adding the Flight Number</h4>
+<p>Add a flight number by binding to the <code>flight_number</code> property.</p>
+<pre><code class="lang-xml">&lt;Label 
+    text=&quot;{{ &#39;Flight Number: &#39; + launch.flight_number }}&quot; 
+    class=&quot;body m-l-20 m-t-20&quot; 
+    textWrap=&quot;true&quot;&gt;
+&lt;/Label&gt;
+</code></pre>
+<p>You&#39;ll notice that we used an advanced form of Angular databinding that allows you to mix text and databound variables. The double-mustache syntax treats it&#39;s internal text as a databinding expression. Using databinding expressions like this comes in handy, making it easier to seamlessly blend text and variables.</p>
+<blockquote>
+<p><strong>What to the CSS class names do?</strong></p>
+<p>The <code>body</code>, <code>m-l-20</code>, and <code>m-t-20</code> are more CSS class names from the NativeScript Theme plugin. The <code>body</code> class name styles the label text as long-form paragraphs. You can learn more about text formatting in the <a href="https://docs.nativescript.org/ui/theme#text">text formatting documentation</a>. </p>
+<p>The other class names also come from the themes plugin, and aure short-hand for alignment and spacing. Generally, <code>m</code> stands for <em>CSS margin</em>, <code>l</code> and <code>t</code> stand for <em>left</em> and <em>top</em>, and the number value stand for <em>20 space units</em>. So, you can read it as <em>margin-left-20</em> and <em>margin-top-20</em>. You&#39;ll continue to use theme class names like this throughout the page. If you&#39;d like to learn more, check out the <a href="https://docs.nativescript.org/ui/theme#padding-and-margin">padding and margin documentation</a>.</p>
+</blockquote>
+<h4 id="launch-date-site-details">Launch Date, Site, &amp; Details</h4>
+<p>Add three more launch data points the stack layout below the launch number.</p>
+<pre><code class="lang-xml">&lt;Label 
+    text=&quot;{{ &#39;Date: &#39; + launch.launch_date_utc }}&quot; 
+    class=&quot;body m-l-20 m-t-20&quot; 
+    textWrap=&quot;true&quot;&gt;
+&lt;/Label&gt;
 
+&lt;Label 
+    [text]=&quot;launch.launch_site.site_name_long&quot; 
+    class=&quot;body m-l-20 m-r-20 m-t-20&quot; 
+    textWrap=&quot;true&quot;&gt;
+&lt;/Label&gt;
 
+&lt;Label 
+    [text]=&quot;launch.details&quot; 
+    class=&quot;body m-l-20 m-r-20 m-t-20&quot; 
+    textWrap=&quot;true&quot;&gt;
+&lt;/Label&gt;
+</code></pre>
+<h4 id="launch-article">Launch Article</h4>
+<p>Each launch has an official article describing the launch. It&#39;s nice to show the URL, but on a mobile device, that&#39;s not enough. You really need to hyperlink the URL to open in a browser. You&#39;ll be adding the URL to the page as a label, and then using a tap event handler to open the URL in a browser.</p>
+<p>Start by adding the launch article label to the stack layout.</p>
+<pre><code class="lang-xml">&lt;Label 
+    text=&quot;{{ &#39;Article: &#39; + launch.links.article_link }}&quot; 
+    class=&quot;body m-l-20 m-r-20 m-t-20&quot; 
+    textWrap=&quot;true&quot; 
+    (tap)=&quot;onLinkTap(launch.links.article_link)&quot;&gt;
+&lt;/Label&gt;
+</code></pre>
+<p>Next, implement the <code>onLinkTap()</code> function in <code>details.component.ts</code>. </p>
+<pre><code class="lang-javascript">onLinkTap(link: string): void {
+    // to do: open the link in a browser
+}
+</code></pre>
+<p>Now that you have the <code>onLinkTap()</code> stub added, turn your attention to the implementation of the function. </p>
+<p>You&#39;re welcome to write custom code for Android or iOS that opens a URL in the appropriate browser, but NativeScript has a collection of utility functions that provide various cross-platform functionalities (like opening a URL). They&#39;re done the heavy lifting for you, so let&#39;s take advantage of it!</p>
+<p>Import the utility classes into <code>detail.component.ts</code> by adding this import statement.</p>
+<pre><code class="lang-javascript">import * as utils from &quot;utils/utils&quot;;
+</code></pre>
+<p>Then, use the <code>utils</code> class to call the <code>openUrl()</code> function. Your completed <code>onLinkTap()</code> funciton should look like this.</p>
+<pre><code class="lang-javascript">onLinkTap(link: string): void {
+    utils.openUrl(link);
+}
+</code></pre>
+<p>Now, when you tap the launch article URL, a browser will open, loading the URL.</p>
+<h4 id="launch-video">Launch Video</h4>
+<p>The last UI element to add is the launch video. After all, what&#39;s a SpaceX app without a video of the launch (and my personal favorite is the Falcon Heavy - check it out - <em>definitely</em>).</p>
+<p>Add another label to the stack layout.</p>
+<pre><code class="lang-xml">&lt;Label 
+    text=&quot;{{ &#39;Video: &#39; + launch.links.video_link }}&quot; 
+    class=&quot;body m-l-20 m-r-20 m-t-20&quot; 
+    textWrap=&quot;true&quot; 
+    (tap)=&quot;onLinkTap(launch.links.video_link)&quot;&gt;
+&lt;/Label&gt;
+</code></pre>
+<p>You&#39;ll notice you were able to reuse the <code>onLinkTap()</code> function with this link. Pretty convenient. </p>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
 
+<p>Well done. You&#39;ve finished the workshop, and have a sweet SpaceX mobile app to show your friends and family.</p>
+<p>This concludes the workshop.</p>
 
 			</div>
 		</div>
