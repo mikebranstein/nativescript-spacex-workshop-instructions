@@ -71,3 +71,7 @@ There is also a huge community around NativeScript, we've compiled a brief list 
 ### Inspirations
 
 A portion of this workshop was inspired by a [fun weekend project](https://brosteins.com/2016/03/26/nativescript-mobile-app-kids/) Mike built with his son. We're really into building robots right now, so we built a carboard robot with his tablet as the head. I ended up writing a quick NativeScript soundboard app so the robot could talk back to him.
+
+### Download our Book!
+
+We promise - this is the last plug. We wrote a book about NativeScript. And you can [download it](https://nativescript.org/book). For free. Yes, free. Free, like beer. 
