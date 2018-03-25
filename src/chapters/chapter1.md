@@ -45,7 +45,9 @@ Open the NativeScript Playground app on your mobile device, and select the "Scan
 
 Using the QR code scanner in the NativeScript Playground app, scan the QR code displayed on the NativeScript Playground website. 
 
-> *NOTE*: Do not scan the QR code on *this* page. Scan the QR code in the Playground.
+> **NOTE**
+>
+> Do not scan the QR code on *this* page. Scan the QR code in the Playground.
 
 After scanning the QR code, the NativeScript Playground app will open the NativeScript Preview app and dynamically load the code from the Playground Website and launch a native mobile app on your mobile device!
 
@@ -89,10 +91,14 @@ The bottom central area shows you which mobile devices are connected to the Play
 
 <img src="images/chapter1/play-6.png" class="img-large" />
 
-> *Connected Devices* Hold on...the Playground shows you connected devices. Yes, that's right. When your mobile device connects to the Playground, it registers itself with the website. You can see a variety of information about a connected device. 
+> **Connected Devices** 
+>
+> Hold on...the Playground shows you connected devices. Yes, that's right. When your mobile device connects to the Playground, it registers itself with the website. You can see a variety of information about a connected device. 
 
 Pretty cool, right? Well, there's somethign even cooler about the Playground: *LiveSync*. 
 
+> **LiveSync**
+>
 > LiveSync is a technology that syncs changes made in the Playground down to your mobile device in real time. This means that you can quickly make changes to your app in the Playground and the changes will be instantly pushed to connected devices. If you've ever done mobile development before, you'll understand how useful this is - getting feedback from your code running on real mobile devices usually takes time, but with LiveSync, it's instantaneous.
 
 ### LiveSync in Action
