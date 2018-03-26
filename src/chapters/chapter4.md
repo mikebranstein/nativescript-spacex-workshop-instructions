@@ -23,12 +23,12 @@ You may have noticed that there is data showing up. That's because when you drag
 
 <img src="images/chapter4/chapter4-3.png" class="img-med" />
 
-Before we replace this code, let's just back over the the view code and update it a bit. Replace the current `ScrollView` and `StackLayout` with a single `StackLayout` containing a `Label` and `ListView`.
+Before we replace this code, let's just back over the the view code and update it a bit. Replace the current `ScrollView` and `StackLayout` with a single `GridLayout` containing a `Label` and `ListView`.
 
 ```xml
-<StackLayout class="page">
+<GridLayout rows="auto,*" columns="*" class="page">
 	<Label class="h2 text-center" text="Upcoming Launches"></Label>
-	<ListView [items]="launches" class="list-group">
+	<ListView row="1" [items]="launches" class="list-group">
 		<ng-template let-item="item">
 			<GridLayout rows="*, *, *" columns="auto, *" class="list-group-item">
 				<Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
@@ -38,7 +38,7 @@ Before we replace this code, let's just back over the the view code and update i
 			</GridLayout>
 		</ng-template>
 	</ListView>
-</StackLayout>
+</GridLayout>
 ```
 
 Let's talk about the `ListView` in more depth. We're using the Angular syntax to bind the items in the `ListView` to a collection of elements called `launches`: 
@@ -281,9 +281,9 @@ Update the `list.component.html` to contain 2 lists, one for upcoming launches a
 <ActionBar title="SpaceX Launches" class="action-bar">
 </ActionBar>
 <TabView class="tab-view" selectedIndex="0">
-	<StackLayout class="page" *tabItem="{title: 'Upcoming Launches'}">
+	<GridLayout rows="auto,*" columns="*" class="page" *tabItem="{title: 'Upcoming Launches'}">
 		<Label class="h2 text-center" text="Upcoming Launches"></Label>
-		<ListView [items]="upcoming" class="list-group">
+		<ListView row="1" [items]="upcoming" class="list-group">
 			<ng-template let-item="item">
 				<GridLayout rows="*, *, *" columns="auto, *" class="list-group-item">
 					<Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
@@ -293,10 +293,10 @@ Update the `list.component.html` to contain 2 lists, one for upcoming launches a
 				</GridLayout>
 			</ng-template>
 		</ListView>
-	</StackLayout>
-	<StackLayout class="page" *tabItem="{title: 'Previous Launches'}">
+	</GridLayout>
+	<GridLayout rows="auto,*" columns="*" class="page" *tabItem="{title: 'Previous Launches'}">
 		<Label class="h2 text-center" text="Previous Launches"></Label>
-		<ListView [items]="past" class="list-group">
+		<ListView row="1" [items]="past" class="list-group">
 			<ng-template let-item="item">
 				<GridLayout rows="*, *, *" columns="auto, *" class="list-group-item">
 					<Image row="0" col="0" rowSpan="3" [src]="item.links.mission_patch" class="img-circle"></Image>
@@ -306,7 +306,7 @@ Update the `list.component.html` to contain 2 lists, one for upcoming launches a
 				</GridLayout>
 			</ng-template>
 		</ListView>
-	</StackLayout>
+	</GridLayout>
 </TabView>
 ```
 

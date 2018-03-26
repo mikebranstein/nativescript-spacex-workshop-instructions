@@ -634,10 +634,10 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 <p><img src="images/chapter4/chapter4-2.jpeg" class="img-small" /></p>
 <p>You may have noticed that there is data showing up. That&#39;s because when you drag a component in the playground it scaffolds out a lot of code for you. Take a look at <code>list.component.ts</code> and you will see the code that is generating the data in the <code>ListView</code> that you drag-and-dropped.</p>
 <p><img src="images/chapter4/chapter4-3.png" class="img-med" /></p>
-<p>Before we replace this code, let&#39;s just back over the the view code and update it a bit. Replace the current <code>ScrollView</code> and <code>StackLayout</code> with a single <code>StackLayout</code> containing a <code>Label</code> and <code>ListView</code>.</p>
-<pre><code class="lang-xml">&lt;StackLayout class=&quot;page&quot;&gt;
+<p>Before we replace this code, let&#39;s just back over the the view code and update it a bit. Replace the current <code>ScrollView</code> and <code>StackLayout</code> with a single <code>GridLayout</code> containing a <code>Label</code> and <code>ListView</code>.</p>
+<pre><code class="lang-xml">&lt;GridLayout rows=&quot;auto,*&quot; columns=&quot;*&quot; class=&quot;page&quot;&gt;
     &lt;Label class=&quot;h2 text-center&quot; text=&quot;Upcoming Launches&quot;&gt;&lt;/Label&gt;
-    &lt;ListView [items]=&quot;launches&quot; class=&quot;list-group&quot;&gt;
+    &lt;ListView row=&quot;1&quot; [items]=&quot;launches&quot; class=&quot;list-group&quot;&gt;
         &lt;ng-template let-item=&quot;item&quot;&gt;
             &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
                 &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
@@ -647,7 +647,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
             &lt;/GridLayout&gt;
         &lt;/ng-template&gt;
     &lt;/ListView&gt;
-&lt;/StackLayout&gt;
+&lt;/GridLayout&gt;
 </code></pre>
 <p>Let&#39;s talk about the <code>ListView</code> in more depth. We&#39;re using the Angular syntax to bind the items in the <code>ListView</code> to a collection of elements called <code>launches</code>: </p>
 <p><code>&lt;ListView [items]=&quot;launches&quot; class=&quot;list-group&quot;&gt;</code></p>
@@ -839,9 +839,9 @@ export class ListComponent implements OnInit {
 <pre><code class="lang-xml">&lt;ActionBar title=&quot;SpaceX Launches&quot; class=&quot;action-bar&quot;&gt;
 &lt;/ActionBar&gt;
 &lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;
-    &lt;StackLayout class=&quot;page&quot; *tabItem=&quot;{title: &#39;Upcoming Launches&#39;}&quot;&gt;
+    &lt;GridLayout rows=&quot;auto,*&quot; columns=&quot;*&quot; class=&quot;page&quot; *tabItem=&quot;{title: &#39;Upcoming Launches&#39;}&quot;&gt;
         &lt;Label class=&quot;h2 text-center&quot; text=&quot;Upcoming Launches&quot;&gt;&lt;/Label&gt;
-        &lt;ListView [items]=&quot;upcoming&quot; class=&quot;list-group&quot;&gt;
+        &lt;ListView row=&quot;1&quot; [items]=&quot;upcoming&quot; class=&quot;list-group&quot;&gt;
             &lt;ng-template let-item=&quot;item&quot;&gt;
                 &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
                     &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
@@ -851,10 +851,10 @@ export class ListComponent implements OnInit {
                 &lt;/GridLayout&gt;
             &lt;/ng-template&gt;
         &lt;/ListView&gt;
-    &lt;/StackLayout&gt;
-    &lt;StackLayout class=&quot;page&quot; *tabItem=&quot;{title: &#39;Previous Launches&#39;}&quot;&gt;
+    &lt;/GridLayout&gt;
+    &lt;GridLayout rows=&quot;auto,*&quot; columns=&quot;*&quot; class=&quot;page&quot; *tabItem=&quot;{title: &#39;Previous Launches&#39;}&quot;&gt;
         &lt;Label class=&quot;h2 text-center&quot; text=&quot;Previous Launches&quot;&gt;&lt;/Label&gt;
-        &lt;ListView [items]=&quot;past&quot; class=&quot;list-group&quot;&gt;
+        &lt;ListView row=&quot;1&quot; [items]=&quot;past&quot; class=&quot;list-group&quot;&gt;
             &lt;ng-template let-item=&quot;item&quot;&gt;
                 &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
                     &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
@@ -864,7 +864,7 @@ export class ListComponent implements OnInit {
                 &lt;/GridLayout&gt;
             &lt;/ng-template&gt;
         &lt;/ListView&gt;
-    &lt;/StackLayout&gt;
+    &lt;/GridLayout&gt;
 &lt;/TabView&gt;
 </code></pre>
 <p>Tabs inside of the <code>TabView</code> component are denoted using the <code>*tabItem=</code> syntax. You have created 2 <code>ListView</code> components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate <code>ListViews</code> to different arrays named <code>upcoming</code> and <code>past</code> but the rest of the syntax is the same.</p>
