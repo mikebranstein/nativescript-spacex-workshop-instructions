@@ -58,7 +58,7 @@ When using the `ListView` component we typically define a template.
 </ng-template>
 ```
 
-Let's take a moment to review the `ListView` template that we just created. You added a new layout type called `GridLayout`. The `GridLayout` allows you to place each elemented nested underneath into a particular row or column. Each row and column is defined in a comma separated list the the `rows` and `columns` properties. Rows and columns can be sized in the following three ways:
+Let's take a moment to review the `ListView` template that we just created. You added a new layout type called `GridLayout`. The `GridLayout` allows you to place each nested element into a row or column. Rows and columns are defined in a comma separated list the the `rows` and `columns` properties. Rows and columns can be sized in the following three ways:
 * (fixed number) - A fixed width in pixels
 * (*) - The row or columns will take up all the remaining space left over after the other rows/columns are sized
 * (auto) - The row or column will grow or shrink to the size of the child elements
@@ -310,7 +310,7 @@ Update the `list.component.html` to contain 2 lists, one for upcoming launches a
 </TabView>
 ```
 
-Tabs inside of the `TabView` component are denoted using the `*tabItem=` syntax. You have created 2 `Listview` components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate `ListViews` to different arrays named `upcoming` and `past` but the rest of the syntax is the same.
+Tabs inside of the `TabView` component are denoted using the `*tabItem=` syntax. You have created 2 `ListView` components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate `ListViews` to different arrays named `upcoming` and `past` but the rest of the syntax is the same.
 
 > **NOTE** 
 >

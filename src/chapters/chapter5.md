@@ -8,7 +8,7 @@ The SpaceX app is starting to look great but you still have some work to do. Sta
 
 Before you call the SpaceX API we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. [RxJS](http://reactivex.io/rxjs/) is the ReactiveX library for JavaScript. (ok but what does that mean?)
 
-RxJS is a library for using Observables. We aren't going to discuss obseravables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.
+RxJS is a library for using Observables. We aren't going to discuss observables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use observables so we can bind observable objects straight to our UI when we receive them back from our API calls.
 
 ### Calling an API
 
@@ -220,6 +220,6 @@ This concludes the exercise.
 
 <div class="exercise-end"></div>
 
-Nice work. Adding remote APIs to yoru mobile apps isn't too difficult. Normally, we wouldn't go through the trouble of adding live data to a prototype app, but we just coudln't resist.
+Nice work. Adding remote APIs to your mobile apps isn't too difficult. Normally, we wouldn't go through the trouble of adding live data to a prototype app, but we just couldn't resist.
 
 In the next chapter, you'll finish the SpaceX app by adding a launch details page.

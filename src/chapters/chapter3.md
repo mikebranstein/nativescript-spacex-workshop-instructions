@@ -123,7 +123,7 @@ Add a tap event handler attribute to the button's markup. Don't worry if you don
 
 > **Angular: Where to learn more** 
 >
-> Ok, we'll admit it - if you've used Angualr before, you'll know there's a lot more to the binding syntax we just covered. Unfortunately, in a short workshop, we don't have time to cover it in greater detail. If you'd liek to learn more, check out [the Angular documentation](https://angular.io/guide/user-input).  
+> Ok, we'll admit it - if you've used Angular before, you'll know there's a lot more to the binding syntax we just covered. Unfortunately, in a short workshop, we don't have time to cover it in greater detail. If you'd like to learn more, check out [the Angular documentation](https://angular.io/guide/user-input).  
 
 > **NativeScript: Where to learn more** 
 >
@@ -175,7 +175,7 @@ Let's walk through each of these one by one.
 
 #### Importing RouterExtensions
 
-At the top of the Home component code, you imported an additional class named RouterExtensions from `nativescript-angular/router`. This class is a NativeScript-specific class for interacting with Angular's rounting/navigation system. There's not much more to learn about it, so just remember that you need to import it on every page that you'll need to use navigation. 
+At the top of the Home component code, you imported an additional class named RouterExtensions from `nativescript-angular/router`. This class is a NativeScript-specific class for interacting with Angular's routing/navigation system. There's not much more to learn about it, so just remember that you need to import it on every page that you'll need to use navigation. 
 
 And here's an extra secret...we've found that you'll need this in about every component you create.
 
@@ -262,7 +262,9 @@ Nice work! You've just learned how to add navigation to your app. As a quick rem
 * Add the tap event handler function to the originating component's class code
 * Register the new component as a route in `app-routing.module.ts` file 
 
-> Yeah, we know, it's a lot of code jsut to navigate, but that's the Angular way ;-)
+> **NOTE**
+>
+> Yeah, we know, it's a lot of code just to navigate, but that's the Angular way ;-)
 
 ### Adding an Action Bar
 
@@ -312,7 +314,7 @@ As for the markup following the Action Bar, ignore it. You'll be replacing it la
 
 #### Update the Action Bar
 
-Let's make a simple modificaiton to the Action Bar and update the title.
+Let's make a simple modification to the Action Bar and update the title.
 
 Change the title to "SpaceX Launches" or something equally appropriate:
 
@@ -321,7 +323,7 @@ Change the title to "SpaceX Launches" or something equally appropriate:
 </ActionBar>
 ```
 
-Refresh the app on your mobile device and you shoudl see something similar on the List page:
+Refresh the app on your mobile device and you should see something similar on the List page:
 
 <img src="images/chapter3/list-8.png" class="img-small" />
 

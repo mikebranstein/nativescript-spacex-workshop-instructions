@@ -23,7 +23,7 @@ Before we get started, you'll need to install 2 apps on your mobile device:
 * NativeScript Playground: [iOS](https://itunes.apple.com/us/app/nativescript-playground/id1263543946?mt=8), [Android](https://play.google.com/store/apps/details?id=org.nativescript.play&hl=en)
 * NativeScript Preview: [iOS](https://itunes.apple.com/us/app/nativescript-preview/id1264484702?mt=8), [Android](https://play.google.com/store/apps/details?id=org.nativescript.preview&hl=en)
 
-In your your respective App Store (Google Play or Apple App Store), locate both apps and install them on your mobile device. If you're haivng troubel finding the app, use the links above.
+In your your respective App Store (Google Play or Apple App Store), locate both apps and install them on your mobile device. If you're having trouble finding the app, use the links above.
 
 #### Explore the NativeScript Playground
 
@@ -61,7 +61,7 @@ When all of this happens, you should see this on your mobile device:
 
 Congratulations! You just used the Playground to write your first mobile app with Angular. Then, you ran the app on your phone. That was fast - and you didn't need to install anything on your computer!
 
-OK, we know you didn't have to do much of anything to write this app, but we promose you'll learn more and build something more advanced during the workshop.
+OK, we know you didn't have to do much of anything to write this app, but we promise you'll learn more and build something more advanced during the workshop.
 
 <div class="exercise-end"></div>
 
@@ -95,7 +95,7 @@ The bottom central area shows you which mobile devices are connected to the Play
 >
 > Hold on...the Playground shows you connected devices. Yes, that's right. When your mobile device connects to the Playground, it registers itself with the website. You can see a variety of information about a connected device. 
 
-Pretty cool, right? Well, there's somethign even cooler about the Playground: *LiveSync*. 
+Pretty cool, right? Well, there's something even cooler about the Playground: *LiveSync*. 
 
 > **LiveSync**
 >

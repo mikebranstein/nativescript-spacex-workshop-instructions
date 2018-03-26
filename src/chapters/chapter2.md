@@ -24,7 +24,7 @@ If you look at the `home-component` that you scaffolded in the previous chapter,
 </ScrollView>
 ```
 
-The `ScrollView` and `StackLayout` elements are two basic layout elements (we'll talk about the `ActionBar` in a later chapter). To display multiple elements on a page, you need to use a layout like the `ScrollView` or `StackLayout` and in most cases you will want to use both. The `ScrollView` functions exactly as you would expect, it makes the content inside of it scrollable. The `StackLayout` element organizes child elements vertically or horizonatally.
+The `ScrollView` and `StackLayout` elements are two basic layout elements (we'll talk about the `ActionBar` in a later chapter). To display multiple elements on a page, you need to use a layout like the `ScrollView` or `StackLayout` and in most cases you will want to use both. The `ScrollView` functions exactly as you would expect, it makes the content inside of it scrollable. The `StackLayout` element organizes child elements vertically or horizontally.
 
 >The `StackLayout` organizes child elements stacked on top of each other vertically by default.
 

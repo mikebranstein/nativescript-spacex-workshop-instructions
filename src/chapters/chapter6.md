@@ -14,7 +14,7 @@ Now that you've created a page showing the list of launches, let's build a detai
 
 In chapter 3 you added the list page to your app by creating a new component. Adding the details page is the same process. In this exercise, you'll be creating the Details page.
 
-We're not going to walk you through this process step by step, so try it out for yourself. If you're new to Angular, that's ok. Don't feel like you need to have mastered what it takes to create a new page without help. We'll give you a few pointers: first, review what you did in [chatper 3](#chapter3.0); second, use this checklist to make sure you didn't forget any steps.
+We're not going to walk you through this process step by step, so try it out for yourself. If you're new to Angular, that's ok. Don't feel like you need to have mastered what it takes to create a new page without help. We'll give you a few pointers: first, review what you did in [chapter 3](#chapter3.0); second, use this checklist to make sure you didn't forget any steps.
 
 > **IMPORTANT**
 >
@@ -205,7 +205,7 @@ In this exercise, you'll learn about the `nsRouterLink` attribute directive, and
 
 > **How do I choose?** 
 >
-> You may be thinking that navigation in Angular apps is confusing, because we've introduced 2 ways of navigating between pages/components. When shoudl you write code and bind to the tap event handler, and when should you use `nsRouterLink`? We recommend you use `nsRouterLink` for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.
+> You may be thinking that navigation in Angular apps is confusing, because we've introduced 2 ways of navigating between pages/components. When should you write code and bind to the tap event handler, and when should you use `nsRouterLink`? We recommend you use `nsRouterLink` for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.
 
 #### Adding the *nsRouterLink* attribute directive
 
@@ -241,11 +241,11 @@ By adding `[nsRouterLink]="['/detail', item.flight_number]"` to the `GridLayout`
 
 #### Updating the /detail route
 
-Ok, wemay have been a bit misleading by saying "that's it" above. There is one more step to making the `nsRouterLink` attribute directive navigate (and pass data) to the Detail component correctly. 
+Ok, we may have been a bit misleading by saying "that's it" above. There is one more step to making the `nsRouterLink` attribute directive navigate (and pass data) to the Detail component correctly. 
 
 As you'll recall, you passed `item.flight_number` to the Details component above. But, the route doesn't know anything about the flight number being passed in, so we need to "educate it" ;-).
 
-Open the `app-routing.moduel.ts` file, and locate the `/detail` route you created earlier in the chapter. You should see:
+Open the `app-routing.module.ts` file, and locate the `/detail` route you created earlier in the chapter. You should see:
 
 ```javascript
 { path: "detail", component: DetailComponent }
@@ -277,7 +277,7 @@ In the last section, you learned how to use the `nsRouterLink` attribute directi
     <b>Exercise</b>: Accessing navigation route data in a component
 </h4>
 
-In this exercise, you'll learn how to access navigate ruote data in the Detail component. 
+In this exercise, you'll learn how to access navigate route data in the Detail component. 
 
 #### Retrieving data from a route variable
 
@@ -302,7 +302,7 @@ export class DetailComponent implements OnInit {
 }
 ```
 
-Update the Details component with some new code. It's ok if you don't understand it right now, we'll exaplin.
+Update the Details component with some new code. It's ok if you don't understand it right now, we'll explain.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -338,13 +338,13 @@ Next, what's with that `+` in front of `this.route.snapshot.params["id"]`? You m
 
 > **OnInit vs Component Constructor**
 >
-> You may be wondering why you didn't retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initiatize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the `OnInit()` function. There are other details about why `OnInit()` should be used, but we're not going to cover them. For more details, see a good write-up by [Todd Motto](https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook).
+> You may be wondering why you didn't retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initialize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the `OnInit()` function. There are other details about why `OnInit()` should be used, but we're not going to cover them. For more details, see a good write-up by [Todd Motto](https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook).
 
-This concludes the exercise. In the next exercise, you'll reuse the Launch service previosuly created to retrieve the details about a specific launch.
+This concludes the exercise. In the next exercise, you'll reuse the Launch service previously created to retrieve the details about a specific launch.
 
 <div class="exercise-end"></div>
 
-Cool. You just passed data between pages/componets and retrieved the data. Let's keep going by getting the details of a launch.
+Cool. You just passed data between pages/components and retrieved the data. Let's keep going by getting the details of a launch.
 
 
 <h4 class="exercise-start">
@@ -441,11 +441,11 @@ export class DetailComponent implements OnInit {
 }
 ```
 
-You'll notice that you added a public `launch` variable to the Details component, then populated it in the `OnInit()` function by calling the `getLaunch()` you ceated previously. 
+You'll notice that you added a public `launch` variable to the Details component, then populated it in the `OnInit()` function by calling the `getLaunch()` you created previously. 
 
 That's all!
 
-This concludes the exercise. In the next exercise, you'l update the UI markup to display the launch details.
+This concludes the exercise. In the next exercise, you'll update the UI markup to display the launch details.
 
 <div class="exercise-end"></div>
 
@@ -486,7 +486,7 @@ Update the `details.component.html` file.
 
 With the foundation set, let's start adding various UI components.
 
-Add an image inside the stack layout. You've added an images throughout the workshop, and this image is like the images you added to the List component. Note the `src` attribute is databound to the `links.mission_patch` property of the `launch` variable.
+Add an image inside the stack layout. You've added an images throughout the workshop, and this image is like the images you added to the List component. Note the `src` attribute is data-bound to the `links.mission_patch` property of the `launch` variable.
 
 ```xml
 <Image [src]="launch.links.mission_patch"></Image>
@@ -494,7 +494,7 @@ Add an image inside the stack layout. You've added an images throughout the work
 
 > **How can the page bind to the launch variable?**
 >
-> You might be wondering why the UI page can bind to the `launch` variable. If you look back earlier in this chapter, you'll recall that we added a public variable named `launch` to the DetailComponent class. Public variables can be databound.
+> You might be wondering why the UI page can bind to the `launch` variable. If you look back earlier in this chapter, you'll recall that we added a public variable named `launch` to the DetailComponent class. Public variables can be data-bound.
 
 Next, update the `details.component.css` file to restrict images to 50% width.
 
@@ -516,13 +516,13 @@ Add a flight number by binding to the `flight_number` property.
 </Label>
 ```
 
-You'll notice that we used an advanced form of Angular databinding that allows you to mix text and databound variables. The double-mustache syntax treats it's internal text as a databinding expression. Using databinding expressions like this comes in handy, making it easier to seamlessly blend text and variables.
+You'll notice that we used an advanced form of Angular data-binding that allows you to mix text and data-bound variables. The double-mustache syntax treats it's internal text as a data-binding expression. Using data-binding expressions like this comes in handy, making it easier to seamlessly blend text and variables.
 
 > **What to the CSS class names do?**
 >
 > The `body`, `m-l-20`, and `m-t-20` are more CSS class names from the NativeScript Theme plugin. The `body` class name styles the label text as long-form paragraphs. You can learn more about text formatting in the [text formatting documentation](https://docs.nativescript.org/ui/theme#text). 
 >
-> The other class names also come from the themes plugin, and aure short-hand for alignment and spacing. Generally, `m` stands for *CSS margin*, `l` and `t` stand for *left* and *top*, and the number value stand for *20 space units*. So, you can read it as *margin-left-20* and *margin-top-20*. You'll continue to use theme class names like this throughout the page. If you'd like to learn more, check out the [padding and margin documentation](https://docs.nativescript.org/ui/theme#padding-and-margin).
+> The other class names also come from the themes plugin, and are short-hand for alignment and spacing. Generally, `m` stands for *CSS margin*, `l` and `t` stand for *left* and *top*, and the number value stand for *20 space units*. So, you can read it as *margin-left-20* and *margin-top-20*. You'll continue to use theme class names like this throughout the page. If you'd like to learn more, check out the [padding and margin documentation](https://docs.nativescript.org/ui/theme#padding-and-margin).
 
 #### Launch Date, Site, & Details
 
@@ -581,7 +581,7 @@ Import the utility classes into `detail.component.ts` by adding this import stat
 import * as utils from "utils/utils";
 ```
 
-Then, use the `utils` class to call the `openUrl()` function. Your completed `onLinkTap()` funciton should look like this.
+Then, use the `utils` class to call the `openUrl()` function. Your completed `onLinkTap()` function should look like this.
 
 ```javascript
 onLinkTap(link: string): void {

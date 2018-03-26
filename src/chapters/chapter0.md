@@ -30,7 +30,7 @@ In this workshop you'll learn how to build iOS and Android mobile apps using Nat
 
 <img src="images/chapter0/SpaceX_home.jpg" class="img-small" />
 
-Key concepts and take aways:
+Key concepts and take-aways:
 
 * NativeScript app architecture
 * Using Angular to build a NativeScript app
@@ -55,7 +55,7 @@ You can find additional workshop materials and presentation content at the locat
 
 The first place you can go to learn more about NativeScript is by reading our book, [The NativeScript Book](https://nativescript.org/book), available *FREE* from Telerik. 
 
-There is also a huge community around NativeScript, we've compiled a brief list of additoinal resources below. 
+There is also a huge community around NativeScript, we've compiled a brief list of additional resources below. 
 
 * Official NativeScript website: [https://nativescript.org](https://nativescript.org)
 * NativeScript Playground: [https://play.nativescript.org](https://play.nativescript.org)
@@ -70,7 +70,7 @@ There is also a huge community around NativeScript, we've compiled a brief list 
 
 ### Inspirations
 
-A portion of this workshop was inspired by a [fun weekend project](https://brosteins.com/2016/03/26/nativescript-mobile-app-kids/) Mike built with his son. We're really into building robots right now, so we built a carboard robot with his tablet as the head. I ended up writing a quick NativeScript soundboard app so the robot could talk back to him.
+A portion of this workshop was inspired by a [fun weekend project](https://brosteins.com/2016/03/26/nativescript-mobile-app-kids/) Mike built with his son. We're really into building robots right now, so we built a cardboard robot with his tablet as the head. I ended up writing a quick NativeScript soundboard app so the robot could talk back to him.
 
 ### Download our Book!
 
