@@ -101,7 +101,7 @@ export class DetailComponent implements OnInit {
 ```javascript
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
-import { AppRoutingModule } from "./app.routing";
+import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -209,7 +209,11 @@ In this exercise, you'll learn about the `nsRouterLink` attribute directive, and
 
 #### Adding the *nsRouterLink* attribute directive
 
-Start by opening the `list.component.html` file, and locate the `ng-template` you added to the Upcoming Launches `ListView`. Your code should look like:
+> **NOTE**
+>
+> We are only applying these changes to the **Past Launches** list view. Watch out!
+
+Start by opening the `list.component.html` file, and locate the `ng-template` you added to the **Past Launches** `ListView`. Your code should look like:
 
 ```xml
 <ng-template let-item="item">
@@ -261,9 +265,9 @@ You're finished! By adding `/:id` to the `/detail` route, you instruct Angular t
 
 Update the app on your mobile device and check that you can navigate between the List and Detail pages by tapping on a launch. 
 
-> **DON'T FORGET**
+> **WARNING**
 >
-> You just added the `nsRouterLink` attribute directive to the Upcoming Launches template, so don't forget to add it to the Past Launches list.
+> You just added the `nsRouterLink` attribute directive to the Past Launches template, but didn't add it to the upcoming launches. This was on purpose. In the spirit of time, we won't be showing the details of upcoming launches, because they change often and would require additional coding. So, we're keeping it simple and are only showing the details of past launches.
 
 This concludes the exercise. In the next exercise, you'll learn how to access the `id` variable of the `/detail` route.
 
@@ -362,15 +366,13 @@ Open the `launchService.ts` file.
 Add a function named `getLaunch()` to the `LaunchService` class:
 
 ```javascript
-public getLaunch(flight_number: number): Launch {
-    let results = this.launches
-        .filter((l: Launch) => l.flight_number == flight_number);
-    if (results.length > 0) return results[0];
-    return null;
+public getLaunch(flight_number: number): Observable<Launch> {
+	return this.getPastFromApi()
+		.map(launches => launches.find(launch => launch.flight_number == flight_number));
 }
 ```
 
-We're not going to explain the details of this class, but it retrieves a specific launch by passing in the launch number. How convenient ;-).
+We're not going to explain the details of this function, but it retrieves a specific launch by searching the the past launches for a specific launch number. How convenient ;-).
 
 #### Injecting the Launch service into the Detail component
 
@@ -419,6 +421,7 @@ import { ActivatedRoute } from "@angular/router";
 
 import { Launch } from "../../models/launch";
 import { LaunchService } from "../../services/launchService";
+import { Observable } from "rxjs/Observable";
 
 @Component({
 	selector: "detail",
@@ -436,12 +439,24 @@ export class DetailComponent implements OnInit {
 
 	ngOnInit(): void {
 		const flightNumber = +this.route.snapshot.params["id"];
-		this.launch = this.launchService.getLaunch(flightNumber);
+		this.launchService.getLaunch(flightNumber)
+			.subscribe(launch => {
+				this.launch = launch;
+
+				if (!this.launch.links.mission_patch.includes('https'))
+					this.launch.links.mission_patch = this.launch.links.mission_patch.replace('http', 'https');
+			});
 	}
 }
 ```
 
 You'll notice that you added a public `launch` variable to the Details component, then populated it in the `OnInit()` function by calling the `getLaunch()` you created previously. 
+
+> **NOTE**
+>
+> There is a little bit of RxJS mixed in near `getLaunch()`. We're not going to explain it in detail, so just know that we're subscribing to the `getLaunch()` function, and when it returns the launch details, we're setting it to the public `launch` property.
+>
+> Oh, we're also applying the same HTTPS fix to this function so we can download images on iOS.
 
 That's all!
 
@@ -450,7 +465,6 @@ This concludes the exercise. In the next exercise, you'll update the UI markup t
 <div class="exercise-end"></div>
 
 In this final exercise, you'll finish the SpaceX app by adding UI markup to the Details page.
-
 
 <h4 class="exercise-start">
     <b>Exercise</b>: Retrieving launch details

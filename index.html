@@ -1191,7 +1191,7 @@ export class DetailComponent implements OnInit {
 <p><br/></p>
 <pre><code class="lang-javascript">import { NgModule, NO_ERRORS_SCHEMA } from &quot;@angular/core&quot;;
 import { NativeScriptModule } from &quot;nativescript-angular/nativescript.module&quot;;
-import { AppRoutingModule } from &quot;./app.routing&quot;;
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
 import { AppComponent } from &quot;./app.component&quot;;
 import { HttpClientModule } from &quot;@angular/common/http&quot;;
 
@@ -1287,7 +1287,11 @@ export class AppRoutingModule { }
 <p>You may be thinking that navigation in Angular apps is confusing, because we&#39;ve introduced 2 ways of navigating between pages/components. When should you write code and bind to the tap event handler, and when should you use <code>nsRouterLink</code>? We recommend you use <code>nsRouterLink</code> for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.</p>
 </blockquote>
 <h4 id="adding-the-nsrouterlink-attribute-directive">Adding the <em>nsRouterLink</em> attribute directive</h4>
-<p>Start by opening the <code>list.component.html</code> file, and locate the <code>ng-template</code> you added to the Upcoming Launches <code>ListView</code>. Your code should look like:</p>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>We are only applying these changes to the <strong>Past Launches</strong> list view. Watch out!</p>
+</blockquote>
+<p>Start by opening the <code>list.component.html</code> file, and locate the <code>ng-template</code> you added to the <strong>Past Launches</strong> <code>ListView</code>. Your code should look like:</p>
 <pre><code class="lang-xml">&lt;ng-template let-item=&quot;item&quot;&gt;
     &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
         &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
@@ -1321,8 +1325,8 @@ export class AppRoutingModule { }
 <p>You&#39;re finished! By adding <code>/:id</code> to the <code>/detail</code> route, you instruct Angular to expect (and parse) the data passed into it as a variable named <code>id</code>. </p>
 <p>Update the app on your mobile device and check that you can navigate between the List and Detail pages by tapping on a launch. </p>
 <blockquote>
-<p><strong>DON&#39;T FORGET</strong></p>
-<p>You just added the <code>nsRouterLink</code> attribute directive to the Upcoming Launches template, so don&#39;t forget to add it to the Past Launches list.</p>
+<p><strong>WARNING</strong></p>
+<p>You just added the <code>nsRouterLink</code> attribute directive to the Past Launches template, but didn&#39;t add it to the upcoming launches. This was on purpose. In the spirit of time, we won&#39;t be showing the details of upcoming launches, because they change often and would require additional coding. So, we&#39;re keeping it simple and are only showing the details of past launches.</p>
 </blockquote>
 <p>This concludes the exercise. In the next exercise, you&#39;ll learn how to access the <code>id</code> variable of the <code>/detail</code> route.</p>
 <div class="exercise-end"></div>
@@ -1399,14 +1403,12 @@ export class DetailComponent implements OnInit {
 <p>Let&#39;s start by adding a function to the Launch service to retrieve data about a specific launch. </p>
 <p>Open the <code>launchService.ts</code> file.</p>
 <p>Add a function named <code>getLaunch()</code> to the <code>LaunchService</code> class:</p>
-<pre><code class="lang-javascript">public getLaunch(flight_number: number): Launch {
-    let results = this.launches
-        .filter((l: Launch) =&gt; l.flight_number == flight_number);
-    if (results.length &gt; 0) return results[0];
-    return null;
+<pre><code class="lang-javascript">public getLaunch(flight_number: number): Observable&lt;Launch&gt; {
+    return this.getPastFromApi()
+        .map(launches =&gt; launches.find(launch =&gt; launch.flight_number == flight_number));
 }
 </code></pre>
-<p>We&#39;re not going to explain the details of this class, but it retrieves a specific launch by passing in the launch number. How convenient ;-).</p>
+<p>We&#39;re not going to explain the details of this function, but it retrieves a specific launch by searching the the past launches for a specific launch number. How convenient ;-).</p>
 <h4 id="injecting-the-launch-service-into-the-detail-component">Injecting the Launch service into the Detail component</h4>
 <p>Now, head back to the Details component, and inject the Launch service:</p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
@@ -1447,6 +1449,7 @@ import { ActivatedRoute } from &quot;@angular/router&quot;;
 
 import { Launch } from &quot;../../models/launch&quot;;
 import { LaunchService } from &quot;../../services/launchService&quot;;
+import { Observable } from &quot;rxjs/Observable&quot;;
 
 @Component({
     selector: &quot;detail&quot;,
@@ -1464,11 +1467,22 @@ export class DetailComponent implements OnInit {
 
     ngOnInit(): void {
         const flightNumber = +this.route.snapshot.params[&quot;id&quot;];
-        this.launch = this.launchService.getLaunch(flightNumber);
+        this.launchService.getLaunch(flightNumber)
+            .subscribe(launch =&gt; {
+                this.launch = launch;
+
+                if (!this.launch.links.mission_patch.includes(&#39;https&#39;))
+                    this.launch.links.mission_patch = this.launch.links.mission_patch.replace(&#39;http&#39;, &#39;https&#39;);
+            });
     }
 }
 </code></pre>
 <p>You&#39;ll notice that you added a public <code>launch</code> variable to the Details component, then populated it in the <code>OnInit()</code> function by calling the <code>getLaunch()</code> you created previously. </p>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>There is a little bit of RxJS mixed in near <code>getLaunch()</code>. We&#39;re not going to explain it in detail, so just know that we&#39;re subscribing to the <code>getLaunch()</code> function, and when it returns the launch details, we&#39;re setting it to the public <code>launch</code> property.</p>
+<p>Oh, we&#39;re also applying the same HTTPS fix to this function so we can download images on iOS.</p>
+</blockquote>
 <p>That&#39;s all!</p>
 <p>This concludes the exercise. In the next exercise, you&#39;ll update the UI markup to display the launch details.</p>
 <div class="exercise-end"></div>
