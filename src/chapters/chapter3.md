@@ -153,8 +153,7 @@ import { RouterExtensions } from "nativescript-angular/router";
 })
 export class HomeComponent implements OnInit {
 	constructor(
-		private routerExtensions: RouterExtensions,
-        private page: Page) {
+		private routerExtensions: RouterExtensions) {
 	}
 
 	ngOnInit(): void {
@@ -334,5 +333,60 @@ Refresh the app on your mobile device and you should see something similar on th
 This concludes the exercise. 
 
 <div class="exercise-end"></div>
+
+### Updating the Home page Action Bar
+
+In the last chapter, we said you'd be updating the Home page action bar to fix an Android issue. 
+
+> **Cross-platform Differences**
+>
+> In the cross-platform work, rendering native UI components (like NativeScript does) is a tough problem because of subtleties in the underlying mobile platforms. As a mobile developer, you'll run into these from time to time. NativeScript does well at abstracting these differences from you, but dealing with Angular's status bar / action bar is one of those times you need to do a little more legwork. Let's get started and fix the problem.
+
+<h4 class="exercise-start">
+    <b>Exercise</b>: Fixing the Home page Action Bar on Android
+</h4>
+
+Let's start by investigating the problem on Android. In the last chapter, we removed the Action Bar element from the UI. When you did this, it removed it from iOS devices, but it did not remove it from Android devices. It displays an ugly *PREVIEW* text at the top. 
+
+<img src="images/chapter3/android-fail.png" class="img-small" />
+
+The appearance of the status bar / action bar at top makes the app less appealing. So let's remove it.
+
+#### Removing the Action Bar on Android
+
+Start by opening the `home.component.ts` file. 
+
+Import the `Page` class at top:
+
+```javascript
+import { Page } from "ui/page";
+```
+
+Next, update the `constructor` and `ngOnInit()` function:
+
+```javascript
+constructor(
+    private routerExtensions: RouterExtensions,
+    private page: Page) {
+}
+
+ngOnInit(): void {
+    this.page.actionBarHidden = true;
+}
+```
+
+We're not going to dive deep on what you just did right now, but we promise to cover it later. For now, just know that when your page loads, it will set the action bar to hidden using this code: `this.page.actionBarHidden = true;`.
+
+And let's see how it looks on Android:
+
+<img src="images/chapter3/android-success.png" class="img-small" />
+
+Beautiful.
+
+This concludes the exercise. 
+
+<div class="exercise-end"></div>
+
+
 
 This concludes the chapter.
