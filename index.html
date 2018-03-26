@@ -290,7 +290,7 @@ export class AppRoutingModule { }
 </ul>
 <h3 id="layouts">Layouts</h3>
 <p>Before we go too much further, I need to introduce you to something called a layout. Layouts are UI elements (similar to the <code>&lt;Label /&gt;</code> element) that allow you to organize the UI of each page.</p>
-<p>If you look at the <code>home-component</code> that you scaffolded in the previous chapter, you will see there is already code added to the <code>home-component.html</code> for you.</p>
+<p>If you look at the <code>home-component</code> that you scaffolded in the previous chapter, you will see there is already code added to the <code>home.component.html</code> for you.</p>
 <pre><code class="lang-xml">&lt;ActionBar title=&quot;Home&quot; class=&quot;action-bar&quot;&gt;
 &lt;/ActionBar&gt;
 
@@ -311,9 +311,8 @@ export class AppRoutingModule { }
     <b>Exercise</b>: Using the StackLayout to organize UI elements in a &quot;stack&quot;
 </h4>
 
-<p>First thing is first, go ahead and remove the <code>ActionBar</code> element from <code>home-component.html</code> because you will not need this on the home view. After deleting the <code>ActionBar</code> your app should have a blank home view inside the NativeScript preview app.</p>
-<p><img src="images/chapter2/chapter2-1.jpeg" class="img-small" /></p>
-<p>Next, let&#39;s create a class to style the home view called <code>base</code> to create a nice background image for our view. Add the <code>base</code> class to the <code>home-component.css</code> file (you can remove the existing <code>home-panel</code> class because you will not be using that).</p>
+<p>First thing is first, go ahead and remove the <code>ActionBar</code> element from <code>home.component.html</code> because you will not need this on the home view. After deleting the <code>ActionBar</code> your app should have a blank home view inside the NativeScript preview app.</p>
+<p>Next, let&#39;s create a class to style the home view called <code>base</code> to create a nice background image for our view. Add the <code>base</code> class to the <code>home.component.css</code> file (you can remove the existing <code>home-panel</code> class because you will not be using that).</p>
 <pre><code class="lang-css">.base {
     background-image: url(&quot;https://raw.githubusercontent.com/mikebranstein/nativescript-spacex-workshop/master/app/views/home/spacex_home.png&quot;);
     background-repeat: no-repeat;
@@ -322,7 +321,7 @@ export class AppRoutingModule { }
     background-position: center;
 }
 </code></pre>
-<p>Update the <code>home-component.html</code> to utilize your new <code>base</code> class.</p>
+<p>Delete the contents of the <code>home.component.html</code> file and update it to use your new <code>base</code> class.</p>
 <pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
     &lt;StackLayout&gt;
 
@@ -331,7 +330,7 @@ export class AppRoutingModule { }
 </code></pre>
 <p>Your app should now have a SpaceX background image in the preview app.</p>
 <p><img src="images/chapter2/chapter2-2.jpeg" class="img-small" /></p>
-<p>The last step in creating your home view is to add a button. Add a <code>&lt;Button&gt;</code> element inside of the <code>&lt;StackLayout&gt;</code> in the <code>home-component.html</code> file.</p>
+<p>The last step in creating your home view is to add a button. Add a <code>&lt;Button&gt;</code> element inside of the <code>&lt;StackLayout&gt;</code> in the <code>home.component.html</code> file.</p>
 <pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
     &lt;StackLayout&gt;
         &lt;Button text=&quot;View Launches&quot; class=&quot;btn btn-primary&quot;&gt;&lt;/Button&gt;
@@ -343,20 +342,25 @@ export class AppRoutingModule { }
 <p><strong>What are those CSS class names?</strong></p>
 <p>You may have noticed that you added the <code>btn</code> and <code>btn-primary</code> classes to the <code>&lt;Button&gt;</code> that you created and that the button styled blue. The <code>btn</code> and <code>btn-primary</code> classes are part of the <a href="https://docs.nativescript.org/ui/theme#buttons">NativeScript Themes</a> that NativeScript provides to you out of the box to help style your app.</p>
 </blockquote>
-<p>You&#39;re almost done with the home view. To make the home view look more complete we should move the button we added to the bottom of view so that it looks more polished. To complete the view, update the <code>home-component.html</code> to set the vertical alignment property of the <code>&lt;StackLayout&gt;</code>.</p>
+<p>You&#39;re almost done with the home view. To make the home view look more complete we should move the button we added to the bottom of view so that it looks more polished. To complete the view, update the <code>home.component.html</code> to set the vertical alignment property of the <code>&lt;StackLayout&gt;</code>.</p>
 <pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
     &lt;StackLayout verticalAlignment=&quot;bottom&quot;&gt;
         &lt;Button text=&quot;View Launches&quot; class=&quot;btn btn-primary&quot;&gt;&lt;/Button&gt;
     &lt;/StackLayout&gt;
 &lt;/ScrollView&gt;
 </code></pre>
-<p>Next add a margin to the <code>&lt;Button&gt;</code> element by updating the <code>home-component.css</code> file.</p>
+<p>Next add a margin to the <code>&lt;Button&gt;</code> element by updating the <code>home.component.css</code> file.</p>
 <pre><code class="lang-css">button {
     margin-bottom: 100;
 }
 </code></pre>
 <p>You should now be able to view the completed home view in the NativeScript preview app. In the next chapter you will work on implementing an event handler when the view launches button is tapped.</p>
 <p><img src="images/chapter2/chapter2-4.jpeg" class="img-small" /></p>
+<blockquote>
+<p><strong>NOTE</strong></p>
+<p>If you&#39;re running on an Android device, you may have a top status bar that is still showing. Don&#39;t worry, we&#39;ll address that issue in the next chapter.</p>
+</blockquote>
+<p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 			</div>
 			<hr>
