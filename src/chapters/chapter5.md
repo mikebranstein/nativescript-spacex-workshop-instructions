@@ -28,7 +28,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 ```
 
-Next add methods to made the API calls.
+Next add methods to make the API calls.
 
 ```javascript
 public getUpcomingFromAPI(): Observable<Launch[]> {
@@ -168,7 +168,11 @@ The `subscribe` method is part of RxJX that we discussed earlier. When the call 
 
 > **NOTE** 
 >
-> The if statement inside `getPastFromAPI()` may look a bit strange to you (because it is). This if statement exists because by default iOS blocks non-https calls; therefore, when attempting to load the mission patch images on iOS it will just fail. This limitation of iOS can be turned off in NativeScript, but in the Playground you can't change this setting. Keep in mind that the playground is letting us get up and running quickly and not meant for us to push to production from this this limitation is more of a minor nuisance (hence the "quick fix").
+> The if statement inside `getPastFromAPI()` may look a bit strange to you (because it is). This if statement exists because by default iOS blocks non-https calls; therefore, when attempting to load the mission patch images on iOS it will just fail. This limitation of iOS can be turned off in NativeScript, but in the Playground you can't change this setting. Keep in mind that the Playground is gets you running fast, and is not meant for production code. In a production app, we'd fix this issue by ensuring all links were HTTPS in our API (that's not a bad idea), or by disabling the iOS-specific setting.
+
+> **Production Code**
+>
+> In case you were wondering, moving from the Playground to production code is easy. Use the download button to down any code you've already written, ensure NativeScript is installed on your machine, then follow the online documentation for getting ready for deployment. Alternatively, check out the [chapters in our book](https://nativescript.org/book), which are dedicated to getting your apps into the stores.
 
 The last step to making everything work is to import the `HttpModule` into the app by updating the `app.module.ts`.
 
