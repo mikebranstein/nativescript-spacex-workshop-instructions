@@ -2,23 +2,23 @@
 
 In the previous chapter, you learned how to integrate an API into your app. 
 
-In this chapter, you'll be wrapping up the SpaceX app by creating a launch details page. You'll create the Details page, navigate from the List page, and learn how to pass context (or data) to the Details page during navigation. Finally, you'll learn how to use various Theme classes to align UI elements. 
+In this chapter, you'll be wrapping up the SpaceX app by creating a launch detail page. You'll create the Detail page, navigate from the List page, and learn how to pass context (or data) to the Detail page during navigation. Finally, you'll learn how to use various Theme classes to align UI elements. 
 
-### Navigating to the Details Page
+### Navigating to the Detail Page
 
-Now that you've created a page showing the list of launches, let's build a details page that shows the details of a launch. 
+Now that you've created a page showing the list of launches, let's build a detail page that shows the detail of a launch. 
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Adding the Details page
+    <b>Exercise</b>: Adding the Detail page
 </h4>
 
-In chapter 3 you added the list page to your app by creating a new component. Adding the details page is the same process. In this exercise, you'll be creating the Details page.
+In chapter 3 you added the list page to your app by creating a new component. Adding the detail page is the same process. In this exercise, you'll be creating the Detail page.
 
 We're not going to walk you through this process step by step, so try it out for yourself. If you're new to Angular, that's ok. Don't feel like you need to have mastered what it takes to create a new page without help. We'll give you a few pointers: first, review what you did in [chapter 3](#chapter3.0); second, use this checklist to make sure you didn't forget any steps.
 
 > **IMPORTANT**
 >
-> Before you get started, we'll be navigating to the details page in a different way than we did previously. So, you won't need to create a tap event handler in the UI markup or Detail component class. You will still need to register the *detail* route, so don't forget to create that.
+> Before you get started, we'll be navigating to the detail page in a different way than we did previously. So, you won't need to create a tap event handler in the UI markup or Detail component class. You will still need to register the *detail* route, so don't forget to create that.
 
 <br/>
 
@@ -31,10 +31,10 @@ If you need an assist when creating the Detail component, use this checklist:
 * Register the new component as a route in `app-routing.module.ts` file. 
 
 When you're finished creating the Detail component, you should have:
-* A folder named *details* in the *views* folder.
-* A `detail.component.ts`, `detail.component.html`, and `detail.component.css` file in the *details* folder (see contents of these folders below).
+* A folder named *detail* in the *views* folder.
+* A `detail.component.ts`, `detail.component.html`, and `detail.component.css` file in the *detail* folder (see contents of these folders below).
 * An updated `app.module.ts` file that registers the Detail component (see updated file below).
-* The Details component registered as a route in the `app-routing.module.ts` file (see updated file below).
+* The Detail component registered as a route in the `app-routing.module.ts` file (see updated file below).
 
 <br/>
 
@@ -177,21 +177,21 @@ This concludes the exercise.
 
 <div class="exercise-end"></div>
 
-That's it! Now that you have the Details component created, we'll be learning how to navigate and pass data to it.
+That's it! Now that you have the Detail component created, we'll be learning how to navigate and pass data to it.
 
-### Passing Data to the Details Page
+### Passing Data to the Detail Page
 
 In chapter 3, you learned how to navigate between components by:
 * Binding a tap event handler to a button.
 * Passing the `/list` route to the `navigate()` function of the `RoutingExtensions` class.
 
-This is a great way to navigate between pages/components, but there's also a different way. In this section, you'll learn how to use an *Angular/NativeScript attribute directive* to navigate (and pass data) to the Details component. 
+This is a great way to navigate between pages/components, but there's also a different way. In this section, you'll learn how to use an *Angular/NativeScript attribute directive* to navigate (and pass data) to the Detail component. 
 
 > **What's an attribute directive?**
 >
 > In Angular, an attribute directive is a piece of code added to the UI markup that modifies the appearance (or behavior) of the UI element. It sounds really fancy (like most Angular terms do), but it's really just like HTML attributes that Angular knows how to decipher. If you're interested in learning more about Angular attribute directives, check out their [documentation](https://angular.io/guide/attribute-directives).
 
-Now that you know a little about Angular attribute directives, let's use one to navigate between the list and details components!
+Now that you know a little about Angular attribute directives, let's use one to navigate between the list and detail components!
 
 <h4 class="exercise-start">
     <b>Exercise</b>: Using an attribute directive to navigate between components
@@ -247,7 +247,7 @@ By adding `[nsRouterLink]="['/detail', item.flight_number]"` to the `GridLayout`
 
 Ok, we may have been a bit misleading by saying "that's it" above. There is one more step to making the `nsRouterLink` attribute directive navigate (and pass data) to the Detail component correctly. 
 
-As you'll recall, you passed `item.flight_number` to the Details component above. But, the route doesn't know anything about the flight number being passed in, so we need to "educate it" ;-).
+As you'll recall, you passed `item.flight_number` to the Detail component above. But, the route doesn't know anything about the flight number being passed in, so we need to "educate it" ;-).
 
 Open the `app-routing.module.ts` file, and locate the `/detail` route you created earlier in the chapter. You should see:
 
@@ -267,13 +267,13 @@ Update the app on your mobile device and check that you can navigate between the
 
 > **WARNING**
 >
-> You just added the `nsRouterLink` attribute directive to the Past Launches template, but didn't add it to the upcoming launches. This was on purpose. In the spirit of time, we won't be showing the details of upcoming launches, because they change often and would require additional coding. So, we're keeping it simple and are only showing the details of past launches.
+> You just added the `nsRouterLink` attribute directive to the Past Launches template, but didn't add it to the upcoming launches. This was on purpose. In the spirit of time, we won't be showing upcoming launch details because they change often and would require additional coding. So, we're keeping it simple and are only showing past launch details.
 
 This concludes the exercise. In the next exercise, you'll learn how to access the `id` variable of the `/detail` route.
 
 <div class="exercise-end"></div>
 
-### Displaying Launch Details
+### Displaying Launch Detail
 
 In the last section, you learned how to use the `nsRouterLink` attribute directive to navigate (and pass data) to the Detail component. Now, let's learn how to access the flight number that you passed into the `id` router variable.
 
@@ -306,7 +306,7 @@ export class DetailComponent implements OnInit {
 }
 ```
 
-Update the Details component with some new code. It's ok if you don't understand it right now, we'll explain.
+Update the Detail component with some new code. It's ok if you don't understand it right now, we'll explain.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -329,7 +329,7 @@ export class DetailComponent implements OnInit {
 }
 ```
 
-You just added 3 things to the Details component:
+You just added 3 things to the Detail component:
 * Imported the `ActivatedRoute` class, which is an Angular class used to access route information (like the `id` variable you passed in).
 * Injected an instance of the `ActivatedRoute` class via the constructor (you'll recall you did that previously in the workshop).
 * Retrieved the value of the `id` variable and stored it in the `flightNumber` variable.
@@ -342,20 +342,19 @@ Next, what's with that `+` in front of `this.route.snapshot.params["id"]`? You m
 
 > **OnInit vs Component Constructor**
 >
-> You may be wondering why you didn't retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initialize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the `OnInit()` function. There are other details about why `OnInit()` should be used, but we're not going to cover them. For more details, see a good write-up by [Todd Motto](https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook).
+> You may be wondering why you didn't retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initialize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the `OnInit()` function. There are other detail about why `OnInit()` should be used, but we're not going to cover them. For more details, see a good write-up by [Todd Motto](https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook).
 
-This concludes the exercise. In the next exercise, you'll reuse the Launch service previously created to retrieve the details about a specific launch.
+This concludes the exercise. In the next exercise, you'll reuse the Launch service previously created to retrieve the launch detail.
 
 <div class="exercise-end"></div>
 
-Cool. You just passed data between pages/components and retrieved the data. Let's keep going by getting the details of a launch.
-
+Cool. You just passed data between pages/components and retrieved the data. Let's keep going.
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Retrieving launch details
+    <b>Exercise</b>: Retrieving launch detail
 </h4>
 
-In this exercise, you'll retrieve launch details from the launch service.
+In this exercise, you'll retrieve launch detail from the launch service.
 
 #### Updating the launch service
 
@@ -367,7 +366,7 @@ Add a function named `getLaunch()` to the `LaunchService` class:
 
 ```javascript
 public getLaunch(flight_number: number): Observable<Launch> {
-	return this.getPastFromApi()
+	return this.getPastFromAPI()
 		.map(launches => launches.find(launch => launch.flight_number == flight_number));
 }
 ```
@@ -376,7 +375,7 @@ We're not going to explain the details of this function, but it retrieves a spec
 
 #### Injecting the Launch service into the Detail component
 
-Now, head back to the Details component, and inject the Launch service:
+Now, head back to the Detail component, and inject the Launch service:
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -413,7 +412,7 @@ You've done this before, so it should look familiar.
 
 #### Retrieving a launch
 
-Next, update the Details component to get a launch from the Launch service:
+Next, update the Detail component to get a launch from the Launch service:
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -450,27 +449,27 @@ export class DetailComponent implements OnInit {
 }
 ```
 
-You'll notice that you added a public `launch` variable to the Details component, then populated it in the `OnInit()` function by calling the `getLaunch()` you created previously. 
+You'll notice that you added a public `launch` variable to the Detail component, then populated it in the `OnInit()` function by calling the `getLaunch()` you created previously. 
 
 > **NOTE**
 >
-> There is a little bit of RxJS mixed in near `getLaunch()`. We're not going to explain it in detail, so just know that we're subscribing to the `getLaunch()` function, and when it returns the launch details, we're setting it to the public `launch` property.
+> There is a little bit of RxJS mixed in near `getLaunch()`. We're not going to explain it in detail, so just know that we're subscribing to the `getLaunch()` function, and when it returns the launch detail, we're setting it to the public `launch` property.
 >
 > Oh, we're also applying the same HTTPS fix to this function so we can download images on iOS.
 
 That's all!
 
-This concludes the exercise. In the next exercise, you'll update the UI markup to display the launch details.
+This concludes the exercise. In the next exercise, you'll update the UI markup to display the launch detail.
 
 <div class="exercise-end"></div>
 
-In this final exercise, you'll finish the SpaceX app by adding UI markup to the Details page.
+In this final exercise, you'll finish the SpaceX app by adding UI markup to the Detail page.
 
 <h4 class="exercise-start">
-    <b>Exercise</b>: Retrieving launch details
+    <b>Exercise</b>: Retrieving launch detail
 </h4>
 
-In this exercise, you'll update the UI of the Details page to display launch details.
+In this exercise, you'll update the UI of the Detail page to display launch detail.
 
 #### Establishing a foundation layout
 
@@ -483,7 +482,7 @@ In previous chapters, you learned about the `ActionBar`, `ScrollView`, and `Stac
 Update the `detail.component.html` file.
 
 ```xml
-<ActionBar title="Launch Details" icon="" class="action-bar">
+<ActionBar title="Launch Detail" icon="" class="action-bar">
 </ActionBar>
 <ScrollView class="page">
 	<StackLayout>
@@ -494,13 +493,13 @@ Update the `detail.component.html` file.
 
 > **What's the page class name?**
 >
-> That's another use of the NativeScript Theme plugin. The `page` class is a convenient class name that makes you app pages look uniform with very little effort. To learn more, check out the [documentation](https://docs.nativescript.org/ui/theme#page).
+> That's another use of the NativeScript Theme plugin. The `page` class is a convenient class name that makes your app pages look uniform with very little effort. To learn more, check out the [documentation](https://docs.nativescript.org/ui/theme#page).
 
 #### Adding a Mission Patch
 
 With the foundation set, let's start adding various UI components.
 
-Add an image inside the stack layout. You've added an images throughout the workshop, and this image is like the images you added to the List component. Note the `src` attribute is data-bound to the `links.mission_patch` property of the `launch` variable.
+Add an image inside the stack layout. You've added images throughout the workshop, and this image is like the images you added to the List component. Note the `src` attribute is data-bound to the `links.mission_patch` property of the `launch` variable.
 
 ```xml
 <Image [src]="launch.links.mission_patch"></Image>
@@ -532,7 +531,7 @@ Add a flight number by binding to the `flight_number` property.
 
 You'll notice that we used an advanced form of Angular data-binding that allows you to mix text and data-bound variables. The double-mustache syntax treats it's internal text as a data-binding expression. Using data-binding expressions like this comes in handy, making it easier to seamlessly blend text and variables.
 
-> **What to the CSS class names do?**
+> **What do the CSS class names do?**
 >
 > The `body`, `m-l-20`, and `m-t-20` are more CSS class names from the NativeScript Theme plugin. The `body` class name styles the label text as long-form paragraphs. You can learn more about text formatting in the [text formatting documentation](https://docs.nativescript.org/ui/theme#text). 
 >
