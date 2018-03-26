@@ -23,7 +23,7 @@ You may have noticed that there is data showing up. That's because when you drag
 
 <img src="images/chapter4/chapter4-3.png" class="img-med" />
 
-Before we replace this code, let's just back over the the view code and update it a bit. Replace the current `ScrollView` and `StackLayout` with a single `GridLayout` containing a `Label` and `ListView`.
+Before we replace this code, let's jump back over to the view code and update it a bit. Replace the current `ScrollView` and `StackLayout` with a single `GridLayout` containing a `Label` and `ListView`.
 
 ```xml
 <GridLayout rows="auto,*" columns="*" class="page">
@@ -63,9 +63,9 @@ Let's take a moment to review the `ListView` template that we just created. You 
 * (*) - The row or columns will take up all the remaining space left over after the other rows/columns are sized
 * (auto) - The row or column will grow or shrink to the size of the child elements
 
-In or grid example we use `*` for the rows to make each row the same size. Then our first column is auto-sized based on the image in with the second column taking up the remaining space.
+In our grid example we use `*` for the rows to make each row the same size. Then our first column is auto-sized based on the image in with the second column taking up the remaining space.
 
-The rest of the components in our `GridLayout`, the `Image` and `Label`, should be familiar to you because we used them earlier. However, take not that we are binding these to properties of `item`. The `let-item` syntax of Angular defines the `item` variable that is used to bind to and render each template for the list of `launches` that we are binding to (similar to how a for loop works).
+The rest of the element in our `GridLayout` (the `Image` and `Label`), should be familiar to you because we used them earlier. However, we're using them differently: they're being bound to properties of `item`. The `let-item` syntax of Angular defines the `item` variable that is used to bind to and render each template for the list of `launches` that we are binding to (similar to how a for loop works).
 
 This concludes the exercise.
 
@@ -144,7 +144,7 @@ export interface Launch {
 
 Now that you have created the models to hold the SpaceX launch data, you need to create a service to return it. In this chapter we will be creating a service that returns some hard-coded data. In the next chapter we will pull the data from the SpaceX public api.  Start by adding another folder to help keep your code organized called `services` underneath the `app` folder.
 
-<img src="images/chapter4/chapter4-4.png" class="img-med" />
+<img src="images/chapter4/chapter4-5.png" class="img-med" />
 
 Next, add a `launchService.ts` file to the folder that you just created.
 
@@ -213,9 +213,9 @@ export class LaunchService {
 }
 ```
 
-For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - `getUpcoming()` and `getPast()`. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.
+For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service exposes 2 methods - `getUpcoming()` and `getPast()`. Both return the same dummy data (for now) You'll implement the actual API calls in the next chapter.
 
-Next you need to call the service from the `list.component` when it loads. To do this, update the `list.component.ts` file.
+Next, call the service from the when it loads. To do this, update the `list.component.ts` file.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -310,7 +310,7 @@ Update the `list.component.html` to contain 2 lists, one for upcoming launches a
 </TabView>
 ```
 
-Tabs inside of the `TabView` component are denoted using the `*tabItem=` syntax. You have created 2 `ListView` components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate `ListViews` to different arrays named `upcoming` and `past` but the rest of the syntax is the same.
+Tabs inside of the `TabView` component are denoted using the `*tabItem=` syntax. You have created 2 `ListView` components in 2 tabs. The list views should look like the ones that you just created in the last exercise. Notice that the you are binding the separate `ListViews` to different arrays named `upcoming` and `past` but the rest of the syntax is the same.
 
 > **NOTE** 
 >

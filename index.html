@@ -673,7 +673,7 @@ ngOnInit(): void {
 <p><img src="images/chapter4/chapter4-2.jpeg" class="img-small" /></p>
 <p>You may have noticed that there is data showing up. That&#39;s because when you drag a component in the playground it scaffolds out a lot of code for you. Take a look at <code>list.component.ts</code> and you will see the code that is generating the data in the <code>ListView</code> that you drag-and-dropped.</p>
 <p><img src="images/chapter4/chapter4-3.png" class="img-med" /></p>
-<p>Before we replace this code, let&#39;s just back over the the view code and update it a bit. Replace the current <code>ScrollView</code> and <code>StackLayout</code> with a single <code>GridLayout</code> containing a <code>Label</code> and <code>ListView</code>.</p>
+<p>Before we replace this code, let&#39;s jump back over to the view code and update it a bit. Replace the current <code>ScrollView</code> and <code>StackLayout</code> with a single <code>GridLayout</code> containing a <code>Label</code> and <code>ListView</code>.</p>
 <pre><code class="lang-xml">&lt;GridLayout rows=&quot;auto,*&quot; columns=&quot;*&quot; class=&quot;page&quot;&gt;
     &lt;Label class=&quot;h2 text-center&quot; text=&quot;Upcoming Launches&quot;&gt;&lt;/Label&gt;
     &lt;ListView row=&quot;1&quot; [items]=&quot;launches&quot; class=&quot;list-group&quot;&gt;
@@ -706,8 +706,8 @@ ngOnInit(): void {
 <li>(*) - The row or columns will take up all the remaining space left over after the other rows/columns are sized</li>
 <li>(auto) - The row or column will grow or shrink to the size of the child elements</li>
 </ul>
-<p>In or grid example we use <code>*</code> for the rows to make each row the same size. Then our first column is auto-sized based on the image in with the second column taking up the remaining space.</p>
-<p>The rest of the components in our <code>GridLayout</code>, the <code>Image</code> and <code>Label</code>, should be familiar to you because we used them earlier. However, take not that we are binding these to properties of <code>item</code>. The <code>let-item</code> syntax of Angular defines the <code>item</code> variable that is used to bind to and render each template for the list of <code>launches</code> that we are binding to (similar to how a for loop works).</p>
+<p>In our grid example we use <code>*</code> for the rows to make each row the same size. Then our first column is auto-sized based on the image in with the second column taking up the remaining space.</p>
+<p>The rest of the element in our <code>GridLayout</code> (the <code>Image</code> and <code>Label</code>), should be familiar to you because we used them earlier. However, we&#39;re using them differently: they&#39;re being bound to properties of <code>item</code>. The <code>let-item</code> syntax of Angular defines the <code>item</code> variable that is used to bind to and render each template for the list of <code>launches</code> that we are binding to (similar to how a for loop works).</p>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
@@ -762,7 +762,7 @@ export interface Launch {
 }
 </code></pre>
 <p>Now that you have created the models to hold the SpaceX launch data, you need to create a service to return it. In this chapter we will be creating a service that returns some hard-coded data. In the next chapter we will pull the data from the SpaceX public api.  Start by adding another folder to help keep your code organized called <code>services</code> underneath the <code>app</code> folder.</p>
-<p><img src="images/chapter4/chapter4-4.png" class="img-med" /></p>
+<p><img src="images/chapter4/chapter4-5.png" class="img-med" /></p>
 <p>Next, add a <code>launchService.ts</code> file to the folder that you just created.</p>
 <pre><code class="lang-javascript">import { Injectable } from &quot;@angular/core&quot;;
 import { Launch } from &#39;../models/launch&#39;
@@ -827,8 +827,8 @@ export class LaunchService {
     }
 }
 </code></pre>
-<p>For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - <code>getUpcoming()</code> and <code>getPast()</code>. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.</p>
-<p>Next you need to call the service from the <code>list.component</code> when it loads. To do this, update the <code>list.component.ts</code> file.</p>
+<p>For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service exposes 2 methods - <code>getUpcoming()</code> and <code>getPast()</code>. Both return the same dummy data (for now) You&#39;ll implement the actual API calls in the next chapter.</p>
+<p>Next, call the service from the when it loads. To do this, update the <code>list.component.ts</code> file.</p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import { Launch } from &quot;../../models/launch&quot;;
 import { LaunchService } from &quot;../../services/launchService&quot;;
@@ -906,7 +906,7 @@ export class ListComponent implements OnInit {
     &lt;/GridLayout&gt;
 &lt;/TabView&gt;
 </code></pre>
-<p>Tabs inside of the <code>TabView</code> component are denoted using the <code>*tabItem=</code> syntax. You have created 2 <code>ListView</code> components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate <code>ListViews</code> to different arrays named <code>upcoming</code> and <code>past</code> but the rest of the syntax is the same.</p>
+<p>Tabs inside of the <code>TabView</code> component are denoted using the <code>*tabItem=</code> syntax. You have created 2 <code>ListView</code> components in 2 tabs. The list views should look like the ones that you just created in the last exercise. Notice that the you are binding the separate <code>ListViews</code> to different arrays named <code>upcoming</code> and <code>past</code> but the rest of the syntax is the same.</p>
 <blockquote>
 <p><strong>NOTE</strong> </p>
 <p>The <code>TabView</code> component sets a default selected tab using the <code>selectedIndex</code> property: <code>&lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;</code>.</p>
