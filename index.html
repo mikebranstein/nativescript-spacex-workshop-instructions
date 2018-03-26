@@ -375,7 +375,8 @@ export class AppRoutingModule { }
 <p>If you&#39;re comfortable doing this on your own, feel free to proceed by creating a folder underneath views named &quot;list&quot;, then adding the List component. Your Playground should like this when you&#39;ve finished:</p>
 <p><img src="images/chapter3/list-1.png" class="img-small" /></p>
 <blockquote>
-<p><strong>Don&#39;t forget!</strong> After adding the List component folder and files, you need to register it in the <code>app.module.ts</code> file.</p>
+<p><strong>Don&#39;t forget!</strong></p>
+<p>After adding the List component folder and files, you need to register it in the <code>app.module.ts</code> file.</p>
 </blockquote>
 <p>If you can get this far on your own, skip to the end of this exercise. If not, it&#39;s ok. Let&#39;s review how to add a component.</p>
 <h4 id="adding-a-page-in-the-playground">Adding a page in the Playground</h4>
@@ -443,20 +444,23 @@ export class AppModule { }
 &lt;/Button&gt;
 </code></pre>
 <blockquote>
-<p><strong>What did I just do?</strong> 
-First, you need to know that every UI element in NativeScript has a variety of events. We don&#39;t have enough time to detail each event, and many of the events are intuitive. For example, buttons have &quot;tap&quot; events. In Angular, you can bind (or attach) a function to an event. By adding <code>(tap)=&quot;onViewLaunchesTap()&quot;</code> to the button element, you told your app to run the <code>onViewLaunchesTap()</code> function when the button is tapped. </p>
+<p><strong>What did I just do?</strong> </p>
+<p>First, you need to know that every UI element in NativeScript has a variety of events. We don&#39;t have enough time to detail each event, and many of the events are intuitive. For example, buttons have &quot;tap&quot; events. In Angular, you can bind (or attach) a function to an event. By adding <code>(tap)=&quot;onViewLaunchesTap()&quot;</code> to the button element, you told your app to run the <code>onViewLaunchesTap()</code> function when the button is tapped. </p>
 </blockquote>
 <blockquote>
-<p><strong>Angular: Where to learn more</strong> Ok, we&#39;ll admit it - if you&#39;ve used Angualr before, you&#39;ll know there&#39;s a lot more to the binding syntax we just covered. Unfortunately, in a short workshop, we don&#39;t have time to cover it in greater detail. If you&#39;d liek to learn more, check out <a href="https://angular.io/guide/user-input">the Angular documentation</a>.  </p>
+<p><strong>Angular: Where to learn more</strong> </p>
+<p>Ok, we&#39;ll admit it - if you&#39;ve used Angualr before, you&#39;ll know there&#39;s a lot more to the binding syntax we just covered. Unfortunately, in a short workshop, we don&#39;t have time to cover it in greater detail. If you&#39;d liek to learn more, check out <a href="https://angular.io/guide/user-input">the Angular documentation</a>.  </p>
 </blockquote>
 <blockquote>
-<p><strong>NativeScript: Where to learn more</strong> If you&#39;d like to learn more about the events available to various UI elements, check out the <a href="https://docs.nativescript.org/angular/core-concepts/angular-data-binding">NativeScript documentation</a>.</p>
+<p><strong>NativeScript: Where to learn more</strong> </p>
+<p>If you&#39;d like to learn more about the events available to various UI elements, check out the <a href="https://docs.nativescript.org/angular/core-concepts/angular-data-binding">NativeScript documentation</a>.</p>
 </blockquote>
 <p>Let&#39;s get back to navigation...</p>
 <h4 id="adding-the-tap-event-handler-code">Adding the tap event handler code</h4>
 <p>Now that you&#39;ve added the markup to bind the &quot;View Launches&quot; button to the <code>onViewLaunchesTap()</code>, let&#39;s add that function.</p>
 <p>Open the <code>home.component.ts</code> file and replace the Home component code with the code below. </p>
 <blockquote>
+<p><strong>Note</strong></p>
 <p>We know there&#39;s a lot of new code here, and we&#39;ll walk you through it in just a moment.</p>
 </blockquote>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
@@ -500,7 +504,8 @@ export class HomeComponent implements OnInit {
 </code></pre>
 <p>By adding this to the Home component&#39;s constructor, you have access to an instance of the RouterExtensions class from within the Home component class. </p>
 <blockquote>
-<p><strong>But, how does this work?</strong> You may be interested into how the Home component <em>actually</em> gets an instance of the RouterExtensions class. Angular&#39;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> does this heavy lifting. If you&#39;re not familiar with dependency injection, we recommend you read up on Angular&#39;s site.</p>
+<p><strong>But, how does this work?</strong> </p>
+<p>You may be interested into how the Home component <em>actually</em> gets an instance of the RouterExtensions class. Angular&#39;s <a href="https://angular.io/guide/dependency-injection">dependency injection</a> does this heavy lifting. If you&#39;re not familiar with dependency injection, we recommend you read up on Angular&#39;s site.</p>
 </blockquote>
 <h4 id="the-onviewlaunchestap-function">The onViewLaunchesTap() function</h4>
 <p>The final change to the Home component is the addition of the <code>onViewLaunchesTap()</code> function:</p>
@@ -511,7 +516,8 @@ export class HomeComponent implements OnInit {
 <p>As you&#39;ll recall, we imported the RouterExtensions class at the top of the file and injected an instance of RouterExtensions into the Home component. This allows us to access it via <code>this.routerExtensions</code>.</p>
 <p>The RouterExtensions class has a function named <code>navigate()</code>, which takes an array of strings as a parameter. The first value in that array is the name of a <em>registered route</em> in our application. </p>
 <blockquote>
-<p><strong>Registered routes?</strong> A registered route is a key-value pair, where the key is a string (like &quot;list&quot;) and the value is a component (like the List component we just created). You may have noticed we haven&#39;t &quot;registered&quot; the &quot;list&quot; route yet, but we&#39;ll do that next.</p>
+<p><strong>Registered routes?</strong> </p>
+<p>A registered route is a key-value pair, where the key is a string (like &quot;list&quot;) and the value is a component (like the List component we just created). You may have noticed we haven&#39;t &quot;registered&quot; the &quot;list&quot; route yet, but we&#39;ll do that next.</p>
 </blockquote>
 <p>Now that you know how the <code>navigate()</code> function works, you can see that when the &quot;View Launches&quot; button is tapped, the <code>onViewLaunchesTap()</code> function navigates to the registered route named &quot;list&quot;.</p>
 <h4 id="registering-the-list-route">Registering the &quot;list&quot; route</h4>
@@ -559,7 +565,8 @@ export class AppRoutingModule { }
 <h3 id="adding-an-action-bar">Adding an Action Bar</h3>
 <p>In the final part of this chapter, you&#39;ll learn how to use NativeScript&#39;s Action Bar. </p>
 <blockquote>
-<p><strong>Action Bar</strong> The Action Bar is a UI element that controls the upper area of the screen, allowing you to create (or customize) a &quot;header&quot; of the page. </p>
+<p><strong>Action Bar</strong> </p>
+<p>The Action Bar is a UI element that controls the upper area of the screen, allowing you to create (or customize) a &quot;header&quot; of the page. </p>
 </blockquote>
 <p>Here&#39;s the area of the page we&#39;re going to modify:</p>
 <p><img src="images/chapter3/list-7.jpg" class="img-small" /></p>
@@ -584,7 +591,8 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 </code></pre>
 <p>As shown in the markup above, an Action Bar can be customized by adding a title attribute. The title attribute is straight-forward and sets the title of the page. The <code>action-bar</code> class name helps to style it to match your overall app theme&#39;s and applies default styles using the NativeScript Theme plugin.</p>
 <blockquote>
-<p><strong>Theme Details</strong> For more information about styling the Action Bar with the Theme plugin, check out the <a href="https://docs.nativescript.org/ui/theme#actionbar">official documentation</a>.</p>
+<p><strong>Theme Details</strong> </p>
+<p>For more information about styling the Action Bar with the Theme plugin, check out the <a href="https://docs.nativescript.org/ui/theme#actionbar">official documentation</a>.</p>
 </blockquote>
 <p>As for the markup following the Action Bar, ignore it. You&#39;ll be replacing it later.</p>
 <h4 id="update-the-action-bar">Update the Action Bar</h4>
@@ -596,7 +604,8 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 <p>Refresh the app on your mobile device and you shoudl see something similar on the List page:</p>
 <p><img src="images/chapter3/list-8.png" class="img-small" /></p>
 <blockquote>
-<p><strong>NOTE</strong> This was a simple example on using an Action Bar. If you&#39;re in for a challenge, try adding an icon to the Action Bar, customizing the background color, or changing the back button icon. There are a ton of online resources for customizing the Action Bar in NativeScript. <a href="http://lmgtfy.com/?q=NativeScript+Action+Bar+Customization">Let me Google that for you</a>.</p>
+<p><strong>NOTE</strong> </p>
+<p>This was a simple example on using an Action Bar. If you&#39;re in for a challenge, try adding an icon to the Action Bar, customizing the background color, or changing the back button icon. There are a ton of online resources for customizing the Action Bar in NativeScript. <a href="http://lmgtfy.com/?q=NativeScript+Action+Bar+Customization">Let me Google that for you</a>.</p>
 </blockquote>
 <p>This concludes the exercise. </p>
 <div class="exercise-end"></div>
