@@ -23,7 +23,7 @@ Before we get started, you'll need to install 2 apps on your mobile device:
 * NativeScript Playground: [iOS](https://itunes.apple.com/us/app/nativescript-playground/id1263543946?mt=8), [Android](https://play.google.com/store/apps/details?id=org.nativescript.play&hl=en)
 * NativeScript Preview: [iOS](https://itunes.apple.com/us/app/nativescript-preview/id1264484702?mt=8), [Android](https://play.google.com/store/apps/details?id=org.nativescript.preview&hl=en)
 
-In your your respective App Store (Google Play or Apple App Store), locate both apps and install them on your mobile device. If you're having trouble finding the app, use the links above.
+In your respective App Store (Google Play or Apple App Store), locate both apps and install them on your mobile device. If you're having trouble finding the app, use the links above.
 
 #### Explore the NativeScript Playground
 
@@ -145,7 +145,7 @@ For example, look at the markup that displays a label on the screen that contain
 
 Let's change the text in the home.component.html file. 
 
-Change the text that reads "Play with NativeScript!" to somethings else. feel free to use the code snippet below, or your own text.
+Change the text that reads "Play with NativeScript!" to somethings else. Feel free to use the code snippet below, or your own text.
 
 ```xml
 <Label 
