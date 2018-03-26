@@ -1122,7 +1122,8 @@ export class AppModule { }
 <p>In chapter 3 you added the list page to your app by creating a new component. Adding the details page is the same process. In this exercise, you&#39;ll be creating the Details page.</p>
 <p>We&#39;re not going to walk you through this process step by step, so try it out for yourself. If you&#39;re new to Angular, that&#39;s ok. Don&#39;t feel like you need to have mastered what it takes to create a new page without help. We&#39;ll give you a few pointers: first, review what you did in <a href="#chapter3.0">chatper 3</a>; second, use this checklist to make sure you didn&#39;t forget any steps.</p>
 <blockquote>
-<p><strong>IMPORTANT</strong>: Before you get started, we&#39;ll be navigating to the details page in a different way than we did previously. So, you won&#39;t need to create a tap event handler in the UI markup or Detail component class. You will still need to register the <em>detail</em> route, so don&#39;t forget to create that.</p>
+<p><strong>IMPORTANT</strong></p>
+<p>Before you get started, we&#39;ll be navigating to the details page in a different way than we did previously. So, you won&#39;t need to create a tap event handler in the UI markup or Detail component class. You will still need to register the <em>detail</em> route, so don&#39;t forget to create that.</p>
 </blockquote>
 <p><br/></p>
 <h4 id="checklist-for-creating-the-detail-component">Checklist for creating the Detail component</h4>
@@ -1264,7 +1265,8 @@ export class AppRoutingModule { }
 </ul>
 <p>This is a great way to navigate between pages/components, but there&#39;s also a different way. In this section, you&#39;ll learn how to use an <em>Angular/NativeScript attribute directive</em> to navigate (and pass data) to the Details component. </p>
 <blockquote>
-<p><strong>What&#39;s an attribute directive?</strong>: In Angular, an attribute directive is a piece of code added to the UI markup that modifies the appearance (or behavior) of the UI element. It sounds really fancy (like most Angular terms do), but it&#39;s really just like HTML attributes that Angular knows how to decipher. If you&#39;re interested in learning more about Angular attribute directives, check out their <a href="https://angular.io/guide/attribute-directives">documentation</a>.</p>
+<p><strong>What&#39;s an attribute directive?</strong></p>
+<p>In Angular, an attribute directive is a piece of code added to the UI markup that modifies the appearance (or behavior) of the UI element. It sounds really fancy (like most Angular terms do), but it&#39;s really just like HTML attributes that Angular knows how to decipher. If you&#39;re interested in learning more about Angular attribute directives, check out their <a href="https://angular.io/guide/attribute-directives">documentation</a>.</p>
 </blockquote>
 <p>Now that you know a little about Angular attribute directives, let&#39;s use one to navigate between the list and details components!</p>
 <h4 class="exercise-start">
@@ -1273,10 +1275,12 @@ export class AppRoutingModule { }
 
 <p>In this exercise, you&#39;ll learn about the <code>nsRouterLink</code> attribute directive, and see how it can make navigating between components easy.</p>
 <blockquote>
-<p><strong>nsRouterLink Attribute Directive</strong>: The <code>nsRouterLink</code> attribute directive is an attribute directive provided by NativeScript. It works like the Angular <a href="https://angular.io/guide/router#router-links">routerLink</a> attribute directive, and allows you to add navigation capabilities to UI elements without needing to write code to bind to the tap event handler.</p>
+<p><strong>nsRouterLink Attribute Directive</strong></p>
+<p>The <code>nsRouterLink</code> attribute directive is an attribute directive provided by NativeScript. It works like the Angular <a href="https://angular.io/guide/router#router-links">routerLink</a> attribute directive, and allows you to add navigation capabilities to UI elements without needing to write code to bind to the tap event handler.</p>
 </blockquote>
 <blockquote>
-<p><strong>How do I choose?</strong> You may be thinking that navigation in Angular apps is confusing, because we&#39;ve introduced 2 ways of navigating between pages/components. When shoudl you write code and bind to the tap event handler, and when should you use <code>nsRouterLink</code>? We recommend you use <code>nsRouterLink</code> for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.</p>
+<p><strong>How do I choose?</strong> </p>
+<p>You may be thinking that navigation in Angular apps is confusing, because we&#39;ve introduced 2 ways of navigating between pages/components. When shoudl you write code and bind to the tap event handler, and when should you use <code>nsRouterLink</code>? We recommend you use <code>nsRouterLink</code> for navigation, by default. This will navigate you to components the Angular way. If you need to perform other actions before you navigate (like change UI components, submit data to a web API, or some other business logic), use a tap event handler.</p>
 </blockquote>
 <h4 id="adding-the-nsrouterlink-attribute-directive">Adding the <em>nsRouterLink</em> attribute directive</h4>
 <p>Start by opening the <code>list.component.html</code> file, and locate the <code>ng-template</code> you added to the Upcoming Launches <code>ListView</code>. Your code should look like:</p>
@@ -1313,7 +1317,8 @@ export class AppRoutingModule { }
 <p>You&#39;re finished! By adding <code>/:id</code> to the <code>/detail</code> route, you instruct Angular to expect (and parse) the data passed into it as a variable named <code>id</code>. </p>
 <p>Update the app on your mobile device and check that you can navigate between the List and Detail pages by tapping on a launch. </p>
 <blockquote>
-<p><strong>DON&#39;T FORGET</strong>: You just added the <code>nsRouterLink</code> attribute directive to the Upcoming Launches template, so don&#39;t forget to add it to the Past Launches list.</p>
+<p><strong>DON&#39;T FORGET</strong></p>
+<p>You just added the <code>nsRouterLink</code> attribute directive to the Upcoming Launches template, so don&#39;t forget to add it to the Past Launches list.</p>
 </blockquote>
 <p>This concludes the exercise. In the next exercise, you&#39;ll learn how to access the <code>id</code> variable of the <code>/detail</code> route.</p>
 <div class="exercise-end"></div>
@@ -1374,7 +1379,8 @@ export class DetailComponent implements OnInit {
 <p>Let&#39;s start with <code>this.route.snapshot.params[&quot;id&quot;]</code> - this retrieves the value passed into the <code>id</code> route variable. As you&#39;ll recall, this is the flight number we passed in via the <code>nsRouterLink</code> attribute directive. </p>
 <p>Next, what&#39;s with that <code>+</code> in front of <code>this.route.snapshot.params[&quot;id&quot;]</code>? You may not have seen this before, and it&#39;s something we often forget. The <code>+</code> is a JavaScript feature that converts the value of <code>this.route.snapshot.params[&quot;id&quot;]</code> to a number. It&#39;s needed because data passed via Angular routes are strings.</p>
 <blockquote>
-<p><strong>OnInit vs Component Constructor</strong>: You may be wondering why you didn&#39;t retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initiatize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the <code>OnInit()</code> function. There are other details about why <code>OnInit()</code> shoudl be used, but we&#39;re not going to cover them. For more details, see a good write-up by <a href="https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook">Todd Motto</a>.</p>
+<p><strong>OnInit vs Component Constructor</strong></p>
+<p>You may be wondering why you didn&#39;t retrieve the route variable in the constructor. This is an Angular style guideline. Per Angular guidelines, component constructors should only be used to initiatize class references. No processing, business logic, or any action that could take time should go into the constructor. Instead, Angular recommends placing these types of activities (like route parameter retrieval) be done in the <code>OnInit()</code> function. There are other details about why <code>OnInit()</code> should be used, but we&#39;re not going to cover them. For more details, see a good write-up by <a href="https://toddmotto.com/angular-constructor-ngoninit-lifecycle-hook">Todd Motto</a>.</p>
 </blockquote>
 <p>This concludes the exercise. In the next exercise, you&#39;ll reuse the Launch service previosuly created to retrieve the details about a specific launch.</p>
 <div class="exercise-end"></div>
