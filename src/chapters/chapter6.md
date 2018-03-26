@@ -32,13 +32,13 @@ If you need an assist when creating the Detail component, use this checklist:
 
 When you're finished creating the Detail component, you should have:
 * A folder named *details* in the *views* folder.
-* A `details.component.ts`, `details.component.html`, and `details.component.css` file in the *details* folder (see contents of these folders below).
+* A `detail.component.ts`, `detail.component.html`, and `detail.component.css` file in the *details* folder (see contents of these folders below).
 * An updated `app.module.ts` file that registers the Detail component (see updated file below).
 * The Details component registered as a route in the `app-routing.module.ts` file (see updated file below).
 
 <br/>
 
-#### details.component.ts
+#### detail.component.ts
 
 <br/>
 
@@ -281,7 +281,7 @@ In this exercise, you'll learn how to access navigate route data in the Detail c
 
 #### Retrieving data from a route variable
 
-Let's start by opening the `details.component.ts` file. We haven't changed the file since we created it, so you should have:
+Let's start by opening the `detail.component.ts` file. We haven't changed the file since we created it, so you should have:
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -466,7 +466,7 @@ In previous chapters, you learned about the `ActionBar`, `ScrollView`, and `Stac
 * A `ScrollView` allows the page to scroll if content extends past the original view.
 * A `StackLayout` allows you to *stack* UI elements above/below in a vertical manner.
 
-Update the `details.component.html` file.
+Update the `detail.component.html` file.
 
 ```xml
 <ActionBar title="Launch Details" icon="" class="action-bar">
@@ -496,7 +496,7 @@ Add an image inside the stack layout. You've added an images throughout the work
 >
 > You might be wondering why the UI page can bind to the `launch` variable. If you look back earlier in this chapter, you'll recall that we added a public variable named `launch` to the DetailComponent class. Public variables can be data-bound.
 
-Next, update the `details.component.css` file to restrict images to 50% width.
+Next, update the `detail.component.css` file to restrict images to 50% width.
 
 ```css
 image {
@@ -563,7 +563,7 @@ Start by adding the launch article label to the stack layout.
 </Label>
 ```
 
-Next, implement the `onLinkTap()` function in `details.component.ts`. 
+Next, implement the `onLinkTap()` function in `detail.component.ts`. 
 
 ```javascript
 onLinkTap(link: string): void {

@@ -1141,12 +1141,12 @@ export class AppModule { }
 <p>When you&#39;re finished creating the Detail component, you should have:</p>
 <ul>
 <li>A folder named <em>details</em> in the <em>views</em> folder.</li>
-<li>A <code>details.component.ts</code>, <code>details.component.html</code>, and <code>details.component.css</code> file in the <em>details</em> folder (see contents of these folders below).</li>
+<li>A <code>detail.component.ts</code>, <code>detail.component.html</code>, and <code>detail.component.css</code> file in the <em>details</em> folder (see contents of these folders below).</li>
 <li>An updated <code>app.module.ts</code> file that registers the Detail component (see updated file below).</li>
 <li>The Details component registered as a route in the <code>app-routing.module.ts</code> file (see updated file below).</li>
 </ul>
 <p><br/></p>
-<h4 id="details-component-ts">details.component.ts</h4>
+<h4 id="detail-component-ts">detail.component.ts</h4>
 <p><br/></p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 
@@ -1335,7 +1335,7 @@ export class AppRoutingModule { }
 
 <p>In this exercise, you&#39;ll learn how to access navigate route data in the Detail component. </p>
 <h4 id="retrieving-data-from-a-route-variable">Retrieving data from a route variable</h4>
-<p>Let&#39;s start by opening the <code>details.component.ts</code> file. We haven&#39;t changed the file since we created it, so you should have:</p>
+<p>Let&#39;s start by opening the <code>detail.component.ts</code> file. We haven&#39;t changed the file since we created it, so you should have:</p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 
 @Component({
@@ -1486,7 +1486,7 @@ export class DetailComponent implements OnInit {
 <li>A <code>ScrollView</code> allows the page to scroll if content extends past the original view.</li>
 <li>A <code>StackLayout</code> allows you to <em>stack</em> UI elements above/below in a vertical manner.</li>
 </ul>
-<p>Update the <code>details.component.html</code> file.</p>
+<p>Update the <code>detail.component.html</code> file.</p>
 <pre><code class="lang-xml">&lt;ActionBar title=&quot;Launch Details&quot; icon=&quot;&quot; class=&quot;action-bar&quot;&gt;
 &lt;/ActionBar&gt;
 &lt;ScrollView class=&quot;page&quot;&gt;
@@ -1508,7 +1508,7 @@ export class DetailComponent implements OnInit {
 <p><strong>How can the page bind to the launch variable?</strong></p>
 <p>You might be wondering why the UI page can bind to the <code>launch</code> variable. If you look back earlier in this chapter, you&#39;ll recall that we added a public variable named <code>launch</code> to the DetailComponent class. Public variables can be data-bound.</p>
 </blockquote>
-<p>Next, update the <code>details.component.css</code> file to restrict images to 50% width.</p>
+<p>Next, update the <code>detail.component.css</code> file to restrict images to 50% width.</p>
 <pre><code class="lang-css">image {
     width: 50%;
 }
@@ -1557,7 +1557,7 @@ export class DetailComponent implements OnInit {
     (tap)=&quot;onLinkTap(launch.links.article_link)&quot;&gt;
 &lt;/Label&gt;
 </code></pre>
-<p>Next, implement the <code>onLinkTap()</code> function in <code>details.component.ts</code>. </p>
+<p>Next, implement the <code>onLinkTap()</code> function in <code>detail.component.ts</code>. </p>
 <pre><code class="lang-javascript">onLinkTap(link: string): void {
     // to do: open the link in a browser
 }
