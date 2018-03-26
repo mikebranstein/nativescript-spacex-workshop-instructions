@@ -302,6 +302,7 @@ export class AppRoutingModule { }
 </code></pre>
 <p>The <code>ScrollView</code> and <code>StackLayout</code> elements are two basic layout elements (we&#39;ll talk about the <code>ActionBar</code> in a later chapter). To display multiple elements on a page, you need to use a layout like the <code>ScrollView</code> or <code>StackLayout</code> and in most cases you will want to use both. The <code>ScrollView</code> functions exactly as you would expect, it makes the content inside of it scrollable. The <code>StackLayout</code> element organizes child elements vertically or horizontally.</p>
 <blockquote>
+<p><strong>Stack Layout</strong></p>
 <p>The <code>StackLayout</code> organizes child elements stacked on top of each other vertically by default.</p>
 </blockquote>
 <p>Now that we&#39;ve talked about basic layouts, let&#39;s start designing the home view.</p>
@@ -328,7 +329,7 @@ export class AppRoutingModule { }
     &lt;/StackLayout&gt;
 &lt;/ScrollView&gt;
 </code></pre>
-<p>You app should now have a SpaceX background image in the preview app.</p>
+<p>Your app should now have a SpaceX background image in the preview app.</p>
 <p><img src="images/chapter2/chapter2-2.jpeg" class="img-small" /></p>
 <p>The last step in creating your home view is to add a button. Add a <code>&lt;Button&gt;</code> element inside of the <code>&lt;StackLayout&gt;</code> in the <code>home-component.html</code> file.</p>
 <pre><code class="lang-xml">&lt;ScrollView class=&quot;base&quot;&gt;
@@ -628,11 +629,11 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 </h4>
 
 <p>As you already know, the NativeScript playground provides numerous components you can drag and drop into your project. Go ahead and find the <code>ListView</code> component in the list of components and drag it inside the stack layout.</p>
-<p><img src="images/chapter4/chapter4-1.png" class="img-medium" /></p>
+<p><img src="images/chapter4/chapter4-1.png" class="img-med" /></p>
 <p>And you&#39;re done! you created a list view! Just kidding, but the playground does make it easy to get started learning NativeScript components. Go ahead and save your project and take a look at your app in preview.</p>
 <p><img src="images/chapter4/chapter4-2.jpeg" class="img-small" /></p>
 <p>You may have noticed that there is data showing up. That&#39;s because when you drag a component in the playground it scaffolds out a lot of code for you. Take a look at <code>list.component.ts</code> and you will see the code that is generating the data in the <code>ListView</code> that you drag-and-dropped.</p>
-<p><img src="images/chapter4/chapter4-3.png" class="img-medium" /></p>
+<p><img src="images/chapter4/chapter4-3.png" class="img-med" /></p>
 <p>Before we replace this code, let&#39;s just back over the the view code and update it a bit. Replace the current <code>ScrollView</code> and <code>StackLayout</code> with a single <code>StackLayout</code> containing a <code>Label</code> and <code>ListView</code>.</p>
 <pre><code class="lang-xml">&lt;StackLayout class=&quot;page&quot;&gt;
     &lt;Label class=&quot;h2 text-center&quot; text=&quot;Upcoming Launches&quot;&gt;&lt;/Label&gt;
@@ -678,7 +679,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 </h4>
 
 <p>The first order of business is to generate some models so you can bind your data to strongly typed objects. First create a new folder underneath the <code>app</code> folder called <code>models</code>.</p>
-<p><img src="images/chapter4/chapter4-4.png" class="img-medium" /></p>
+<p><img src="images/chapter4/chapter4-4.png" class="img-med" /></p>
 <p>Next, create 4 TypeScript interfaces inside of the <code>models</code> folder.</p>
 <h4 id="rocket-ts">rocket.ts</h4>
 <p>Specific data on the rocket that was launched.</p>
@@ -722,7 +723,7 @@ export interface Launch {
 }
 </code></pre>
 <p>Now that you have created the models to hold the SpaceX launch data, you need to create a service to return it. In this chapter we will be creating a service that returns some hard-coded data. In the next chapter we will pull the data from the SpaceX public api.  Start by adding another folder to help keep your code organized called <code>services</code> underneath the <code>app</code> folder.</p>
-<p><img src="images/chapter4/chapter4-4.png" class="img-medium" /></p>
+<p><img src="images/chapter4/chapter4-4.png" class="img-med" /></p>
 <p>Next, add a <code>launchService.ts</code> file to the folder that you just created.</p>
 <pre><code class="lang-javascript">import { Injectable } from &quot;@angular/core&quot;;
 import { Launch } from &#39;../models/launch&#39;
@@ -816,15 +817,15 @@ export class ListComponent implements OnInit {
 <p>Classes must be marked <code>@Injectable()</code> for Angular to be able to recognize them as providers. Notice that we you marked the <code>LaunchService</code> as injectable earlier in this chapter.</p>
 </blockquote>
 <p>Go ahead and take a look at your app in the NativeScript preview app.</p>
-<p><img src="images/chapter4/chapter4-5.jpeg" class="img-small" /></p>
+<p><img src="images/chapter4/chapter4-6.jpeg" class="img-small" /></p>
 <p>The images aren&#39;t showing correctly! This is because you haven&#39;t given our images a proper size so you just need to update the <code>list.component.css</code> file.</p>
 <pre><code class="lang-css">image {
     width: 40;
     margin-right: 16;
 }
 </code></pre>
-<p>After saving everything show look great!</p>
-<p><img src="images/chapter4/chapter4-6.jpeg" class="img-small" /></p>
+<p>After saving everything looks great!</p>
+<p><img src="images/chapter4/chapter4-7.jpeg" class="img-small" /></p>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
@@ -908,8 +909,10 @@ export class ListComponent implements OnInit {
 				<h2 id="dynamic-data">Dynamic Data</h2>
 <p>The SpaceX app is starting to look great but you still have some work to do. Static data isn&#39;t much fun so let&#39;s work on getting data from the <a href="https://github.com/r-spacex/SpaceX-API">SpaceX API</a>.</p>
 <blockquote>
-<p>This chapter isn&#39;t going to cover anything specific to NativeScript but more how to access a restful API from Angular.</p>
+<p><strong>NOTE</strong></p>
+<p>This chapter isn&#39;t going to cover anything specific to NativeScript. Instead you&#39;ll learn how to integrate a restful API into Angular. Even though this isn&#39;t NativeScript-specific, it&#39;s still important. Almost every mobile app you&#39;ll write will integrate with an API. </p>
 </blockquote>
+<p>Let&#39;s jump in! </p>
 <h3 id="rxjs">RxJS</h3>
 <p>Before you call the SpaceX API we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. <a href="http://reactivex.io/rxjs/">RxJS</a> is the ReactiveX library for JavaScript. (ok but what does that mean?)</p>
 <p>RxJS is a library for using Observables. We aren&#39;t going to discuss observables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use observables so we can bind observable objects straight to our UI when we receive them back from our API calls.</p>
@@ -1100,8 +1103,8 @@ Pass your application module to the bootstrapModule function located in main.ts 
 export class AppModule { }
 
 </code></pre>
-<p>Save your project and take a look!
-<img src="images/chapter5/chapter5-1.jpeg" class="img-small" /></p>
+<p>Save your project and take a look!</p>
+<p><img src="images/chapter5/chapter5-1.jpeg" class="img-small" /></p>
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 

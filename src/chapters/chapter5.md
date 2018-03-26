@@ -2,7 +2,11 @@
 
 The SpaceX app is starting to look great but you still have some work to do. Static data isn't much fun so let's work on getting data from the [SpaceX API](https://github.com/r-spacex/SpaceX-API).
 
-> This chapter isn't going to cover anything specific to NativeScript but more how to access a restful API from Angular.
+> **NOTE**
+>
+>This chapter isn't going to cover anything specific to NativeScript. Instead you'll learn how to integrate a restful API into Angular. Even though this isn't NativeScript-specific, it's still important. Almost every mobile app you'll write will integrate with an API. 
+
+Let's jump in! 
 
 ### RxJS
 
@@ -214,6 +218,7 @@ export class AppModule { }
 ```
 
 Save your project and take a look!
+
 <img src="images/chapter5/chapter5-1.jpeg" class="img-small" />
 
 This concludes the exercise.

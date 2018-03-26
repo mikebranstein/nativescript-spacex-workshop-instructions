@@ -26,7 +26,9 @@ If you look at the `home-component` that you scaffolded in the previous chapter,
 
 The `ScrollView` and `StackLayout` elements are two basic layout elements (we'll talk about the `ActionBar` in a later chapter). To display multiple elements on a page, you need to use a layout like the `ScrollView` or `StackLayout` and in most cases you will want to use both. The `ScrollView` functions exactly as you would expect, it makes the content inside of it scrollable. The `StackLayout` element organizes child elements vertically or horizontally.
 
->The `StackLayout` organizes child elements stacked on top of each other vertically by default.
+> **Stack Layout**
+>
+> The `StackLayout` organizes child elements stacked on top of each other vertically by default.
 
 Now that we've talked about basic layouts, let's start designing the home view.
 
@@ -62,7 +64,7 @@ Update the `home-component.html` to utilize your new `base` class.
 </ScrollView>
 ```
 
-You app should now have a SpaceX background image in the preview app.
+Your app should now have a SpaceX background image in the preview app.
 
 <img src="images/chapter2/chapter2-2.jpeg" class="img-small" />
 

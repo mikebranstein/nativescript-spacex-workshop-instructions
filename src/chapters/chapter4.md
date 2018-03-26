@@ -13,7 +13,7 @@ Now that you know how to navigate between different views, you can work on makin
 
 As you already know, the NativeScript playground provides numerous components you can drag and drop into your project. Go ahead and find the `ListView` component in the list of components and drag it inside the stack layout.
 
-<img src="images/chapter4/chapter4-1.png" class="img-medium" />
+<img src="images/chapter4/chapter4-1.png" class="img-med" />
 
 And you're done! you created a list view! Just kidding, but the playground does make it easy to get started learning NativeScript components. Go ahead and save your project and take a look at your app in preview.
 
@@ -21,7 +21,7 @@ And you're done! you created a list view! Just kidding, but the playground does 
 
 You may have noticed that there is data showing up. That's because when you drag a component in the playground it scaffolds out a lot of code for you. Take a look at `list.component.ts` and you will see the code that is generating the data in the `ListView` that you drag-and-dropped.
 
-<img src="images/chapter4/chapter4-3.png" class="img-medium" />
+<img src="images/chapter4/chapter4-3.png" class="img-med" />
 
 Before we replace this code, let's just back over the the view code and update it a bit. Replace the current `ScrollView` and `StackLayout` with a single `StackLayout` containing a `Label` and `ListView`.
 
@@ -81,7 +81,7 @@ Now that you have the view updated we need to produce the list of launches that 
 
 The first order of business is to generate some models so you can bind your data to strongly typed objects. First create a new folder underneath the `app` folder called `models`.
 
-<img src="images/chapter4/chapter4-4.png" class="img-medium" />
+<img src="images/chapter4/chapter4-4.png" class="img-med" />
 
 Next, create 4 TypeScript interfaces inside of the `models` folder.
 
@@ -144,7 +144,7 @@ export interface Launch {
 
 Now that you have created the models to hold the SpaceX launch data, you need to create a service to return it. In this chapter we will be creating a service that returns some hard-coded data. In the next chapter we will pull the data from the SpaceX public api.  Start by adding another folder to help keep your code organized called `services` underneath the `app` folder.
 
-<img src="images/chapter4/chapter4-4.png" class="img-medium" />
+<img src="images/chapter4/chapter4-4.png" class="img-med" />
 
 Next, add a `launchService.ts` file to the folder that you just created.
 
@@ -248,7 +248,7 @@ export class ListComponent implements OnInit {
 
 Go ahead and take a look at your app in the NativeScript preview app.
 
-<img src="images/chapter4/chapter4-5.jpeg" class="img-small" />
+<img src="images/chapter4/chapter4-6.jpeg" class="img-small" />
 
 The images aren't showing correctly! This is because you haven't given our images a proper size so you just need to update the `list.component.css` file.
 
@@ -259,9 +259,9 @@ image {
 }
 ```
 
-After saving everything show look great!
+After saving everything looks great!
 
-<img src="images/chapter4/chapter4-6.jpeg" class="img-small" />
+<img src="images/chapter4/chapter4-7.jpeg" class="img-small" />
 
 This concludes the exercise.
 
