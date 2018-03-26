@@ -67,6 +67,8 @@ In or grid example we use `*` for the rows to make each row the same size. Then 
 
 The rest of the components in our `GridLayout`, the `Image` and `Label`, should be familiar to you because we used them earlier. However, take not that we are binding these to properties of `item`. The `let-item` syntax of Angular defines the `item` variable that is used to bind to and render each template for the list of `launches` that we are binding to (similar to how a for loop works).
 
+This concludes the exercise.
+
 <div class="exercise-end"></div>
 
 ### Binding to data from a service
@@ -81,10 +83,12 @@ The first order of business is to generate some models so you can bind your data
 
 <img src="images/chapter4/chapter4-4.png" class="img-medium" />
 
-Next create 4 TypeScript interfaces inside of the `models` folder.
+Next, create 4 TypeScript interfaces inside of the `models` folder.
 
 #### rocket.ts
+
 Specific data on the rocket that was launched.
+
 ```javascript
 export interface Rocket {
     rocket_id: string;
@@ -93,7 +97,9 @@ export interface Rocket {
 ```
 
 #### links.ts
+
 Metadata about the rocket launch.
+
 ```javascript
 export interface Links {
     mission_patch: string;
@@ -103,7 +109,9 @@ export interface Links {
 ```
 
 #### launchSite.ts
+
 Location data about where the rocket was launched from.
+
 ```javascript
 export interface LaunchSite {
     site_id: string;
@@ -113,7 +121,9 @@ export interface LaunchSite {
 ```
 
 #### launch.ts
+
 Full launch data.
+
 ```javascript
 import { Rocket } from "./rocket";
 import { LaunchSite } from "./launchSite";
@@ -203,9 +213,9 @@ export class LaunchService {
 }
 ```
 
-For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - `getUpcoming` and `getPast`. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.
+For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - `getUpcoming()` and `getPast()`. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.
 
-Next you need to call the service from the `list-component` when it loads. To do this, update the `list-component.ts` file.
+Next you need to call the service from the `list.component` when it loads. To do this, update the `list.component.ts` file.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -230,19 +240,30 @@ export class ListComponent implements OnInit {
 }
 ```
 
-Take note that in the update `list.component`, there is a new line defining `providers: [LaunchService]`. Providers are part of Angular dependency injection. In a nutshell, when Angular creates a component, it automatically creates instances of the the items in the providers array (the dependencies); the lifecycle of these dependencies is tied to the component that they are providing. For additional information you can read more about [Angular Dependency Injection](https://angular.io/guide/dependency-injection).
-
-> Classes must be marked `@Injectable()` for Angular to be able to recognize them as providers. Notice that we you marked the `LaunchService` as injectable.
+> **NOTE**
+>
+> In the updated ListComponent class, there is a new line defining `providers: [LaunchService]`. Providers are part of Angular dependency injection. In a nutshell, when Angular creates a component, it automatically creates instances of the the items in the providers array (the dependencies); the lifecycle of these dependencies is tied to the component that they are providing. For additional information you can read more about [Angular Dependency Injection](https://angular.io/guide/dependency-injection).
+>
+> Classes must be marked `@Injectable()` for Angular to be able to recognize them as providers. Notice that we you marked the `LaunchService` as injectable earlier in this chapter.
 
 Go ahead and take a look at your app in the NativeScript preview app.
 
 <img src="images/chapter4/chapter4-5.jpeg" class="img-small" />
 
-The images aren't showing correctly! This is because you haven't given our images a proper size so you just need to update the `list-component.css`.
+The images aren't showing correctly! This is because you haven't given our images a proper size so you just need to update the `list.component.css` file.
+
+```css
+image {
+    width: 40;
+    margin-right: 16;
+}
+```
 
 After saving everything show look great!
 
 <img src="images/chapter4/chapter4-6.jpeg" class="img-small" />
+
+This concludes the exercise.
 
 <div class="exercise-end"></div>
 
@@ -254,7 +275,7 @@ After saving everything show look great!
 
 Right now you have only added the upcoming launches to the list view, well, it's time to learn about the `TabView` component and have previous launches and upcoming launches on the same `ListComponent`. Let's get started!
 
-Update the `list-component.html` to contain 2 lists, one for upcoming launches and one for past launches.
+Update the `list.component.html` to contain 2 lists, one for upcoming launches and one for past launches.
 
 ```xml
 <ActionBar title="SpaceX Launches" class="action-bar">
@@ -291,9 +312,11 @@ Update the `list-component.html` to contain 2 lists, one for upcoming launches a
 
 Tabs inside of the `TabView` component are denoted using the `*tabItem=` syntax. You have created 2 `Listview` components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate `ListViews` to different arrays named `upcoming` and `past` but the rest of the syntax is the same.
 
+> **NOTE** 
+>
 > The `TabView` component sets a default selected tab using the `selectedIndex` property: `<TabView class="tab-view" selectedIndex="0">`.
 
-Update the `list-component.ts` to add the `upcoming` and `past` arrays.
+Update the `list.component.ts` to add the `upcoming` and `past` arrays.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -324,4 +347,8 @@ Save your project and test out your tabs!
 
 <img src="images/chapter4/chapter4-8.jpeg" class="img-small" />
 
+This concludes the exercise.
+
 <div class="exercise-end"></div>
+
+Nice work, and congrats on getting through a lot of code in this chapter! In th next chapter, you'll continue to update the app by obtaining live launch data from an API.

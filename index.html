@@ -667,6 +667,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 </ul>
 <p>In or grid example we use <code>*</code> for the rows to make each row the same size. Then our first column is auto-sized based on the image in with the second column taking up the remaining space.</p>
 <p>The rest of the components in our <code>GridLayout</code>, the <code>Image</code> and <code>Label</code>, should be familiar to you because we used them earlier. However, take not that we are binding these to properties of <code>item</code>. The <code>let-item</code> syntax of Angular defines the <code>item</code> variable that is used to bind to and render each template for the list of <code>launches</code> that we are binding to (similar to how a for loop works).</p>
+<p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
 <h3 id="binding-to-data-from-a-service">Binding to data from a service</h3>
@@ -677,7 +678,7 @@ Now that you can navigate to the List page, let&#39;s dive in and customize its 
 
 <p>The first order of business is to generate some models so you can bind your data to strongly typed objects. First create a new folder underneath the <code>app</code> folder called <code>models</code>.</p>
 <p><img src="images/chapter4/chapter4-4.png" class="img-medium" /></p>
-<p>Next create 4 TypeScript interfaces inside of the <code>models</code> folder.</p>
+<p>Next, create 4 TypeScript interfaces inside of the <code>models</code> folder.</p>
 <h4 id="rocket-ts">rocket.ts</h4>
 <p>Specific data on the rocket that was launched.</p>
 <pre><code class="lang-javascript">export interface Rocket {
@@ -785,8 +786,8 @@ export class LaunchService {
     }
 }
 </code></pre>
-<p>For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - <code>getUpcoming</code> and <code>getPast</code>. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.</p>
-<p>Next you need to call the service from the <code>list-component</code> when it loads. To do this, update the <code>list-component.ts</code> file.</p>
+<p>For now, we will create some dummy data and return it from our service so we can quickly test our UI code. Our service just exposes 2 methods - <code>getUpcoming()</code> and <code>getPast()</code>. Both of the return the same dummy data for now but when we implement the actual api calls in the next chapter you will be getting back different data.</p>
+<p>Next you need to call the service from the <code>list.component</code> when it loads. To do this, update the <code>list.component.ts</code> file.</p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import { Launch } from &quot;../../models/launch&quot;;
 import { LaunchService } from &quot;../../services/launchService&quot;;
@@ -808,15 +809,22 @@ export class ListComponent implements OnInit {
     }
 }
 </code></pre>
-<p>Take note that in the update <code>list.component</code>, there is a new line defining <code>providers: [LaunchService]</code>. Providers are part of Angular dependency injection. In a nutshell, when Angular creates a component, it automatically creates instances of the the items in the providers array (the dependencies); the lifecycle of these dependencies is tied to the component that they are providing. For additional information you can read more about <a href="https://angular.io/guide/dependency-injection">Angular Dependency Injection</a>.</p>
 <blockquote>
-<p>Classes must be marked <code>@Injectable()</code> for Angular to be able to recognize them as providers. Notice that we you marked the <code>LaunchService</code> as injectable.</p>
+<p><strong>NOTE</strong></p>
+<p>In the updated ListComponent class, there is a new line defining <code>providers: [LaunchService]</code>. Providers are part of Angular dependency injection. In a nutshell, when Angular creates a component, it automatically creates instances of the the items in the providers array (the dependencies); the lifecycle of these dependencies is tied to the component that they are providing. For additional information you can read more about <a href="https://angular.io/guide/dependency-injection">Angular Dependency Injection</a>.</p>
+<p>Classes must be marked <code>@Injectable()</code> for Angular to be able to recognize them as providers. Notice that we you marked the <code>LaunchService</code> as injectable earlier in this chapter.</p>
 </blockquote>
 <p>Go ahead and take a look at your app in the NativeScript preview app.</p>
 <p><img src="images/chapter4/chapter4-5.jpeg" class="img-small" /></p>
-<p>The images aren&#39;t showing correctly! This is because you haven&#39;t given our images a proper size so you just need to update the <code>list-component.css</code>.</p>
+<p>The images aren&#39;t showing correctly! This is because you haven&#39;t given our images a proper size so you just need to update the <code>list.component.css</code> file.</p>
+<pre><code class="lang-css">image {
+    width: 40;
+    margin-right: 16;
+}
+</code></pre>
 <p>After saving everything show look great!</p>
 <p><img src="images/chapter4/chapter4-6.jpeg" class="img-small" /></p>
+<p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
 <h3 id="adding-tabs">Adding tabs</h3>
@@ -825,7 +833,7 @@ export class ListComponent implements OnInit {
 </h4>
 
 <p>Right now you have only added the upcoming launches to the list view, well, it&#39;s time to learn about the <code>TabView</code> component and have previous launches and upcoming launches on the same <code>ListComponent</code>. Let&#39;s get started!</p>
-<p>Update the <code>list-component.html</code> to contain 2 lists, one for upcoming launches and one for past launches.</p>
+<p>Update the <code>list.component.html</code> to contain 2 lists, one for upcoming launches and one for past launches.</p>
 <pre><code class="lang-xml">&lt;ActionBar title=&quot;SpaceX Launches&quot; class=&quot;action-bar&quot;&gt;
 &lt;/ActionBar&gt;
 &lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;
@@ -859,9 +867,10 @@ export class ListComponent implements OnInit {
 </code></pre>
 <p>Tabs inside of the <code>TabView</code> component are denoted using the <code>*tabItem=</code> syntax. You have created 2 <code>Listview</code> components in 2 tabs. The list views should look the the ones that you just created in the last exercise. Notice that the you are binding the separate <code>ListViews</code> to different arrays named <code>upcoming</code> and <code>past</code> but the rest of the syntax is the same.</p>
 <blockquote>
+<p><strong>NOTE</strong> </p>
 <p>The <code>TabView</code> component sets a default selected tab using the <code>selectedIndex</code> property: <code>&lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;</code>.</p>
 </blockquote>
-<p>Update the <code>list-component.ts</code> to add the <code>upcoming</code> and <code>past</code> arrays.</p>
+<p>Update the <code>list.component.ts</code> to add the <code>upcoming</code> and <code>past</code> arrays.</p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import { Launch } from &quot;../../models/launch&quot;;
 import { LaunchService } from &quot;../../services/launchService&quot;;
@@ -887,7 +896,11 @@ export class ListComponent implements OnInit {
 </code></pre>
 <p>Save your project and test out your tabs!</p>
 <p><img src="images/chapter4/chapter4-8.jpeg" class="img-small" /></p>
+<p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
+
+<p>Nice work, and congrats on getting through a lot of code in this chapter! In th next chapter, you&#39;ll continue to update the app by obtaining live launch data from an API.</p>
+
 			</div>
 			<hr>
 			<div class="chapter">
