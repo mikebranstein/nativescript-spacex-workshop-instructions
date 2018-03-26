@@ -1,14 +1,14 @@
 ## Dynamic Data
 
-The SpaceX app is starting to look great but you still have some work to do. Static data isn't much fun so let's work on getting data from the [SpaceX Api](https://github.com/r-spacex/SpaceX-API).
+The SpaceX app is starting to look great but you still have some work to do. Static data isn't much fun so let's work on getting data from the [SpaceX API](https://github.com/r-spacex/SpaceX-API).
 
 > This chapter isn't going to cover anything specific to NativeScript but more how to access a restful API from Angular.
 
 ### RxJS
 
-Before you call the SpaceX api we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. [RxJS](http://reactivex.io/rxjs/) is the ReactiveX library for JavaScript. (ok but what does that mean?)
+Before you call the SpaceX API we need to first discuss RxJS. You may have heard of it before - if so feel free to skip ahead. [RxJS](http://reactivex.io/rxjs/) is the ReactiveX library for JavaScript. (ok but what does that mean?)
 
-Basically RxJS is a library for using Observables. We aren't going to discuss obseravables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.
+RxJS is a library for using Observables. We aren't going to discuss obseravables in detail, but, you do need to know that observables are objects that allow you to subscribe events. For example, if a value changes in an observable, subscribers will be notified of the change. Luckily for us NativeScript and Angular already know how to use obserables so we can bind observable objects straight to our UI when we receive them back from our API calls.
 
 ### Calling an API
 
@@ -24,19 +24,21 @@ import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
 ```
 
-Next add methods to made the api calls.
+Next add methods to made the API calls.
 
 ```javascript
-public getUpcomingFromApi(): Observable<Launch[]> {
-        return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches/upcoming'); // upcoming launches
+public getUpcomingFromAPI(): Observable<Launch[]> {
+        return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches/upcoming'); // upcoming launches
     }
 
-public getPastFromApi(): Observable<Launch[]> {
-    return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches?launch_year=2017'); // past launches
+public getPastFromAPI(): Observable<Launch[]> {
+    return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches?launch_year=2017'); // past launches
 }
 ```
 
-Where does `this.http` come from? This (no pun intended) is an instance of the Angular `HttpClient` which needs to be injected via the constructor. Go ahead and update the constructor of the `LaunchService` to inject the `HttpClient`: `constructor(private http: HttpClient) {`.
+> **Where does `this.http` come from?**
+>
+> This (no pun intended) is an instance of the Angular `HttpClient` which needs to be injected via the constructor. Go ahead and update the constructor of the `LaunchService` to inject the `HttpClient`: `constructor(private http: HttpClient) {`.
 
 The full code listing is below.
 
@@ -106,17 +108,19 @@ export class LaunchService {
         return this.launches;
     }
 
-    public getUpcomingFromApi(): Observable<Launch[]> {
-        return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches/upcoming'); // upcoming launches
+    public getUpcomingFromAPI(): Observable<Launch[]> {
+        return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches/upcoming'); // upcoming launches
     }
 
-    public getPastFromApi(): Observable<Launch[]> {
-        return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches?launch_year=2017'); // past launches
+    public getPastFromAPI(): Observable<Launch[]> {
+        return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches?launch_year=2017'); // past launches
     }
 }
 ```
 
-Notice that `Observables` are returning from the SpaceX api. Go ahead and wire up the `ListComponent` to call from the api now by updating the `list-component-ts` file to use the new methods you made.
+> **NOTE**
+>
+> Notice that `Observables` are returning from the SpaceX API. Go ahead and wire up the `ListComponent` to call from the API now by updating the `list-component-ts` file to use the new methods you made.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
@@ -137,13 +141,13 @@ export class ListComponent implements OnInit {
     constructor(private launchService: LaunchService) { }
 
     ngOnInit(): void {
-        this.launchService.getUpcomingFromApi().subscribe(data => {
+        this.launchService.getUpcomingFromAPI().subscribe(data => {
             data.forEach((model) => {
                 this.upcoming.push(model);
             });
         });
 
-        this.launchService.getPastFromApi().subscribe(data => {
+        this.launchService.getPastFromAPI().subscribe(data => {
             data.forEach((model) => {   
                 
                 if (!model.links.mission_patch.includes('https'))
@@ -156,9 +160,11 @@ export class ListComponent implements OnInit {
 }
 ```
 
-The `subscribe` method is part of RxJX that we discussed earlier. When the call the SpaceX api completes, the subscribe method automatically gets called. Inside the subscribe method you are able to translate the data coming back into an array of launches which the UI already knows how to use and bind to properly.
+The `subscribe` method is part of RxJX that we discussed earlier. When the call the SpaceX API completes, the subscribe method automatically gets called. Inside the subscribe method you are able to translate the data coming back into an array of launches which the UI already knows how to use and bind to properly.
 
-> The if statement inside the `getPastFromApi` method may look a bit strange to you (because it is). This if statement exists because by default iOS blocks non-https calls; therefore when attempting to load the mission patch images on iOS it will just fail. This limitation of iOS can be turned off in NativeScript, however, in the playground you currently do not have access to modifying this setting. Keep in mind that the playground is letting us get up and running quickly and not meant for us to push to production from this this limitation is more of a minor nuisance (hence the "quick fix").
+> **NOTE** 
+>
+> The if statement inside `getPastFromAPI()` may look a bit strange to you (because it is). This if statement exists because by default iOS blocks non-https calls; therefore, when attempting to load the mission patch images on iOS it will just fail. This limitation of iOS can be turned off in NativeScript, but in the Playground you can't change this setting. Keep in mind that the playground is letting us get up and running quickly and not meant for us to push to production from this this limitation is more of a minor nuisance (hence the "quick fix").
 
 The last step to making everything work is to import the `HttpModule` into the app by updating the `app.module.ts`.
 
@@ -210,4 +216,10 @@ export class AppModule { }
 Save your project and take a look!
 <img src="images/chapter5/chapter5-1.jpeg" class="img-small" />
 
+This concludes the exercise.
+
 <div class="exercise-end"></div>
+
+Nice work. Adding remote APIs to yoru mobile apps isn't too difficult. Normally, we wouldn't go through the trouble of adding live data to a prototype app, but we just coudln't resist.
+
+In the next chapter, you'll finish the SpaceX app by adding a launch details page.
