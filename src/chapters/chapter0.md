@@ -48,7 +48,7 @@ Key concepts and take-aways:
 You can find additional workshop materials and presentation content at the locations below:
 
 * Opening Presentation: [https://www.slideshare.net/MikeBranstein/prototyping-mobile-apps-with-nativescript-and-angular](https://www.slideshare.net/MikeBranstein/prototyping-mobile-apps-with-nativescript-and-angular)
-* Angular Presentation: [https://github.com/NickBranstein/Presentations/tree/master/2018-CodePaLOUsa](https://github.com/NickBranstein/Presentations/tree/master/2018-CodePaLOUsa)
+* Angular Presentation: [https://github.com/NickBranstein/Presentations/blob/master/2018-CodePaLOUsa/slides.pdf](https://github.com/NickBranstein/Presentations/blob/master/2018-CodePaLOUsa/slides.pdf)
 * Source code for this app: [https://github.com/mikebranstein/nativescript-spacex-workshop](https://github.com/mikebranstein/nativescript-spacex-workshop)
 * Source code for these instructions: [https://github.com/mikebranstein/nativescript-spacex-workshop-instructions](https://github.com/mikebranstein/nativescript-spacex-workshop-instructions)
 
