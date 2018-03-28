@@ -275,7 +275,7 @@ This concludes the exercise.
 
 Right now you have only added the upcoming launches to the list view, well, it's time to learn about the `TabView` component and have previous launches and upcoming launches on the same `ListComponent`. Let's get started!
 
-Update the `list.component.html` to contain 2 lists, one for upcoming launches and one for past launches.
+Update the `list.component.html` to contain 2 lists, one for upcoming launches and one for previous launches.
 
 ```xml
 <ActionBar title="SpaceX Launches" class="action-bar">

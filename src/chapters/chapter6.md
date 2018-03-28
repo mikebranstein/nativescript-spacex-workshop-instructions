@@ -211,9 +211,9 @@ In this exercise, you'll learn about the `nsRouterLink` attribute directive, and
 
 > **NOTE**
 >
-> We are only applying these changes to the **Past Launches** list view. Watch out!
+> We are only applying these changes to the **Previous Launches** list view. Watch out!
 
-Start by opening the `list.component.html` file, and locate the `ng-template` you added to the **Past Launches** `ListView`. Your code should look like:
+Start by opening the `list.component.html` file, and locate the `ng-template` you added to the **Previous Launches** `ListView`. Your code should look like:
 
 ```xml
 <ng-template let-item="item">
@@ -267,7 +267,7 @@ Update the app on your mobile device and check that you can navigate between the
 
 > **WARNING**
 >
-> You just added the `nsRouterLink` attribute directive to the Past Launches template, but didn't add it to the upcoming launches. This was on purpose. In the spirit of time, we won't be showing upcoming launch details because they change often and would require additional coding. So, we're keeping it simple and are only showing past launch details.
+> You just added the `nsRouterLink` attribute directive to the Previous Launches template, but didn't add it to the upcoming launches. This was on purpose. In the spirit of time, we won't be showing upcoming launch details because they change often and would require additional coding. So, we're keeping it simple and are only showing previous launch details.
 
 This concludes the exercise. In the next exercise, you'll learn how to access the `id` variable of the `/detail` route.
 
@@ -371,7 +371,7 @@ public getLaunch(flight_number: number): Observable<Launch> {
 }
 ```
 
-We're not going to explain the details of this function, but it retrieves a specific launch by searching the the past launches for a specific launch number. How convenient ;-).
+We're not going to explain the details of this function, but it retrieves a specific launch by searching the the previous launches for a specific launch number. How convenient ;-).
 
 #### Injecting the Launch service into the Detail component
 
