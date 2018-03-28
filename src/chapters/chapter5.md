@@ -48,7 +48,7 @@ The full code listing is below.
 
 ```javascript
 import { Injectable } from "@angular/core";
-import { Launch } from '../models/launch'
+import { Launch } from '../models/launch';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from "rxjs/Observable";
