@@ -124,7 +124,7 @@ export class LaunchService {
 
 > **NOTE**
 >
-> Notice that `Observables` are returning from the SpaceX API. Go ahead and wire up the `ListComponent` to call from the API now by updating the `list-component-ts` file to use the new methods you made.
+> Notice that `Observables` are returning from the SpaceX API. Go ahead and wire up the `ListComponent` to call from the API now by updating the `list-component.ts` file to use the new methods you made.
 
 ```javascript
 import { Component, OnInit } from "@angular/core";
