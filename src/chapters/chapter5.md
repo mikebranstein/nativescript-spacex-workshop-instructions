@@ -32,11 +32,11 @@ Next add methods to make the API calls.
 
 ```javascript
 public getUpcomingFromAPI(): Observable<Launch[]> {
-        return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches/upcoming'); // upcoming launches
+        return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches/upcoming'); // upcoming launches
     }
 
 public getPastFromAPI(): Observable<Launch[]> {
-    return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches?launch_year=2017'); // past launches
+    return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches?start=1-1-2017&final=12-31-2020&order=desc'); // past launches
 }
 ```
 
@@ -113,11 +113,11 @@ export class LaunchService {
     }
 
     public getUpcomingFromAPI(): Observable<Launch[]> {
-        return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches/upcoming'); // upcoming launches
+        return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches/upcoming'); // upcoming launches
     }
 
     public getPastFromAPI(): Observable<Launch[]> {
-        return this.http.get<Launch[]>('https://API.spacexdata.com/v2/launches?launch_year=2017'); // past launches
+        return this.http.get<Launch[]>('https://api.spacexdata.com/v2/launches?start=1-1-2017&final=12-31-2020&order=desc'); // past launches
     }
 }
 ```

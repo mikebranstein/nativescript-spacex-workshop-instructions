@@ -875,7 +875,7 @@ export class ListComponent implements OnInit {
 </h4>
 
 <p>Right now you have only added the upcoming launches to the list view, well, it&#39;s time to learn about the <code>TabView</code> component and have previous launches and upcoming launches on the same <code>ListComponent</code>. Let&#39;s get started!</p>
-<p>Update the <code>list.component.html</code> to contain 2 lists, one for upcoming launches and one for past launches.</p>
+<p>Update the <code>list.component.html</code> to contain 2 lists, one for upcoming launches and one for previous launches.</p>
 <pre><code class="lang-xml">&lt;ActionBar title=&quot;SpaceX Launches&quot; class=&quot;action-bar&quot;&gt;
 &lt;/ActionBar&gt;
 &lt;TabView class=&quot;tab-view&quot; selectedIndex=&quot;0&quot;&gt;
@@ -968,11 +968,11 @@ import { Observable } from &quot;rxjs/Observable&quot;;
 </code></pre>
 <p>Next add methods to make the API calls.</p>
 <pre><code class="lang-javascript">public getUpcomingFromAPI(): Observable&lt;Launch[]&gt; {
-        return this.http.get&lt;Launch[]&gt;(&#39;https://API.spacexdata.com/v2/launches/upcoming&#39;); // upcoming launches
+        return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches/upcoming&#39;); // upcoming launches
     }
 
 public getPastFromAPI(): Observable&lt;Launch[]&gt; {
-    return this.http.get&lt;Launch[]&gt;(&#39;https://API.spacexdata.com/v2/launches?launch_year=2017&#39;); // past launches
+    return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches?start=1-1-2017&amp;final=12-31-2020&amp;order=desc&#39;); // past launches
 }
 </code></pre>
 <blockquote>
@@ -1046,17 +1046,17 @@ export class LaunchService {
     }
 
     public getUpcomingFromAPI(): Observable&lt;Launch[]&gt; {
-        return this.http.get&lt;Launch[]&gt;(&#39;https://API.spacexdata.com/v2/launches/upcoming&#39;); // upcoming launches
+        return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches/upcoming&#39;); // upcoming launches
     }
 
     public getPastFromAPI(): Observable&lt;Launch[]&gt; {
-        return this.http.get&lt;Launch[]&gt;(&#39;https://API.spacexdata.com/v2/launches?launch_year=2017&#39;); // past launches
+        return this.http.get&lt;Launch[]&gt;(&#39;https://api.spacexdata.com/v2/launches?start=1-1-2017&amp;final=12-31-2020&amp;order=desc&#39;); // past launches
     }
 }
 </code></pre>
 <blockquote>
 <p><strong>NOTE</strong></p>
-<p>Notice that <code>Observables</code> are returning from the SpaceX API. Go ahead and wire up the <code>ListComponent</code> to call from the API now by updating the <code>list-component-ts</code> file to use the new methods you made.</p>
+<p>Notice that <code>Observables</code> are returning from the SpaceX API. Go ahead and wire up the <code>ListComponent</code> to call from the API now by updating the <code>list-component.ts</code> file to use the new methods you made.</p>
 </blockquote>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
 import { Launch } from &quot;../../models/launch&quot;;
@@ -1333,9 +1333,9 @@ export class AppRoutingModule { }
 <h4 id="adding-the-nsrouterlink-attribute-directive">Adding the <em>nsRouterLink</em> attribute directive</h4>
 <blockquote>
 <p><strong>NOTE</strong></p>
-<p>We are only applying these changes to the <strong>Past Launches</strong> list view. Watch out!</p>
+<p>We are only applying these changes to the <strong>Previous Launches</strong> list view. Watch out!</p>
 </blockquote>
-<p>Start by opening the <code>list.component.html</code> file, and locate the <code>ng-template</code> you added to the <strong>Past Launches</strong> <code>ListView</code>. Your code should look like:</p>
+<p>Start by opening the <code>list.component.html</code> file, and locate the <code>ng-template</code> you added to the <strong>Previous Launches</strong> <code>ListView</code>. Your code should look like:</p>
 <pre><code class="lang-xml">&lt;ng-template let-item=&quot;item&quot;&gt;
     &lt;GridLayout rows=&quot;*, *, *&quot; columns=&quot;auto, *&quot; class=&quot;list-group-item&quot;&gt;
         &lt;Image row=&quot;0&quot; col=&quot;0&quot; rowSpan=&quot;3&quot; [src]=&quot;item.links.mission_patch&quot; class=&quot;img-circle&quot;&gt;&lt;/Image&gt;
@@ -1370,7 +1370,7 @@ export class AppRoutingModule { }
 <p>Update the app on your mobile device and check that you can navigate between the List and Detail pages by tapping on a launch. </p>
 <blockquote>
 <p><strong>WARNING</strong></p>
-<p>You just added the <code>nsRouterLink</code> attribute directive to the Past Launches template, but didn&#39;t add it to the upcoming launches. This was on purpose. In the spirit of time, we won&#39;t be showing upcoming launch details because they change often and would require additional coding. So, we&#39;re keeping it simple and are only showing past launch details.</p>
+<p>You just added the <code>nsRouterLink</code> attribute directive to the Previous Launches template, but didn&#39;t add it to the upcoming launches. This was on purpose. In the spirit of time, we won&#39;t be showing upcoming launch details because they change often and would require additional coding. So, we&#39;re keeping it simple and are only showing previous launch details.</p>
 </blockquote>
 <p>This concludes the exercise. In the next exercise, you&#39;ll learn how to access the <code>id</code> variable of the <code>/detail</code> route.</p>
 <div class="exercise-end"></div>
@@ -1452,7 +1452,7 @@ export class DetailComponent implements OnInit {
         .map(launches =&gt; launches.find(launch =&gt; launch.flight_number == flight_number));
 }
 </code></pre>
-<p>We&#39;re not going to explain the details of this function, but it retrieves a specific launch by searching the the past launches for a specific launch number. How convenient ;-).</p>
+<p>We&#39;re not going to explain the details of this function, but it retrieves a specific launch by searching the the previous launches for a specific launch number. How convenient ;-).</p>
 <h4 id="injecting-the-launch-service-into-the-detail-component">Injecting the Launch service into the Detail component</h4>
 <p>Now, head back to the Detail component, and inject the Launch service:</p>
 <pre><code class="lang-javascript">import { Component, OnInit } from &quot;@angular/core&quot;;
@@ -1645,8 +1645,52 @@ export class DetailComponent implements OnInit {
 <p>This concludes the exercise.</p>
 <div class="exercise-end"></div>
 
+<h3 id="dark-theme">Dark Theme</h3>
+<p>You&#39;ve worked through a lot of code in this workshop, but we think there&#39;s one small change that will make the app look even better: a dark theme!</p>
+<blockquote>
+<p><strong>Themes</strong></p>
+<p>We&#39;ve talked about the NativeScript theme plugin throughout the workshop, and we&#39;d like to see it in action. </p>
+</blockquote>
+<h4 class="exercise-start">
+    <b>Exercise</b>: Changing the theme color scheme
+</h4>
+
+<p>NativeScript come with a variety of theme color schemes:</p>
+<pre><code class="lang-css">@import &#39;~nativescript-theme-core/css/aqua.css&#39;;
+@import &#39;~nativescript-theme-core/css/blue.css&#39;;
+@import &#39;~nativescript-theme-core/css/brown.css&#39;;
+@import &#39;~nativescript-theme-core/css/forest.css&#39;;
+@import &#39;~nativescript-theme-core/css/grey.css&#39;;
+@import &#39;~nativescript-theme-core/css/lemon.css&#39;;
+@import &#39;~nativescript-theme-core/css/lime.css&#39;;
+@import &#39;~nativescript-theme-core/css/orange.css&#39;;
+@import &#39;~nativescript-theme-core/css/purple.css&#39;;
+@import &#39;~nativescript-theme-core/css/ruby.css&#39;;
+@import &#39;~nativescript-theme-core/css/sky.css&#39;;
+</code></pre>
+<p>This <a href="https://docs.nativescript.org/img/theme/color-schemes-all.png">image</a> shows the color schemes.</p>
+<p>We think the dark color scheme looks better.</p>
+<p>Open the <code>app.css</code> file and change the theme color scheme to <em>dark</em>:</p>
+<pre><code class="lang-css">@import &#39;nativescript-theme-core/css/core.dark.css&#39;;
+</code></pre>
+<p>When you refresh the app on your mobile device, you should see the dark color scheme on the list and details pages.</p>
+<p><img src="images/chapter6/dark-color-scheme.png" class="img-small" /></p>
+<p>This concludes the exercise.</p>
+<div class="exercise-end"></div>
+
+<p><br />
+<br />
+<br /></p>
 <p>Well done. You&#39;ve finished the workshop, and have a sweet SpaceX mobile app to show your friends and family.</p>
-<p>This concludes the workshop.</p>
+<p>This concludes the workshop.
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br /></p>
 
 			</div>
 		</div>

@@ -625,6 +625,66 @@ This concludes the exercise.
 
 <div class="exercise-end"></div>
 
+### Dark Theme
+
+You've worked through a lot of code in this workshop, but we think there's one small change that will make the app look even better: a dark theme!
+
+> **Themes**
+>
+> We've talked about the NativeScript theme plugin throughout the workshop, and we'd like to see it in action. 
+
+
+
+<h4 class="exercise-start">
+    <b>Exercise</b>: Changing the theme color scheme
+</h4>
+
+NativeScript come with a variety of theme color schemes:
+
+```css
+@import '~nativescript-theme-core/css/aqua.css';
+@import '~nativescript-theme-core/css/blue.css';
+@import '~nativescript-theme-core/css/brown.css';
+@import '~nativescript-theme-core/css/forest.css';
+@import '~nativescript-theme-core/css/grey.css';
+@import '~nativescript-theme-core/css/lemon.css';
+@import '~nativescript-theme-core/css/lime.css';
+@import '~nativescript-theme-core/css/orange.css';
+@import '~nativescript-theme-core/css/purple.css';
+@import '~nativescript-theme-core/css/ruby.css';
+@import '~nativescript-theme-core/css/sky.css';
+```
+
+This [image](https://docs.nativescript.org/img/theme/color-schemes-all.png) shows the color schemes.
+
+We think the dark color scheme looks better.
+
+Open the `app.css` file and change the theme color scheme to *dark*:
+
+```css
+@import 'nativescript-theme-core/css/core.dark.css';
+```
+
+When you refresh the app on your mobile device, you should see the dark color scheme on the list and details pages.
+
+<img src="images/chapter6/dark-color-scheme.png" class="img-small" />
+
+This concludes the exercise.
+
+<div class="exercise-end"></div>
+
+<br />
+<br />
+<br />
+
 Well done. You've finished the workshop, and have a sweet SpaceX mobile app to show your friends and family.
 
 This concludes the workshop.
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
